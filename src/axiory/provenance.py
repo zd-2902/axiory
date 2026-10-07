@@ -2,7 +2,7 @@
 
 from hashlib import sha256
 
-from axiory.models import Claim, Document
+from axiory.models import Claim, Document, Evidence
 
 
 def verify_source(claim: Claim, document: Document, source: bytes) -> None:
@@ -11,6 +11,8 @@ def verify_source(claim: Claim, document: Document, source: bytes) -> None:
     Demo offsets refer to Unicode characters in UTF-8 decoded source bytes.
     PDF ingestion will need a separate versioned extraction artifact.
     """
+    if any(not isinstance(item, Evidence) for item in claim.evidence):
+        raise ValueError("PDF evidence requires DocumentStore.verify_claim")
     if not claim.evidence:
         raise ValueError("No evidence to verify")
     if document.product_id != claim.product_id:

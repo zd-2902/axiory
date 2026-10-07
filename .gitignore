@@ -13,3 +13,5 @@ build/
 !.env.example
 datasets/raw/
 datasets/processed/
+datasets/ingestion/
+*.pdf
