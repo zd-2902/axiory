@@ -25,3 +25,25 @@ Unbelegte Behauptungen und unknown→excluded sind vor Freigabe einzeln zu unter
 Aktuelle Regressionen: Evidenzpflicht, Unknown-Semantik, Limitenkonsistenz, strikte
 Offsets, zusätzliche Felder, ungültige Ontologiecodes, manipulierte Quellen und
 Referenzen, deterministisches JSON sowie installierter CLI-Einstieg.
+
+## Sprint 2: Ingestion-Regressionen
+
+Synthetische PDFs werden im Test erzeugt, nicht heruntergeladen. Regressionen prüfen
+Mehrseitenextraktion, unveränderte Bytes, Unicode/Whitespace, deterministische Hashes,
+Seitenreferenzen, Deduplikation, Metadatenrevisionen und unterschiedliche Versionen.
+Alle Manifesttypen und Originale werden auf Manipulation geprüft; auch neu gehashte
+falsche Extraktionen müssen an der Reproduktion scheitern. Fehlerfälle umfassen
+verschlüsselte/kaputte PDFs, null Seiten, leere Seiten, Bilder ohne Text, Vektorgrafik
+und einzelne defekte Content-Streams. Teilfehler dürfen andere Seiten nicht verlieren.
+I/O-Fehler, falsche Parser-Versionen, ungültige Spannen und importierte Verifikationsflags
+sind ebenfalls abgedeckt. Die ursprünglichen Demo-/CLI-Tests bleiben bestehen.
+
+Das ist eine Integritäts- und Vertragsprüfung, kein PDF-Qualitätsbenchmark. Noch offen:
+Layoutvergleich, echte Font-/Encoding-Vielfalt, Tabellen, Ressourcenlimits, Quellenechtheit
+und fachliche Annotation. Kein success-Status darf als fachliche Vollständigkeit gelten.
+
+Review-Regressionen ergänzen inklusive Grenzwerte, Grössenablehnung vor Parserstart,
+Seitenablehnung vor Textauslesung, strengere Reload-Limits und Wiederholung mit
+angepasster Zulassung. Identitätstests decken Neustarts, Metadatenrevisionen, Altstores,
+bereits widersprüchliche Historien, manipulierte Bindungen und konkurrierende
+Erstschreiber ab. Das ersetzt keine Tests harter CPU-/RAM-/Zeitgrenzen.

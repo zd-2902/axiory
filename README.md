@@ -1,15 +1,13 @@
 # Axiory
 
 B2B Insurance Intelligence Engine für nachvollziehbare Versicherungsvergleiche.
-Das erste MVP soll öffentlich zugängliche AVB und Produktinformationen Schweizer
-Reiseversicherungen strukturieren. Dieses Repository enthält zunächst **nur synthetische
-Daten**, validierte Domänenmodelle und eine deterministische CLI-Demo.
+Ziel des MVP sind öffentlich zugängliche AVB und Produktinformationen Schweizer
+Reiseversicherungen. Aktuell werden ausschliesslich **synthetische Daten** verwendet.
 
-## Installation
+## Installation und Qualität
 
 Voraussetzungen: Git, Python 3.12+ und [uv](https://docs.astral.sh/uv/getting-started/installation/).
-Die Referenzumgebung ist Python 3.12, festgelegt in `.python-version`.
-Nach dem Klonen im Repository-Verzeichnis:
+Referenzumgebung: Python 3.12, festgelegt in .python-version.
 
 ```sh
 uv python install 3.12
@@ -20,46 +18,69 @@ uv run ruff format --check .
 uv run axiory-demo
 ```
 
-Alternativ: `uv run python -m axiory.demo`. Die Demo schreibt deterministisches JSON
-nach stdout: zwei fiktive Produkte, Annullierungslimiten von CHF 5'000 bzw. 8'000,
-explizit ausgeschlossenes Gepäck und unbekannte medizinische Deckung. Vollständige
-synthetische Quelltexte, SHA-256-Hashes und Fundstellen sind enthalten.
-Es braucht weder API-Schlüssel noch Netzwerkzugriff zur Ausführung nach Installation.
+Codex Cloud: `sh scripts/setup.sh` als Setup-Befehl. Python-/Paketdownloads müssen
+beim Setup erlaubt sein; danach laufen Tests und Demo offline. uv.lock fixiert die
+Python-Abhängigkeiten, CI verwendet uv 0.12.23. Updates mit `uv lock --upgrade`
+bewusst durchführen und die vollständigen Prüfungen wiederholen.
 
-Für Codex Cloud dient `sh scripts/setup.sh` als Setup-Befehl. Während des Setups
-müssen Python-/Paketdownloads erlaubt sein; anschliessend funktionieren Tests und
-Demo offline. `uv.lock` fixiert die Python-Abhängigkeiten; CI nutzt uv 0.12.23.
-Abhängigkeiten bewusst mit `uv lock --upgrade` aktualisieren und danach prüfen.
+## Funktionen
+
+Die deterministische Text-Demo (`uv run axiory-demo` oder
+`uv run python -m axiory.demo`) gibt JSON für zwei fiktive Produkte aus:
+Annullierung CHF 5'000 bzw. 8'000, expliziter Gepäckausschluss, unbekannte medizinische
+Deckung, Originaltexte, Hashes und Fundstellen. Keine API-Schlüssel erforderlich.
+
+Sprint 2 ergänzt eine lokale Python-API für **versionierte synthetische PDF-Ingestion**:
+unveränderte Originalbytes, SHA-256, logische Dokumente, immutable Versionsmanifeste,
+Quellmetadaten, seitenweise Texte mit Parser-Version und separate Extraktionshashes.
+Exakte Evidence-Spannen werden nach erneutem Laden gegen die reproduzierte Extraktion
+geprüft. Leere, gescannte, verschlüsselte und beschädigte PDFs erhalten explizite
+Zustände; es gibt kein OCR. Ein Beispiel zum Ausführen steht in
+[INGESTION](docs/INGESTION.md).
 
 ## Struktur
 
 ```text
-src/axiory/        Modelle, mechanische Provenienzprüfung, Demo/CLI
-tests/            Modellinvarianten, Quellenintegrität, CLI
-docs/             Produkt, Architektur, Roadmap, Evaluation, ADRs
-datasets/         Datenregeln; noch keine echten Versicherungsdaten
-scripts/          Reproduzierbares Cloud-Setup
-.github/workflows/ci.yml
+src/axiory/models.py             Versicherungsmodelle und Legacy-Kompatibilität
+src/axiory/demo.py               Bestehende synthetische Text-Demo
+src/axiory/provenance.py         Legacy-UTF-8-Quellenprüfung
+src/axiory/ingestion_models.py   Strikte PDF-/Versions-/Evidence-Schemas
+src/axiory/pdf_extraction.py     Deterministischer pypdf-Adapter
+src/axiory/ingestion.py          Dateispeicher, Ingestion, Reload, Verifikation
+tests/                          Synthetische PDF-Generatoren und Regressionen
+docs/                           Produkt, Architektur, Roadmap, Evaluation, ADRs
+datasets/                       Datenregeln; lokale Ingestion-Artefakte ignoriert
+scripts/                        Reproduzierbares Cloud-Setup
+.github/workflows/ci.yml         Linting, Formatprüfung, Tests und Demo
 ```
 
 ## Prinzipien und Grenzen
 
-Jede positive oder negative Deckungsaussage benötigt Evidenz. `unknown` ist keine
-Ablehnung; fehlende Beträge bedeuten auch nicht unbegrenzte Deckung. Aussagen erhalten
-erst nach mechanischer Prüfung den Status `source_matched`. Das ist keine semantische
-oder juristische Bestätigung. Geldbeträge werden als Decimal verarbeitet und als
-JSON-Strings ausgegeben. Vergleiche behalten Bedingungen und Bezugsgrössen bei.
+Unbekannte Deckung bleibt unknown; fehlende Limiten bedeuten nicht unbegrenzte Deckung.
+Positive und negative Claims brauchen Evidenz. Schema-Konformität und Quellenabgleich
+beweisen keine semantische oder juristische Richtigkeit. Importierte Verifikationsflags
+sind keine Prüfnachweise. Geldbeträge verwenden Decimal; Bedingungen und Bezugsgrössen
+bleiben Teil des Vergleichs. Die Ontologie ist noch provisorisch.
 
-Noch nicht implementiert: Download/Ingestion, PDF/OCR, persistente Artefakte,
-LLM-Extraktion, fachlich geprüfte Ontologie und manuelle Freigabe. Die Demo baut
-strukturierte Fixtures; sie extrahiert keine Texte automatisch und erstellt kein Ranking.
-Pydantic validiert Struktur und Invarianten, nicht Wahrheit. Echte Daten bleiben bis
-zum Ingestion-/Provenienz-Gate in [ROADMAP](docs/ROADMAP.md) ausgeschlossen.
+Noch nicht implementiert: Netzwerk-Ingestion, OCR, LLM-Extraktion, UI, fachlicher
+Review und produktiver Betrieb. PDF-Seitenreferenzen bieten keine visuellen Bounding
+Boxes oder Tabellenstruktur. Parserupgrades benötigen versionierte Re-Extraktion.
+Der lokale Store benötigt Hardlinks. Konfigurierbare Zulassungsgrenzen für PDF-Grösse
+und Seitenzahl sind implementiert; harte CPU-/RAM-/Zeitlimits und Parser-Sandbox fehlen.
+Echte Versicherungsdaten bleiben bis zur Freigabe des
+[Ingestion-/Provenienz-Gates](docs/ROADMAP.md) ausgeschlossen.
 
-**Nächster Schritt:** versionierte Ingestion mit unveränderten Quelldateien,
-Abrufmetadaten, Hashes und reproduzierbarer Text-/Seitenzuordnung implementieren.
-Danach einen manuell annotierten Evaluationssatz aufbauen.
+**Nächster Schritt:** synthetischen Evaluationskorpus um schwierige Layouts und
+Fehlerfälle erweitern; Ressourcenlimits, kontrollierte Quellenaufnahme und fachlichen
+Freigabeprozess spezifizieren. Erst nach bestandenem Gate reale Quellen und einen
+manuell annotierten Goldstandard aufnehmen.
 
-Details: [Produkt](docs/PRODUCT.md), [Architektur](docs/ARCHITECTURE.md),
-[Evaluation](docs/EVALUATION.md), [ADRs](docs/adr/0001-evidence-first-foundation.md).
+[Produkt](docs/PRODUCT.md) · [Architektur](docs/ARCHITECTURE.md) ·
+[Evaluation](docs/EVALUATION.md) · [ADR 0002](docs/adr/0002-versioned-pdf-ingestion.md)
+
 Lizenz und Distributionsmodell sind noch nicht festgelegt.
+
+Review-Fixes: DocumentStore akzeptiert IngestionLimits (Standard 20 MiB / 200 Seiten).
+Überschreitungen werfen ResourceLimitError, ohne ein neues Extraktionsergebnis zu
+veröffentlichen. Eine Dokument-ID bleibt dauerhaft an ein Produkt gebunden;
+Konflikte ergeben IdentityConflictError. Details und Konfiguration: [INGESTION](docs/INGESTION.md).

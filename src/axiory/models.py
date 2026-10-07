@@ -5,6 +5,8 @@ from typing import Annotated, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from axiory.ingestion_models import PdfEvidence
+
 Text = Annotated[str, Field(min_length=1, pattern=r"\S")]
 Identifier = Annotated[str, Field(pattern=r"^[a-z][a-z0-9_.-]*$")]
 Status = Literal["covered", "excluded", "unknown"]
@@ -86,7 +88,7 @@ class Claim(DomainModel):
     id: Identifier
     product_id: Identifier
     coverage: Coverage
-    evidence: tuple[Evidence, ...] = ()
+    evidence: tuple[Evidence | PdfEvidence, ...] = ()
     method: Literal["synthetic_fixture", "human", "llm"]
     method_version: Text
     verification: Literal["unverified", "source_matched", "human_reviewed"] = "unverified"

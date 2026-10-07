@@ -1,51 +1,84 @@
 # Architektur
 
-Ein installierbares Python-Paket mit synchronen, deterministischen Funktionen.
-Keine Server, Datenbank oder externen Laufzeitdienste. `models.py` definiert den
-Datenvertrag, `provenance.py` prüft Quellenbezüge und `demo.py` erzeugt Fixtures und
-JSON-Vergleichszeilen. Alle Laufzeitabhängigkeiten reduzieren sich auf Pydantic.
+Installierbares Python-3.12+-Paket mit synchronen, deterministischen Funktionen.
+Laufzeitabhängigkeiten: Pydantic für Datenverträge, pypdf für PDF-Textauslesung.
+Keine Datenbank, Server, LLMs oder Agentenorchestrierung.
 
-## Beziehungen und Semantik
+## Fachmodell und Kompatibilität
 
-Insurer → InsuranceProduct → Document. Claim bezeichnet eine analytische Aussage
-(keinen Schadenfall), verweist auf ein Produkt und enthält normalisierte Coverage
-sowie Evidence. Evidence verweist auf eine konkrete Dokument-ID und Textspanne.
-Document enthält SHA-256 der Originalbytes, URI und Version. IDs sind lokale stabile
-Bezeichner; eine persistente globale Identitätsstrategie ist noch offen.
+Insurer → InsuranceProduct → Dokumentfamilie. Claim ist eine analytische Aussage,
+kein Schadenfall. Coverage enthält versionierte Ontologiecodes, covered/excluded/unknown,
+Decimal-Limiten samt CHF und Bezugsgrösse sowie Bedingungen. Fehlende Limite ist
+unbekannt, nicht unbegrenzt. Sublimiten, Selbstbehalte, territoriale Regeln und
+Konfliktauflösung sind weiterhin offen.
 
-Coverage verwendet versionierte Ontologiecodes und drei Zustände: covered, excluded,
-unknown. Limite besteht immer aus positivem Decimal-Betrag, Währung und Bezugsgrösse.
-Ohne Limite bleibt deren Höhe unbekannt. Bedingungen sind zunächst strukturierte
-Textlisten. Mehrere Sublimiten, Selbstbehalte, territoriale Regeln und Konflikte sind
-noch nicht modelliert; solche Inhalte dürfen später nicht verlustbehaftet eingepasst werden.
+Das bisherige Document/Evidence-Modell und die Text-Demo (Schema 0.1.0) bleiben gültig.
+provenance.verify_source prüft weiterhin deren UTF-8-Originalbytes. Claim akzeptiert
+zusätzlich PdfEvidence (pdf-1); PDF-Fundstellen müssen über DocumentStore geprüft werden.
+Es gibt keine automatische Umdeutung alter Text-Offsets in PDF-Positionen.
+Die Ontologie bleibt 0.1.0.
 
-Die Pydantic-Modelle sind unveränderlich, verbieten zusätzliche Felder und prüfen
-fachliche Minimalinvarianten. JSON-Arrays werden bewusst in Tupel und Geldstrings in
-Decimal umgewandelt; Integer-Offsets und Boolean-Markierungen sind strikt.
-JSON-Schemas sind über `Claim.model_json_schema()` verfügbar. Künftige LLM-Antworten
-werden über `Claim.model_validate_json(payload)` validiert und dann separat geprüft.
+## PDF-Datenfluss
 
-## Provenienz und Vertrauensgrenzen
+1. LogicalDocument und optionale VersionMetadata strikt validieren.
+2. Unveränderte Bytes unter Originalhash speichern, dann Dokument-/Versionsmanifest
+   und Acquisition mit belegbaren Quellmetadaten ablegen.
+3. Seiten mit pypdf extrahieren; Texte unverändert halten und Seitenfehler erfassen.
+4. Separates ExtractionArtifact unter eigenem Hash speichern.
+5. Receipt mit Referenzen zuletzt speichern und dessen Hash zurückgeben.
 
-Die Demo besitzt UTF-8-Quellen im Code und gibt sie vollständig im Ergebnis aus.
-Offsets sind halb offene Unicode-Zeichenintervalle `[start_char, end_char)` im
-dekodierten Text. Hashes beziehen sich auf die exakten UTF-8-Bytes.
-`verify_source` prüft Produkt-/Dokumentreferenzen, Hash und exakte Zitate. Die erste
-Version unterstützt pro Prüfaufruf genau ein Dokument, keine Multi-Dokument-Claims.
-Referenzintegrität zum Versicherer und Eindeutigkeit aller IDs sind noch keine
-allgemeine Importfunktion; diese wird mit Ingestion ergänzt.
+Logisches Dokument, Versionsmetadaten und Originalhash bestimmen eine unveränderliche
+technische Version. Neue URL/Abrufzeit allein erzeugen keine neue Dokumentversion.
+Korrigierte Versionsmetadaten erzeugen eine neue Version; Original/Extraktion bleiben
+bei identischen Bytes und Parserergebnissen dedupliziert. Ein versionsübergreifender
+Katalog oder veränderlicher Latest-Zeiger existiert noch nicht.
 
-`unverified` → `source_matched` → `human_reviewed` beschreibt beabsichtigte Stufen.
-Derzeit sind Statusfelder deklarativ; nur die Demo setzt `source_matched` nach Prüfung.
-Importierte Statusangaben dürfen künftig nicht als vertrauenswürdig gelten. Exakte
-Zitate beweisen keine semantische Unterstützung, Vollständigkeit oder Aktualität.
-Ein Produktionsworkflow benötigt Review-Identität, Zeitpunkt und Prüfprotokoll.
+PDF-Modelle sind strikt, unveränderlich und verbieten zusätzliche Felder.
+Unbekannte Metadaten sind null. Alle gespeicherten JSON-Objekte werden über
+model_validate_json eingelesen und auf kanonische Byteform geprüft. Seiten-/Zitattext
+wird nicht getrimmt oder normalisiert. Legacy-Modelle behalten ihre bisherigen Regeln.
 
-PDF-Ingestion muss Originalbytes und separat versionierten extrahierten Text samt
-Seiten-/Positionsabbildung erhalten. Abrufzeitpunkt, URL, Dokumentgültigkeit,
-Extraktorversion und Konfliktbehandlung fehlen bewusst noch. Keine echten Daten vor
-Implementierung und Tests dieses Pfads. Entscheidung: [ADR 0001](adr/0001-evidence-first-foundation.md).
+## Integrität
 
-Werkzeuggrundlagen: [uv Locking](https://docs.astral.sh/uv/concepts/projects/sync/),
-[uv CI](https://docs.astral.sh/uv/guides/integration/github/),
-[Pydantic](https://docs.pydantic.dev/latest/concepts/models/).
+Receipt → Version → Dokument/Original sowie Receipt → Acquisition/Extraktion bilden
+eine hashgebundene Referenzkette. load prüft Dateihashes, Schemas, Referenzen und
+reproduziert die Extraktion. PdfEvidence adressiert Dokument, Versionshash,
+Extraktionshash, physische Seite und Unicode-Zeichenspanne. verify_claim prüft zusätzlich
+Produktzuordnung und jede Evidenz; importierte Statusfelder haben keine Autorität.
+Eine Prüfung ändert den Claim nicht und bedeutet keine fachliche Reviewfreigabe.
+
+Zugelassene Originale bleiben auch bei Parserfehlern erhalten. Ein Receipt kennzeichnet einen
+abgeschlossenen Lauf einschliesslich Fehlerergebnis. Bei Speicherfehlern wird abgebrochen;
+bereits geschriebene Artefakte bleiben zur Diagnose/Wiederholung bestehen.
+Das Dateisystem unterstützt atomare Veröffentlichung per Hardlink, keine
+Multi-Datei-Transaktionen oder externe Schreibkonkurrenz.
+
+## Grenzen und nächste Schnittstellen
+
+Die Ingestion nimmt lokale Bytes entgegen, kein HTTP-Download. Originalseiten werden
+über Reihenfolge referenziert, nicht über gedruckte Labels oder Pixelkoordinaten.
+PDF-Textauslesung beweist keine Layouttreue, Vollständigkeit oder semantische Aussage.
+Historische Verifikation benötigt die aufgezeichnete Parser-/Extraktorversion.
+Hashes bieten keine Signaturen; Metadaten und die synthetische Deklaration kommen
+vom Aufrufer. Ressourcenbegrenzung, Sandbox, fachliche Review-Audits und kontrollierte
+Freigabe realer Quellen fehlen. Echte Daten bleiben gesperrt.
+
+[API-Beispiel](INGESTION.md), [ADR 0001](adr/0001-evidence-first-foundation.md),
+[ADR 0002: Format, Parser, Migration und Vertrauensgrenzen](adr/0002-versioned-pdf-ingestion.md).
+
+## Review-Invarianten
+
+IngestionLimits beschränkt PDF-Bytes und Seitenzahl, auch bei Reload/Verifikation.
+ResourceLimitError mit pdf_size_exceeded/page_count_exceeded ist eine Ablehnung
+vor Textauslesung; dabei wird kein neues Extraktionsartefakt/Receipt veröffentlicht.
+Grössenablehnung erfolgt vor Speicherung, Seitenablehnung nach Original-/Metadaten-
+speicherung. Die bestehenden Extraktionsschemas und Hashes bleiben unverändert.
+
+Ein atomar angelegter unveränderlicher Identitätsindex bindet Dokument-ID an Produkt.
+Validierte Dokument-Snapshots bleiben die zusätzliche Referenz für ältere Stores.
+IdentityConflictError verhindert Produktwechsel bei gleicher ID; Titel-/Versions-
+revisionen bleiben möglich. Details einschliesslich Migration und Schlüsselhash:
+[ADR 0002](adr/0002-versioned-pdf-ingestion.md).
+
+Grössen-/Seitenlimits sind keine CPU-/RAM-/Zeitlimits. Ein späterer isolierter Worker
+muss Parser-Laufzeit und Speicher unabhängig vom aufrufenden Prozess begrenzen.
