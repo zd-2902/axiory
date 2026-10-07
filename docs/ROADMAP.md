@@ -4,9 +4,10 @@
 2. **Synthetische Ingestion (Sprint 2):** logische Dokumente, unveränderliche Versionen,
    Originalbytes und Hashes, nullable Quellmetadaten, separate Parser-/Textartefakte,
    stabile Seiten-/Textspannen und verifizierter Reload. Fehlerzustände, Deduplikation,
-   Manipulation und Rückwärtskompatibilität sind getestet.
+   Manipulation und Rückwärtskompatibilität sind getestet. Review-Fixes ergänzen
+   PDF-Grössen-/Seitenlimits sowie eine dauerhafte Dokument-ID-/Produktbindung.
 3. **Gate vor echten Daten (noch offen):** synthetische Layout-/Encoding-/Tabellenfälle
-   ausbauen, Ressourcenlimits und Parser-Isolation festlegen, kontrollierte Aufnahme
+   ausbauen, harte CPU-/RAM-/Zeitlimits im isolierten Worker implementieren, kontrollierte Aufnahme
    mit Abrufprotokoll implementieren. Nutzungs-/Speicherregeln und fachlichen Review
    dokumentieren. Freigabe erst nach bestandenen Integrationsprüfungen und explizit
    dokumentierter fachlicher Freigabe. Öffentlich zugänglich allein genügt nicht.

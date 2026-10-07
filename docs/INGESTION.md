@@ -82,3 +82,42 @@ ersetzt; dafür ist eine bewusste Wiederherstellung aus vertrauenswürdiger Quel
 
 datasets/ingestion ist von Git ausgeschlossen, PDFs zusätzlich global ignoriert.
 Format, Migration, Grenzen: [ADR 0002](adr/0002-versioned-pdf-ingestion.md).
+
+## Konfigurierbare Limits und Identitätskonflikte
+
+Standard: 20 MiB PDF-Bytes und 200 Seiten. Beide Grenzen sind inklusiv und müssen
+strikt positive Ganzzahlen sein. Beispielsweise:
+
+```python
+from pathlib import Path
+
+from axiory.ingestion import DocumentStore, IdentityConflictError
+from axiory.ingestion_models import IngestionLimits
+from axiory.pdf_extraction import ResourceLimitError
+
+store = DocumentStore(
+    Path("datasets/ingestion"),
+    limits=IngestionLimits(max_pdf_bytes=5 * 1024 * 1024, max_pages=50),
+)
+# Beim ingest/load/verify_* ResourceLimitError explizit als Ablehnung behandeln.
+# exc.code: "pdf_size_exceeded" oder "page_count_exceeded"
+# exc.actual / exc.limit enthalten Messwert und Grenzwert.
+# IdentityConflictError bedeutet: Dokument-ID/Produktzuordnung widersprüchlich.
+```
+
+Grössenüberschreitung: keine Speicherung, kein Parsing. Seitenüberschreitung:
+Original und Metadaten bleiben gespeichert, aber keine Extraktion/neues Receipt.
+Die Ausnahmen werden nicht als erfolgreiche Extraktion zurückgegeben. Aufrufer müssen
+sie anzeigen oder protokollieren. Eine Wiederholung mit bewusst angepassten Limits
+ist möglich; alte erfolgreiche Receipts werden nicht gelöscht. Reloads und Evidence-
+Prüfungen dürfen die aktuell konfigurierten Limits ebenfalls nicht umgehen.
+
+Dokument-ID und Produkt werden dauerhaft gebunden. Ein anderes Produkt mit gleicher
+ID löst IdentityConflictError aus, auch nach Neustart oder bei alten Snapshots ohne
+Index. Metadatenrevisionen desselben Produkts sind weiterhin möglich. Für einen
+Produktwechsel eine neue Dokument-ID verwenden. Bestehende widersprüchliche Daten
+werden nicht automatisch repariert.
+
+Diese Schranken ersetzen keine CPU-/Speicher-/Zeitlimits: Ein isolierter Worker
+bleibt nötig. Insbesondere erfolgt die Seitenbaum-Analyse vor der Seitenzahlprüfung;
+komprimierte Inhalte können deutlich mehr Speicher als ihre PDF-Bytes benötigen.

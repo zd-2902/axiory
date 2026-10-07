@@ -27,6 +27,19 @@ class ArtifactModel(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True, frozen=True)
 
 
+class IngestionLimits(ArtifactModel):
+    """Admission policy, not extraction configuration; accepted artifact hashes stay stable."""
+
+    max_pdf_bytes: PositiveInt = 20 * 1024 * 1024
+    max_pages: PositiveInt = 200
+
+
+class DocumentIdentity(ArtifactModel):
+    schema_version: Literal["1"] = "1"
+    document_id: Nonempty
+    product_id: Nonempty
+
+
 class LogicalDocument(ArtifactModel):
     schema_version: Literal["1"] = "1"
     id: Annotated[str, Field(pattern=r"^[a-z][a-z0-9_.-]*$")]

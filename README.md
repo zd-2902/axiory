@@ -65,7 +65,8 @@ bleiben Teil des Vergleichs. Die Ontologie ist noch provisorisch.
 Noch nicht implementiert: Netzwerk-Ingestion, OCR, LLM-Extraktion, UI, fachlicher
 Review und produktiver Betrieb. PDF-Seitenreferenzen bieten keine visuellen Bounding
 Boxes oder Tabellenstruktur. Parserupgrades benötigen versionierte Re-Extraktion.
-Der lokale Store benötigt Hardlinks; Ressourcenlimits und Parser-Sandbox fehlen.
+Der lokale Store benötigt Hardlinks. Konfigurierbare Zulassungsgrenzen für PDF-Grösse
+und Seitenzahl sind implementiert; harte CPU-/RAM-/Zeitlimits und Parser-Sandbox fehlen.
 Echte Versicherungsdaten bleiben bis zur Freigabe des
 [Ingestion-/Provenienz-Gates](docs/ROADMAP.md) ausgeschlossen.
 
@@ -78,3 +79,8 @@ manuell annotierten Goldstandard aufnehmen.
 [Evaluation](docs/EVALUATION.md) · [ADR 0002](docs/adr/0002-versioned-pdf-ingestion.md)
 
 Lizenz und Distributionsmodell sind noch nicht festgelegt.
+
+Review-Fixes: DocumentStore akzeptiert IngestionLimits (Standard 20 MiB / 200 Seiten).
+Überschreitungen werfen ResourceLimitError, ohne ein neues Extraktionsergebnis zu
+veröffentlichen. Eine Dokument-ID bleibt dauerhaft an ein Produkt gebunden;
+Konflikte ergeben IdentityConflictError. Details und Konfiguration: [INGESTION](docs/INGESTION.md).

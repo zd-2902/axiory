@@ -41,3 +41,9 @@ sind ebenfalls abgedeckt. Die ursprünglichen Demo-/CLI-Tests bleiben bestehen.
 Das ist eine Integritäts- und Vertragsprüfung, kein PDF-Qualitätsbenchmark. Noch offen:
 Layoutvergleich, echte Font-/Encoding-Vielfalt, Tabellen, Ressourcenlimits, Quellenechtheit
 und fachliche Annotation. Kein success-Status darf als fachliche Vollständigkeit gelten.
+
+Review-Regressionen ergänzen inklusive Grenzwerte, Grössenablehnung vor Parserstart,
+Seitenablehnung vor Textauslesung, strengere Reload-Limits und Wiederholung mit
+angepasster Zulassung. Identitätstests decken Neustarts, Metadatenrevisionen, Altstores,
+bereits widersprüchliche Historien, manipulierte Bindungen und konkurrierende
+Erstschreiber ab. Das ersetzt keine Tests harter CPU-/RAM-/Zeitgrenzen.

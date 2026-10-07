@@ -47,7 +47,7 @@ Extraktionshash, physische Seite und Unicode-Zeichenspanne. verify_claim prüft 
 Produktzuordnung und jede Evidenz; importierte Statusfelder haben keine Autorität.
 Eine Prüfung ändert den Claim nicht und bedeutet keine fachliche Reviewfreigabe.
 
-Originale bleiben auch bei Parserfehlern erhalten. Ein Receipt kennzeichnet einen
+Zugelassene Originale bleiben auch bei Parserfehlern erhalten. Ein Receipt kennzeichnet einen
 abgeschlossenen Lauf einschliesslich Fehlerergebnis. Bei Speicherfehlern wird abgebrochen;
 bereits geschriebene Artefakte bleiben zur Diagnose/Wiederholung bestehen.
 Das Dateisystem unterstützt atomare Veröffentlichung per Hardlink, keine
@@ -65,3 +65,20 @@ Freigabe realer Quellen fehlen. Echte Daten bleiben gesperrt.
 
 [API-Beispiel](INGESTION.md), [ADR 0001](adr/0001-evidence-first-foundation.md),
 [ADR 0002: Format, Parser, Migration und Vertrauensgrenzen](adr/0002-versioned-pdf-ingestion.md).
+
+## Review-Invarianten
+
+IngestionLimits beschränkt PDF-Bytes und Seitenzahl, auch bei Reload/Verifikation.
+ResourceLimitError mit pdf_size_exceeded/page_count_exceeded ist eine Ablehnung
+vor Textauslesung; dabei wird kein neues Extraktionsartefakt/Receipt veröffentlicht.
+Grössenablehnung erfolgt vor Speicherung, Seitenablehnung nach Original-/Metadaten-
+speicherung. Die bestehenden Extraktionsschemas und Hashes bleiben unverändert.
+
+Ein atomar angelegter unveränderlicher Identitätsindex bindet Dokument-ID an Produkt.
+Validierte Dokument-Snapshots bleiben die zusätzliche Referenz für ältere Stores.
+IdentityConflictError verhindert Produktwechsel bei gleicher ID; Titel-/Versions-
+revisionen bleiben möglich. Details einschliesslich Migration und Schlüsselhash:
+[ADR 0002](adr/0002-versioned-pdf-ingestion.md).
+
+Grössen-/Seitenlimits sind keine CPU-/RAM-/Zeitlimits. Ein späterer isolierter Worker
+muss Parser-Laufzeit und Speicher unabhängig vom aufrufenden Prozess begrenzen.

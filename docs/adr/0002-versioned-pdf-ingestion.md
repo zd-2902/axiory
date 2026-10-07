@@ -34,7 +34,8 @@ synthetic=True ist eine ausdrückliche Deklaration, keine Inhaltsprüfung.
 
 ## Speicher und Identität
 
-Dateinamen enthalten SHA-256 über exakte Bytes. JSON ist kanonisches UTF-8 mit
+Inhaltsartefakte tragen SHA-256 über exakte Bytes im Dateinamen. Der unten
+beschriebene Identitätsindex ist die einzige Ausnahme. JSON ist kanonisches UTF-8 mit
 sortierten Schlüsseln, kompakten Separatoren, unescaped Unicode und ohne Newline.
 
 - documents/<hash>.json: LogicalDocument-Snapshot.
@@ -106,3 +107,57 @@ erstellt werden. Fehlende Metadaten bleiben null.
 
 [pypdf-Textauslesung und Grenzen](https://pypdf.readthedocs.io/en/stable/user/extract-text.html),
 [pypdf strict-Modus](https://pypdf.readthedocs.io/en/stable/user/robustness.html).
+
+## Review-Ergänzung: Ressourcen-Zulassung und dauerhafte Identität
+
+Die Zulassung ist von Extraktionsinhalt/Parserkonfiguration getrennt. IngestionLimits
+definiert strikt positive ganze Zahlen: max_pdf_bytes (Standard 20 MiB = 20 * 1024 * 1024)
+und max_pages (Standard 200). Exakte Grenzwerte sind erlaubt. DocumentStore akzeptiert
+limits=IngestionLimits(...); der Parseradapter dieselbe optionale Konfiguration.
+
+Eine Überschreitung löst ResourceLimitError mit code, actual und limit aus:
+pdf_size_exceeded oder page_count_exceeded. Das ist eine **Ablehnung**, kein
+Extraktionsstatus success/partial/damaged und kein neu veröffentlichtes Receipt.
+Die API fängt diese Ausnahme nicht als Parserfehler ab. Eine Grössenüberschreitung
+wird vor Hashberechnung, Speichern und PdfReader geprüft; es entsteht kein Original-
+artefakt. Die aufrufende Anwendung behält ihre Eingangsbytes und muss die Ablehnung
+anzeigen/protokollieren. Eine Seitenüberschreitung wird nach Ermittlung der Seitenzahl,
+aber vor der ersten Textauslesung geprüft. Bereits gespeicherte Originalbytes,
+Versions-/Abrufmetadaten und Identitätsbindung bleiben erhalten; kein Extraktions-
+artefakt oder neues Receipt entsteht. Ein früher erfolgreiches Receipt bleibt gültig,
+wird aber unter nun strengeren Limits nicht verifiziert.
+
+Reloads unterliegen derselben aktuellen Zulassung: Dateigrösse vor dem Lesen prüfen,
+höchstens max_pdf_bytes + 1 Bytes lesen und die Seitenzahl vor Re-Extraktion prüfen.
+Limits werden nicht ins Extraktionsartefakt eingebettet. Deshalb bleiben bestehende
+Hashes, Evidence-Referenzen, Schema 1 und Extraktorversion 1 für akzeptierte PDFs
+unverändert. Bei bewusster Lockerung der Limits kann derselbe Aufruf wiederholt werden.
+
+Das sind keine harten CPU-/RAM-/Zeitgarantien. Die Bytes liegen beim API-Aufruf bereits
+im Speicher; PdfReader muss vor der Seitenzahlprüfung den Seitenbaum analysieren.
+Komprimierte Streams, feindliche PDFs, JSON-Artefakte und Indexscans können weiterhin
+Ressourcen verbrauchen. Echte CPU-/Speicher-/Zeitlimits erfordern einen späteren
+isolierten Worker mit Prozessgrenzen/Abbruchmechanismus. Keine realen Dokumente freigegeben.
+
+Eine logische Dokument-ID ist innerhalb eines Stores dauerhaft an genau ein Produkt
+gebunden. identities/<sha256(document_id UTF-8)>.json enthält eine kanonische
+DocumentIdentity (Schema 1, document_id, product_id). Dieser unveränderliche Index ist
+nach dem Schlüssel gehasht, **nicht** nach seinem Inhalt; er ersetzt keine bestehenden
+Hashreferenzen. Seine Bytes müssen exakt der erwarteten kanonischen Bindung entsprechen.
+Publikation erfolgt exklusiv/atomar wie bei Inhaltsartefakten. Zwei konkurrierende
+Erstschreiber verschiedener Produkte können deshalb nicht beide gewinnen.
+
+Ingestion und Reload prüfen zusätzlich die validierten documents-Snapshots für die
+angefragte ID. Damit werden Konflikte auch in älteren Stores ohne Index erkannt;
+bereits widersprüchliche Historien führen zu IdentityConflictError statt automatischer
+Umdeutung. Reload alter Stores bleibt lesend; die nächste konfliktfreie Ingestion legt
+die Bindung an, ohne alte Artefakte umzuschreiben. Metadatenrevisionen und neue PDF-
+Versionen desselben Produkts bleiben erlaubt. Verschiedene Dokument-IDs dürfen auf
+verschiedene Produkte zeigen und dieselben Originalbytes deduplizieren.
+
+Die Reservierung erfolgt vor den übrigen Schreibvorgängen. Nach Abbruch kann daher
+eine Bindung ohne abgeschlossenen Lauf existieren; sie wird absichtlich nicht entfernt.
+Ein Produktwechsel benötigt eine neue logische Dokument-ID. Eine manuelle Änderung
+oder Löschung des gesamten Stores bleibt ausserhalb der Authentizitätsgarantien.
+Die Prüfung älterer Snapshots ist O(Anzahl gespeicherter Dokument-Snapshots); ein
+skalierbarer Katalog ist weiterhin nicht implementiert.

@@ -6,7 +6,12 @@ from io import BytesIO
 import pypdf
 from pypdf.generic import ContentStream
 
-from axiory.ingestion_models import ExtractedPage, ExtractionArtifact, page_outcome
+from axiory.ingestion_models import (
+    ExtractedPage,
+    ExtractionArtifact,
+    IngestionLimits,
+    page_outcome,
+)
 
 
 def _has_images(resources: object, seen: set[int] | None = None) -> bool:
@@ -28,8 +33,27 @@ def _has_images(resources: object, seen: set[int] | None = None) -> bool:
     return False
 
 
-def extract_pdf(original: bytes) -> ExtractionArtifact:
+class ResourceLimitError(ValueError):
+    """An admission rejection, never a successful/partial extraction result."""
+
+    def __init__(self, code: str, actual: int, limit: int):
+        self.code = code
+        self.actual = actual
+        self.limit = limit
+        super().__init__(f"{code}: {actual} exceeds {limit}")
+
+
+def check_pdf_size(size: int, limits: IngestionLimits) -> None:
+    if size > limits.max_pdf_bytes:
+        raise ResourceLimitError("pdf_size_exceeded", size, limits.max_pdf_bytes)
+
+
+def extract_pdf(original: bytes, *, limits: IngestionLimits | None = None) -> ExtractionArtifact:
     """Keep unnormalised page text and explicit failures, with no wall clock or OCR."""
+    limits = IngestionLimits.model_validate_json(
+        (limits if limits is not None else IngestionLimits()).model_dump_json()
+    )
+    check_pdf_size(len(original), limits)
     common = {"original_sha256": sha256(original).hexdigest(), "parser_version": pypdf.__version__}
     if not original:
         return ExtractionArtifact(**common, status="empty", pages=())
@@ -43,6 +67,9 @@ def extract_pdf(original: bytes) -> ExtractionArtifact:
         return ExtractionArtifact(
             **common, status="damaged", pages=(), error_type=type(exc).__name__
         )
+    # Outside the parser exception handler: do not turn a policy rejection into damaged.
+    if count > limits.max_pages:
+        raise ResourceLimitError("page_count_exceeded", count, limits.max_pages)
     pages = []
     for index in range(count):
         try:
