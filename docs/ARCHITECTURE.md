@@ -110,3 +110,26 @@ Die 24 Fälle zeigen nur kontrollierte Layoutphänomene, keine reale Produktqual
 Ein späterer Parseradapter muss seine Struktur-/Koordinatenfähigkeiten offenlegen;
 produktive Provenienz darf dabei nicht stillschweigend auf neue Text-Offsets wechseln.
 [ADR 0003](adr/0003-layout-evaluation.md) und [Metrikvertrag](EVALUATION.md).
+
+## Multi-Parser-Schnittstelle (Sprint 4)
+
+parsers/models.py definiert versionierte ParserConfig und LayoutArtifact (Schema 2),
+parsers/adapters.py das ParserProtocol und zwei Implementierungen. PyMuPDF wird nur
+nach explizitem Opt-in importiert; Standardinstallation und Legacy-Verifikation
+benötigen es nicht. parsers/store.py ergänzt LayoutStore mit neuen Collections.
+DocumentStore und seine Hash-/Identitätssemantik bleiben unverändert.
+
+Ein neues Artefakt bindet Parser/Version/Config und Dokumentversion direkt.
+PdfEvidence bleibt pdf-1: dessen Extraktionshash bindet alle zusätzlichen Angaben.
+Reload reproduziert auch Geometrie und Struktur. raw_text wird neben sortiertem
+text gespeichert; RawSpan gehört zu raw_text, PdfEvidence zu text. Kein Offset wird
+zwischen diesen Repräsentationen automatisch übertragen.
+
+Parsergelieferte Blöcke/Zeilen/Boxen sind von heuristischer Sortierung und geometrischer
+Tabellenrekonstruktion getrennt. Header-Kandidaten werden nicht zu Fakten oder Kanten.
+Layoutfehler erhalten Text und explizite Diagnosen. Tabellen sind bei Fehlschlag null.
+Alte Receipts bleiben über DocumentStore lesbar, neue über LayoutStore mit exakter Config.
+
+Die neue Vergleichs-CLI nutzt beide Adapter an identischen Bytes und unverändertem
+Goldstandard. Keine Produktionsumschaltung aufgrund eines pauschalen Scores.
+[ADR 0004](adr/0004-multi-parser-architecture.md) dokumentiert Migration, Lizenz und Schulden.

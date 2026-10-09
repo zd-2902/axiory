@@ -65,8 +65,8 @@ sind keine Prüfnachweise. Geldbeträge verwenden Decimal; Bedingungen und Bezug
 bleiben Teil des Vergleichs. Die Ontologie ist noch provisorisch.
 
 Noch nicht implementiert: Netzwerk-Ingestion, OCR, LLM-Extraktion, UI, fachlicher
-Review und produktiver Betrieb. PDF-Seitenreferenzen bieten keine visuellen Bounding
-Boxes oder Tabellenstruktur. Parserupgrades benötigen versionierte Re-Extraktion.
+Review und produktiver Betrieb. Die Legacy-PDF-Seitenreferenzen enthalten keine visuellen Bounding
+Boxes; experimentelle Layoutartefakte ergänzen Geometrie und heuristische Tabellen. Parserupgrades benötigen versionierte Re-Extraktion.
 Der lokale Store benötigt Hardlinks. Konfigurierbare Zulassungsgrenzen für PDF-Grösse
 und Seitenzahl sind implementiert; harte CPU-/RAM-/Zeitlimits und Parser-Sandbox fehlen.
 Echte Versicherungsdaten bleiben bis zur Freigabe des
@@ -91,10 +91,28 @@ CLI-Optionen, Mathematik, Fehlerklassen und Vertrauensgrenzen:
 [Evaluation](docs/EVALUATION.md), [ADR 0003](docs/adr/0003-layout-evaluation.md).
 Die CI veröffentlicht die generierten synthetischen Reports und Stores als Artefakt.
 
-**Nächster Schritt:** einen zweiten, koordinatenbewussten Parser am eingefrorenen
-Korpus vergleichen und Struktur-/Zuordnungsmetriken ergänzen. Harte Ressourcenlimits
-im isolierten Worker und kontrollierte Quellenaufnahme bleiben Voraussetzung für
-reale Dokumente; keine LLM- oder UI-Erweiterung in diesem Sprint.
+## Multi-Parser-Experiment (Sprint 4)
+
+Neue ParserProtocol-, PypdfAdapter- und PyMuPDFAdapter-Schnittstellen unter
+src/axiory/parsers. Schema-2-Layoutartefakte ergänzen überprüfbare Blöcke, Zeilen,
+Koordinaten und heuristische Tabellen. DocumentStore/Schema 1 bleiben unverändert;
+LayoutStore nutzt dieselben Originale und Dokumentversionen mit neuen Receipts.
+
+PyMuPDF ist wegen offener AGPL-/kommerzieller Lizenzstrategie **keine Standardabhängigkeit**:
+
+```sh
+uv sync --locked --dev --extra experimental-pymupdf
+uv run --extra experimental-pymupdf axiory-parser-benchmark --allow-experimental-pymupdf
+```
+
+Vergleichsberichte: datasets/evaluation-parsers/comparison.json und comparison.md.
+Derselbe unveränderte 24-Fälle-Goldstandard wird für beide Parser verwendet.
+Details, Metrikdefinitionen und Grenzen: [Parserbenchmark](docs/PARSER_BENCHMARK.md),
+[ADR 0004](docs/adr/0004-multi-parser-architecture.md).
+
+**Nächster Schritt:** Sortierkonfigurationen und spaltenbewusste Ordnung gezielt
+vergleichen, Struktur-Goldstandard erweitern und isolierten Worker entwickeln.
+Lizenzstrategie und Ingestion-Gate bleiben vor echten Quellen erforderlich.
 
 [Produkt](docs/PRODUCT.md) · [Architektur](docs/ARCHITECTURE.md) ·
 [Evaluation](docs/EVALUATION.md) · [ADR 0002](docs/adr/0002-versioned-pdf-ingestion.md)
