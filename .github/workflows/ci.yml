@@ -17,13 +17,13 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       # Runtime network namespace is isolated; dependency setup above may use the network.
-      - run: sudo unshare --net -- .venv/bin/pytest
-      - run: sudo unshare --net -- .venv/bin/axiory-demo
-      - run: sudo unshare --net -- .venv/bin/axiory-semantic-eval
-      - run: sudo unshare --net -- .venv/bin/axiory-eval
-      - run: sudo unshare --net -- .venv/bin/axiory-real-eval --dry-run
-      - run: sudo unshare --net -- .venv/bin/axiory-real-eval --all-offline --output datasets/evaluation-real/ci
-      - run: sudo unshare --net -- .venv/bin/axiory-real-eval --replay datasets/evaluation-real/ci
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/pytest
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/axiory-demo
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/axiory-semantic-eval
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/axiory-eval
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/axiory-real-eval --dry-run
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/axiory-real-eval --all-offline --output datasets/evaluation-real/ci
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/axiory-real-eval --replay datasets/evaluation-real/ci
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -44,8 +44,8 @@ jobs:
           enable-cache: true
       - run: uv python install 3.12
       - run: uv sync --locked --dev --extra experimental-pymupdf
-      - run: sudo unshare --net -- .venv/bin/pytest
-      - run: sudo unshare --net -- .venv/bin/axiory-parser-benchmark --allow-experimental-pymupdf
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/pytest
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/axiory-parser-benchmark --allow-experimental-pymupdf
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -65,4 +65,4 @@ jobs:
       - run: uv python install 3.12
       - run: uv sync --locked --dev --extra llm-openai
       # In-memory HTTP transport; no API key, secrets or live network call.
-      - run: sudo unshare --net -- .venv/bin/pytest tests/test_openai_adapter.py
+      - run: sudo unshare --net -- env PATH="$PWD/.venv/bin:$PATH" .venv/bin/pytest tests/test_openai_adapter.py
