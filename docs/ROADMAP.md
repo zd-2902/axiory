@@ -59,3 +59,16 @@ Live-Pilot mit Fehleranalyse, echten Token-/Kostenmessungen und Vergleich des Ve
 Nutzens gegen zusätzlichen Reviewaufwand. Keine automatische Produktausgabe.
 Quellenaufnahme, Worker-Isolation, Lizenzklärung und fachliche Freigabe vor echten AVB
 bleiben offen. Keine UI oder zusätzlichen Agenten im aktuellen Sprint.
+
+## Sprint 6 und nächste Iteration
+
+Implementiert: zusätzlicher DE/FR/IT-Korpus, gepaarte A/B/C-Pipeline, gemeinsames
+Budgetjournal, fünf Reviewentscheidungen, Familienbootstrap und unabhängiges Replay
+von Rohantworten. Alle 120 Fälle zunächst nur offline; kostenpflichtiger Pilot auf
+24 Fälle und 2 USD begrenzt. Kein behaupteter Live-Nutzen ohne echte Beobachtungen.
+
+Priorität: Pilot mit Secret ausführen, korrekte und falsche Gateentscheidungen blind
+fachlich reviewen, Annotation korrigieren und als neue Version einfrieren. Danach
+Reviewzeit und praktische Wirkung gegen Zusatzkosten messen. Erst darauf gestützt über
+grösseren bezahlten Korpus oder anderes Verifiermodell entscheiden. Harte Workerlimits,
+Quellenaufnahme und Freigabe echter Dokumente bleiben separate offene Gates. Keine UI.

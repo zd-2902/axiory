@@ -49,3 +49,5 @@ uv run axiory-eval --output datasets/evaluation-next --compare docs/benchmarks/s
 
 Andere Generatorbytes oder Konfigurationen führen zu nicht vergleichbaren Läufen;
 Laufzeiten werden nicht automatisch zwischen Maschinen verglichen.
+
+Sprint 6: `sprint6-offline-summary.json` records an OFFLINE_PROTOCOL_TEST of 120 DE/FR/IT cases. `live_quality` is null. All ratios and intervals are fixture statistics, not measured model quality. See ../REAL_LLM_BENCHMARK.md and ../SPRINT6_RESULTS.md.

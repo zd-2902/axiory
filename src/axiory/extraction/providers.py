@@ -110,9 +110,15 @@ class OpenAIProvider:
 
         from openai import APIConnectionError, APIStatusError, APITimeoutError
 
+        options = {}
+        if getattr(request, "schema_version", None) == "llm-request-2":
+            options["service_tier"] = request.service_tier
+            if request.temperature is not None:
+                options["temperature"] = request.temperature
         try:
             response = self.client.with_options(timeout=timeout, max_retries=0).responses.create(
                 model=request.model,
+                **options,
                 store=False,
                 max_output_tokens=request.max_output_tokens,
                 input=[

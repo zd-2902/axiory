@@ -4,3 +4,6 @@
 *.yml text eol=lf
 *.toml text eol=lf
 *.lock text eol=lf
+
+# Frozen byte hashes must survive Windows checkouts.
+datasets/multilingual/*.json text eol=lf

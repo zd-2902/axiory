@@ -148,3 +148,26 @@ Nächster fachlicher Schritt: vielfältigere, doppelt annotierte synthetische DE
 Klauseln und Tabellen; danach ein begrenzter, ausdrücklich aktivierter Live-Vergleich
 mit Fehleranalyse und Reviewaufwand. Worker-Isolation und Quellenfreigabe bleiben
 Voraussetzung vor echten AVB. Verifier-Ausgaben sind keine fachliche Freigabe.
+
+## Mehrsprachiger gepaarter LLM-Benchmark (Sprint 6)
+
+120 zusätzliche synthetische DE/FR/IT-Fälle mit eingefrorenem 24-Fälle-Pilot. A extrahiert,
+B prüft dieselbe gespeicherte Antwort, C ergänzt eine kritische Prüfung. Gemeinsames
+Budgetjournal, Offline-Replay und explizite Gates; kein Agentenframework.
+
+```sh
+uv run axiory-real-eval --dry-run
+uv run axiory-real-eval --all-offline --output datasets/evaluation-real/offline-120
+uv run axiory-real-eval --replay datasets/evaluation-real/offline-120
+```
+
+Ohne --live keine API-Aufrufe. Der Live-Pilot benötigt OPENAI_API_KEY als Secret und
+ist auf 24 Fälle/2 USD begrenzt; die 120 Fälle bleiben offline. Offline-Metriken sind
+kein Nachweis echter Modellleistung. Goldannotation ist noch nicht unabhängig geprüft.
+Neue Module: src/axiory/experiments; Freeze/Gold: datasets/multilingual.
+
+Installation des optionalen SDK, Preisannahmen, Metrikdefinitionen und Grenzen:
+[Real LLM Benchmark](docs/REAL_LLM_BENCHMARK.md),
+[Ergebnisse](docs/SPRINT6_RESULTS.md), [ADR 0006](docs/adr/0006-real-llm-evaluation.md).
+Nächster Schritt: API-Secret einrichten, begrenzten Pilot durchführen und dessen Fehler
+fachlich blind prüfen, bevor ein grösserer bezahlter Lauf erwogen wird.

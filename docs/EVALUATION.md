@@ -200,3 +200,15 @@ Signifikanzen, keinen gewichteten Gesamtscore und keine Produktionsfreigabe.
 Sprint 5 ergänzt einen unabhängigen 120-Fälle-Korpus. Dieser Layoutgoldstandard
 bleibt unverändert. Verfahren, Zähler/Nenner und Grenzen des Offline-Mock-Vergleichs:
 [LLM_EVALUATION](LLM_EVALUATION.md).
+
+## Sprint 6: reale LLM-Evaluation vorbereitet
+
+Der zusätzliche eingefrorene DE/FR/IT-Korpus umfasst 120 Fälle, 30 disjunkte
+Dokumentfamilien und einen 24-Fälle-Pilot. Er ersetzt weder Layoutgold noch Sprint-5-Gold.
+A/B/C teilen dieselbe Extraktorantwort. Ein Protokolltest darf keine Live-Modellqualität
+behaupten: live_quality bleibt dort null. Unabhängige Fachannotation fehlt weiterhin.
+
+CLI, alle Zähler/Nenner, Budgetgrenzen, Fehlertypen, Familienbootstrap und
+Complete-case-Sensitivität stehen in [REAL_LLM_BENCHMARK](REAL_LLM_BENCHMARK.md).
+[SPRINT6_RESULTS](SPRINT6_RESULTS.md) trennt Implementierung, Offlineprüfung und echte
+Beobachtungen. Runtime-CI ist über Netzwerknamespace isoliert; Paketsetup erfolgt vorher.
