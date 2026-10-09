@@ -16,6 +16,7 @@ uv run pytest
 uv run ruff check .
 uv run ruff format --check .
 uv run axiory-demo
+uv run axiory-eval
 ```
 
 Codex Cloud: `sh scripts/setup.sh` als Setup-Befehl. Python-/Paketdownloads müssen
@@ -47,11 +48,12 @@ src/axiory/provenance.py         Legacy-UTF-8-Quellenprüfung
 src/axiory/ingestion_models.py   Strikte PDF-/Versions-/Evidence-Schemas
 src/axiory/pdf_extraction.py     Deterministischer pypdf-Adapter
 src/axiory/ingestion.py          Dateispeicher, Ingestion, Reload, Verifikation
+src/axiory/evaluation/          Synthetischer Korpus, Goldstandard, Metriken, Reports
 tests/                          Synthetische PDF-Generatoren und Regressionen
 docs/                           Produkt, Architektur, Roadmap, Evaluation, ADRs
 datasets/                       Datenregeln; lokale Ingestion-Artefakte ignoriert
 scripts/                        Reproduzierbares Cloud-Setup
-.github/workflows/ci.yml         Linting, Formatprüfung, Tests und Demo
+.github/workflows/ci.yml         Linting, Formatprüfung, Tests, Demo und Benchmark
 ```
 
 ## Prinzipien und Grenzen
@@ -70,10 +72,29 @@ und Seitenzahl sind implementiert; harte CPU-/RAM-/Zeitlimits und Parser-Sandbox
 Echte Versicherungsdaten bleiben bis zur Freigabe des
 [Ingestion-/Provenienz-Gates](docs/ROADMAP.md) ausgeschlossen.
 
-**Nächster Schritt:** synthetischen Evaluationskorpus um schwierige Layouts und
-Fehlerfälle erweitern; Ressourcenlimits, kontrollierte Quellenaufnahme und fachlichen
-Freigabeprozess spezifizieren. Erst nach bestandenem Gate reale Quellen und einen
-manuell annotierten Goldstandard aufnehmen.
+## Layout-Benchmark (Sprint 3)
+
+`uv run axiory-eval` erzeugt 24 synthetische PDFs und verarbeitet sie mit der
+bestehenden Ingestion. JSON-/Markdown-Berichte liegen unter `datasets/evaluation/`;
+je Lauf bleiben Originale, Goldannotation und überprüfbare Stores im run-*-Ordner.
+Keine API-Schlüssel oder Systemfonts nötig. ReportLab und eingebettetes Vera sind
+über uv.lock verfügbar. Tabellen-/Klauselstruktur bleibt beim pypdf-Adapter unsupported.
+Die Text-/Fundstellenmetriken bewerten keine fachliche Versicherungsinterpretation.
+
+Vergleich mit unverändertem Korpus:
+
+```sh
+uv run axiory-eval --output datasets/evaluation-next --compare datasets/evaluation/report.json
+```
+
+CLI-Optionen, Mathematik, Fehlerklassen und Vertrauensgrenzen:
+[Evaluation](docs/EVALUATION.md), [ADR 0003](docs/adr/0003-layout-evaluation.md).
+Die CI veröffentlicht die generierten synthetischen Reports und Stores als Artefakt.
+
+**Nächster Schritt:** einen zweiten, koordinatenbewussten Parser am eingefrorenen
+Korpus vergleichen und Struktur-/Zuordnungsmetriken ergänzen. Harte Ressourcenlimits
+im isolierten Worker und kontrollierte Quellenaufnahme bleiben Voraussetzung für
+reale Dokumente; keine LLM- oder UI-Erweiterung in diesem Sprint.
 
 [Produkt](docs/PRODUCT.md) · [Architektur](docs/ARCHITECTURE.md) ·
 [Evaluation](docs/EVALUATION.md) · [ADR 0002](docs/adr/0002-versioned-pdf-ingestion.md)
