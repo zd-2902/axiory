@@ -541,3 +541,22 @@ def test_replay_rejects_unconsumed_extra_records(setup):
     key = store._put("semantic_runs", canonical_bytes(forged))
     with pytest.raises(IntegrityError, match="unconsumed"):
         replay(store, key)
+
+
+@pytest.mark.parametrize("identifier", ["../escape", "a/b", "C:/outside", ".."])
+def test_gold_case_ids_cannot_escape_output_directory(tmp_path, identifier):
+    data = load_gold().model_dump(mode="json")
+    data["cases"][0]["id"] = identifier
+    path = tmp_path / "gold.json"
+    path.write_text(json.dumps(data), encoding="utf-8")
+    with pytest.raises(ValidationError):
+        load_gold(path)
+
+
+def test_gold_rejects_product_leakage_across_distinct_families(tmp_path):
+    data = load_gold().model_dump(mode="json")
+    data["cases"][72]["product_id"] = data["cases"][0]["product_id"]
+    path = tmp_path / "gold.json"
+    path.write_text(json.dumps(data), encoding="utf-8")
+    with pytest.raises(ValueError, match="leakage"):
+        load_gold(path)

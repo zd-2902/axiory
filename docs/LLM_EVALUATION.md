@@ -96,6 +96,8 @@ Live-API-Kostenschätzungen und menschliche Reviewminuten sind nicht gemessen un
 bleiben null mit measured_count=0; nicht als Nullverbrauch bzw. Nullaufwand ausgeben.
 Der Report enthält pro Modus Summe, Zahl der Aufrufe, gemessene Anzahl und Fallzahl.
 Latenz misst Provideraufruf plus Rohantwortpersistenz, nicht die gesamte Ingestion.
+Referenz: 0.905 s/120 Extraktoraufrufe gegenüber 2.722 s/240 Aufrufe mit Verifier,
+jeweils N=120 Fälle (7.54 bzw. 22.68 ms aufsummierte Callzeit pro Fall).
 Die Mock-Laufzeit ist lokaler Python-/Dateisystemaufwand, keine Prognose für API-Latenz.
 Ein Verifier-Nutzen unter realen Kosten-/Latenzbedingungen ist damit **offen**.
 
@@ -131,7 +133,7 @@ Erst daraus Modell-/Verifierentscheidung und Freigabeschwellen ableiten.
 
 ## Ausgeführte Regressionen
 
-Vollständige Suite mit llm-openai und experimental-pymupdf: **307 bestanden**.
+Vollständige Suite mit llm-openai und experimental-pymupdf: **312 bestanden**.
 Ruff Lint und Formatcheck bestanden; axiory-demo, axiory-eval und optionaler
 axiory-parser-benchmark erfolgreich. Sprint-3-Fingerprint bleibt
 f6a854948483cccde0c42e237e9963c3ad9843100b172bbd218dd3205f3e932d,
@@ -140,5 +142,9 @@ Sprint-4-Fingerprint bleibt
 Die SDK-Tests nutzen ausschliesslich einen In-Memory-Transport. Benchmark-Exit 0
 bedeutet erfolgreiche Ausführung, nicht ausreichende fachliche Qualität.
 
-Standardinstallation ohne Extras: **269 bestanden, 38 bewusst übersprungen**
-(33 PyMuPDF- und fünf OpenAI-SDK-Vertragstests). Die Extrasuite deckt alle 307 ab.
+Standardinstallation ohne Extras: **274 bestanden, 38 bewusst übersprungen**
+(33 PyMuPDF- und fünf OpenAI-SDK-Vertragstests). Die Extrasuite deckt alle 312 ab.
+
+Der Referenzsnapshot wurde auf sauberem Commit d8bd3816c648b5e202aca7752adba9d1bae1b899
+erzeugt. Nachfolgende Loader-Härtung prüft sichere Fall-IDs und Produktleckage;
+der annotierte Korpus und die Extraktions-/Bewertungslogik bleiben unverändert.

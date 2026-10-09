@@ -7,8 +7,9 @@ from hashlib import sha256
 from importlib.metadata import version
 from io import BytesIO
 from pathlib import Path
-from typing import Literal
+from typing import Annotated, Literal
 
+from pydantic import Field
 from reportlab.pdfgen.canvas import Canvas
 
 from axiory.evaluation.runner import git_metadata
@@ -36,12 +37,15 @@ class Annotation(ArtifactModel):
     rationale: Nonempty
 
 
+Identifier = Annotated[str, Field(pattern=r"^[a-z][a-z0-9_.-]*$")]
+
+
 class SemanticCase(ArtifactModel):
-    id: Nonempty
-    family: Nonempty
+    id: Identifier
+    family: Identifier
     split: Literal["dev", "holdout"]
     scenario: Nonempty
-    product_id: Nonempty
+    product_id: Identifier
     coverage_code: Code
     pages: tuple[tuple[Nonempty, ...], ...]
     annotation: Annotation
@@ -60,8 +64,10 @@ def load_gold(path=Path("datasets/semantic/gold-v1.json")):
         raise ValueError("Duplicate gold IDs")
     dev = {c.family for c in gold.cases if c.split == "dev"}
     holdout = {c.family for c in gold.cases if c.split == "holdout"}
-    if dev & holdout:
-        raise ValueError("Family leakage")
+    dev_products = {c.product_id for c in gold.cases if c.split == "dev"}
+    holdout_products = {c.product_id for c in gold.cases if c.split == "holdout"}
+    if dev & holdout or dev_products & holdout_products:
+        raise ValueError("Family or product leakage")
     return gold
 
 

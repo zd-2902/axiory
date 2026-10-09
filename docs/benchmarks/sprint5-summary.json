@@ -1,6 +1,16 @@
 {
   "schema_version": "semantic-report-1",
   "measurement": "OFFLINE_SCRIPTED_MOCK",
+  "metadata": {
+    "git_commit": "d8bd3816c648b5e202aca7752adba9d1bae1b899",
+    "git_dirty": false,
+    "git_reason": null,
+    "python": "3.12.14",
+    "pypdf": "6.19.0",
+    "pydantic": "2.13.5",
+    "reportlab": "4.5.1"
+  },
+  "paid_api_calls": 0,
   "live_llm_quality_measured": false,
   "quality_fingerprint": "5ed116194207ccb6105c831ce1e383066bfdd09d28570b2189a6da2817d7789f",
   "quality": {
@@ -7766,7 +7776,7 @@
     "mock_extractor": {
       "calls": 120,
       "latency_seconds": {
-        "numerator": 0.7969999999622814,
+        "numerator": 0.9050000000861473,
         "denominator": 120,
         "measured_count": 120,
         "case_count": 120,
@@ -7804,7 +7814,7 @@
     "mock_verifier_gate": {
       "calls": 240,
       "latency_seconds": {
-        "numerator": 2.262999999744352,
+        "numerator": 2.721999999776017,
         "denominator": 240,
         "measured_count": 240,
         "case_count": 120,
