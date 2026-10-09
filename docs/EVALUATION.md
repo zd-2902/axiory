@@ -176,3 +176,21 @@ produktgetrennte Entwicklungs-/Testsplits, Unknown-Recall, false excluded,
 Ontologie-/Betrag-/Währungs-/Basisübereinstimmung und semantisch stützende Zitate.
 Freigabeschwellen bestimmen Domänenverantwortliche. Sprint-1-/2-Regressionen zu
 Hashintegrität, Ressourcenlimits, Identitätsbindung und Demo bleiben vollständig bestehen.
+
+## Sprint 4: gepaarter Parservergleich
+
+axiory-eval und seine bestehenden Ergebnisse bleiben unverändert reproduzierbar.
+Die separate opt-in CLI axiory-parser-benchmark verwendet denselben Korpus und
+Metrikversion 2; sie erweitert die Auswertung um Struktur-Precision/Recall,
+Parserlaufzeiten, Provenienz-Gates und fallweise Vor-/Nachteile. Neue PypdfAdapter-
+Schema-2-Artefakte bewahren exakt die bisherigen Seitentexte, ändern aber bewusst
+Artefaktformat und Extraktionshash. Alte Referenzen werden nicht migriert.
+
+Die Tabellen-Zellmetriken verlangen keine ungesicherten Headerflags. Daher sind
+sie nicht identisch mit dem strengeren Sprint-3-Tabellenscore. Header-Kanten und
+Klauselgrenzen bleiben unsupported; zusätzliche Tabellenzellen senken Precision.
+Originale und Sollwerte werden auf Hashgleichheit zwischen beiden Parsern geprüft.
+
+Definitionen, Entscheidungsregel, Lizenzkontext und gemessene Berichte:
+[PARSER_BENCHMARK](PARSER_BENCHMARK.md). Der Vergleich enthält keine erfundenen
+Signifikanzen, keinen gewichteten Gesamtscore und keine Produktionsfreigabe.

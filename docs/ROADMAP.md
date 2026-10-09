@@ -29,3 +29,17 @@ Keine Erweiterung um LLMs oder Agenten, bevor diese Baseline verstanden ist.
 Offen bleiben Lizenz, Ontologieverantwortung, Review-/Freigabeschwellen, Nutzungsregeln,
 Mehrsprachigkeit und fachliche Dokumentpriorität bei Konflikten. Technische Versionen
 sind implementiert, fachliche Gültigkeit und Echtheit sind damit nicht bewiesen.
+
+## Sprint 4 und nächste Iteration
+
+Zwei austauschbare Parser, optionale Layoutrepräsentation, Schema-2-Provenienz und
+gepaarter Benchmark am unveränderten Korpus sind implementiert. PyMuPDF bleibt
+experimentell und lizenzseitig ungeklärt für proprietäre SaaS. Die Standardbaseline
+bleibt pypdf; Vorteile und Regressionen werden je Fall ausgewiesen.
+
+Nächste empfohlene Iteration: Sortier-Ablation und spaltenbewusste Ordnung, mehr
+unabhängige Strukturannotation (insbesondere zusätzliche/falsche Zellen und
+Header-/Wert-Zuordnung), weitere Fonts/Rotationen sowie isolierter Worker.
+Echte AVB benötigen zusätzlich kontrollierte Aufnahme, Lizenz-/Nutzungsfreigaben
+und fachlichen Review. Die versionierte Schnittstelle erlaubt spätere LLM-Experimente,
+ist aber noch keine verlässliche fachliche Extraktions- oder Produktionsfreigabe.

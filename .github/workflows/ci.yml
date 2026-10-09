@@ -13,6 +13,7 @@ jobs:
           enable-cache: true
       - run: uv python install 3.12
       - run: uv sync --locked --dev
+      - run: uv run python -c "import importlib.util; assert importlib.util.find_spec('pymupdf') is None"
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run pytest
@@ -23,5 +24,24 @@ jobs:
         with:
           name: synthetic-layout-evaluation
           path: datasets/evaluation/
+          if-no-files-found: warn
+          retention-days: 14
+  experimental-parser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.23"
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --locked --dev --extra experimental-pymupdf
+      - run: uv run --extra experimental-pymupdf pytest
+      - run: uv run --extra experimental-pymupdf axiory-parser-benchmark --allow-experimental-pymupdf
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: synthetic-multi-parser-evaluation
+          path: datasets/evaluation-parsers/
           if-no-files-found: warn
           retention-days: 14
