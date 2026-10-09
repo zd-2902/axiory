@@ -1,7 +1,8 @@
 # Architektur
 
 Installierbares Python-3.12+-Paket mit synchronen, deterministischen Funktionen.
-Laufzeitabhängigkeiten: Pydantic für Datenverträge, pypdf für PDF-Textauslesung.
+Laufzeitabhängigkeiten: Pydantic für Datenverträge, pypdf für PDF-Textauslesung,
+ReportLab für synthetische Evaluations-PDFs (eingebetteter Vera-Font).
 Keine Datenbank, Server, LLMs oder Agentenorchestrierung.
 
 ## Fachmodell und Kompatibilität
@@ -82,3 +83,30 @@ revisionen bleiben möglich. Details einschliesslich Migration und Schlüsselhas
 
 Grössen-/Seitenlimits sind keine CPU-/RAM-/Zeitlimits. Ein späterer isolierter Worker
 muss Parser-Laufzeit und Speicher unabhängig vom aufrufenden Prozess begrenzen.
+
+## Evaluation (Sprint 3)
+
+Additive Module unter src/axiory/evaluation; keine Änderung an produktiven Schemas:
+
+1. goldstandard.py verfasst den versionierten Sollinhalt unabhängig vom Parser.
+2. fixtures.py rendert deterministische PDFs mit eingebetteter Schrift.
+3. runner.py führt je Wiederholung Ingestion und verifizierten Reload in frischen Stores aus.
+4. metrics.py bewertet Rohtext, begrenzte Ankerreihenfolge und goldgestützte Fundstellen.
+5. reporting.py exportiert JSON/Markdown, Mikromittel, Diagnosen und Vergleichsfingerprints.
+
+schemas.py trennt GoldFixture, Observation und Ergebnisse; Fachinterpretation bleibt
+not_evaluated. Fehlende Klausel-/Tabellenfähigkeit ist unsupported. Strukturmetriken
+existieren für spätere Adapter, ohne Struktur aus flachem Text zu erfinden.
+PDF-/Gold-/Extraktionshashes, Versionen und Konfiguration binden die Ergebnisse.
+Zeitpunkt, Maschine und Laufzeiten werden gespeichert, aber nicht in den stabilen
+Qualitätsfingerprint eingerechnet. Keine automatischen maschinenübergreifenden Zeitdeltas.
+
+Das CLI schreibt in ignorierte datasets/evaluation-Verzeichnisse; CI lädt synthetische
+Ergebnisse als kurzlebige Artefakte hoch. Goldstandard und Generator werden als Code
+versioniert. Alle Eingabeannotation und historische Falldaten durchlaufen strikte
+Pydantic-Validierung. Hashes authentifizieren keinen externen Bericht.
+
+Die 24 Fälle zeigen nur kontrollierte Layoutphänomene, keine reale Produktqualität.
+Ein späterer Parseradapter muss seine Struktur-/Koordinatenfähigkeiten offenlegen;
+produktive Provenienz darf dabei nicht stillschweigend auf neue Text-Offsets wechseln.
+[ADR 0003](adr/0003-layout-evaluation.md) und [Metrikvertrag](EVALUATION.md).

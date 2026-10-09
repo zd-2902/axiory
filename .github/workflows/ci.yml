@@ -17,3 +17,11 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run pytest
       - run: uv run axiory-demo
+      - run: uv run axiory-eval
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: synthetic-layout-evaluation
+          path: datasets/evaluation/
+          if-no-files-found: warn
+          retention-days: 14

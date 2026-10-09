@@ -15,3 +15,6 @@ datasets/raw/
 datasets/processed/
 datasets/ingestion/
 *.pdf
+datasets/evaluation*/
+tmp/
+output/
