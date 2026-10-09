@@ -167,3 +167,48 @@ verified = store.load(receipt)  # Hashprüfung und vollständige Re-Extraktion
 Für Schema 1 weiterhin DocumentStore verwenden. Die gespeicherte Config und
 Parser-Version sind für spätere Verifikation verbindlich; unbekannte Konfigurationen
 werden nicht stillschweigend auf aktuelle Defaults umgesetzt.
+
+## Gemessene Baseline (sauberer Commit 365d29a)
+
+[Menschenlesbarer Export](benchmarks/sprint4-comparison.md) und
+[maschinenlesbare Zusammenfassung](benchmarks/sprint4-summary.json).
+Die Zusammenfassung lässt Rohtexte/Boxen weg; der vollständige Report und alle
+Original-/Store-Artefakte liegen lokal unter datasets/evaluation-parsers und im
+CI-Artefakt. Die Zusammenfassung bezeichnet den Quellfingerprint ausdrücklich als
+source_quality_sha256, nicht als Hash ihrer verkürzten eigenen Inhalte.
+Dieser nachfolgende Dokumentationscommit ändert keine Implementierung/Sollwerte.
+
+Windows, Python 3.12.14; pypdf 6.19.0, PyMuPDF 1.28.2; zwei Wiederholungen pro Fall.
+Zwei vollständige Läufe ergeben denselben Qualitätsfingerprint
+0b75bc44ddd0e119b2e81af1149ec67f72581b49c43fdf80abe0f902ce5a51eb.
+
+| Messung | pypdf | PyMuPDF |
+| --- | --- | --- |
+| CER | 332/3503 = 9,48 % | 243/3503 = 6,94 % |
+| WER | 54/521 = 10,36 % | 36/521 = 6,91 % |
+| Ankerreihenfolge | 270/282 = 95,74 % | 280/282 = 99,29 % |
+| Ankerabdeckung | 105/111 | 105/111 |
+| Zell-Precision / Recall | unsupported | jeweils 36/36 |
+| Parserlaufzeit, Mittel | 15,90 ms | 25,08 ms |
+| Store + Reload + Evidence, Mittel | 154,48 ms | 181,97 ms |
+
+PyMuPDF ist in dieser Konfiguration inklusive Tabellen/Layout im Parseraufruf etwa
+1,58-mal so langsam; im vollständigen Storepfad etwa 1,18-mal. Keine allgemeine
+Geschwindigkeitsbehauptung und kein kontrollierter Vergleich gleicher Fähigkeiten.
+
+Fallweise Textregel: PyMuPDF gewinnt bei table-column-order und headers-footers;
+pypdf gewinnt bei columns-column-order. Die übrigen 21 Fälle ergeben keinen klaren
+Textvorteil. Beide verlieren Bild-/Vektortext. PyMuPDF erkennt die vier geometrischen
+Tabellen einschliesslich verbundener Zellen mit 36 richtigen Zellen und ohne zusätzliche
+Zellen in diesem Korpus. Das beweist keine korrekte semantische Header-/Wertzuordnung.
+Klauselgrenzen und zuverlässige Header-Kanten bleiben bei beiden unsupported.
+
+Die leere ReportLab-Seite bleibt im Gold empty: PyMuPDF meldet empty, pypdf weiterhin
+not_extractable. Das ist eine beobachtete Zustandsabweichung, keine Änderung des Solls.
+Keine globale Umschaltung: pypdf bleibt Standard, PyMuPDF ein gezieltes Layout-Experiment.
+Ein Vorteil auf realen AVB oder anderer Sortierkonfiguration ist bislang unbewiesen.
+
+Qualität: 227/227 Tests mit Extra; ohne Extra 194 bestanden und 33 ausdrücklich
+optionale PyMuPDF-Tests übersprungen. 168 bisherige Tests bleiben erhalten.
+Lint, Formatprüfung, Demo und bestehende Evaluation sind erfolgreich.
+Der Sprint-3-Fingerprint bleibt unverändert. GitHub-CI-Status steht im zugehörigen PR.
