@@ -34,7 +34,9 @@ Tabellen und Hashreferenzen. Receipts erlauben reproduzierende Quellenprüfungen
 ## Unveränderter Korpus und Fairness
 
 24 Fälle / 29 Seiten aus Sprint 3, ohne neue Sollwerte oder Layoutvereinfachungen.
-Der bestehende Corpus-SHA wird im Regressionstest gegen die Sprint-3-Baseline geprüft.
+Die Gold-SHAs und normalisierten Quell-Dateihashes von Goldstandard und Renderer
+werden im Regressionstest gegen Sprint 3 festgeschrieben. Der PDF-Corpus-SHA
+bindet die konkret erzeugten Bytes und darf zwischen Plattformen abweichen.
 Originalbytes werden einmal erzeugt und beiden Adaptern übergeben.
 Keine Goldtexte gelangen in die Parser. Nur die ausdrücklich goldgestützte
 Fundstellen-Lokalisierung und Bewertung verwenden Sollzitate.
@@ -212,3 +214,23 @@ Qualität: 227/227 Tests mit Extra; ohne Extra 194 bestanden und 33 ausdrücklic
 optionale PyMuPDF-Tests übersprungen. 168 bisherige Tests bleiben erhalten.
 Lint, Formatprüfung, Demo und bestehende Evaluation sind erfolgreich.
 Der Sprint-3-Fingerprint bleibt unverändert. GitHub-CI-Status steht im zugehörigen PR.
+
+## Beobachtete Plattformgrenze in der CI
+
+Der erste Linux-Lauf bestand 226/227 Tests; eine unzulässige Annahme gleicher
+Windows-/Linux-PDF-Bytes im neuen Freeze-Test scheiterte. Der Standard-CI-Job war grün.
+Vergleich des heruntergeladenen Linux-Artefakts mit der Windows-Baseline zeigte:
+Nur vector-text, image-only und mixed-text-image haben andere PDF-Hashes. Diese
+Fixtures verwenden Pillow-Rasterdaten (Vektortext wird daraus gezeichnet).
+Alle Gold-Hashes, extrahierten Seitentexte und Qualitätsaggregate sind identisch.
+Die genaue native Rendering-Build-Ursache wurde nicht weiter isoliert.
+
+Windows-Corpus: e050f9872587a6845b4d163a2116f5b43db635fdbe0b5d12e8249e51d70e7069.
+Linux-Corpus: da7172f10b9d81e6c2d93d05e0e22ca1b1d5742640fe7efe0f7d29b899848067.
+
+Der korrigierte Test friert stattdessen Gold-Hashes und Quell-Dateihashes aus PR #2
+ein, prüft den tatsächlichen Corpus-SHA und identische Originalbytes beider Parser
+je Lauf. Wiederholte Läufe müssen weiterhin identische Qualitätsfingerprints liefern.
+Keine Änderung am Goldstandard, Renderer oder an den Parserergebnissen.
+Plattformübergreifende Läufe mit verschiedenen PDF-Hashes dürfen nicht als derselbe
+Byte-Korpus aggregiert werden; die gespeicherte Windows-Messung bleibt so gekennzeichnet.

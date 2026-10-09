@@ -2,6 +2,7 @@
 
 import json
 import sys
+from hashlib import sha256
 from pathlib import Path
 
 import pytest
@@ -29,9 +30,23 @@ def report(tmp_path_factory):
 
 def test_frozen_corpus_and_identical_originals(report):
     baseline = json.loads(Path("docs/benchmarks/sprint3-baseline.json").read_text(encoding="utf-8"))
-    assert report["corpus_sha256"] == baseline["cohort"]["corpus_sha256"]
+    # Freeze Sprint-3 source and gold, not platform-dependent Pillow raster bytes.
+    # These normalized source hashes are from e1a34db (PR #2), not parser output.
+    frozen_sources = {
+        "goldstandard.py": "fa6f05273bcf9083bbf01f62d2a1be0bc99021d6524e2cdfbc26fba1ce4df210",
+        "fixtures.py": "b6756e0db5a33564e0181c83f76612e66ade7a5a55c03486c4b97a923e9fa3f0",
+    }
+    for filename, expected in frozen_sources.items():
+        source = Path("src/axiory/evaluation", filename).read_text(encoding="utf-8")
+        assert sha256(source.encode("utf-8")).hexdigest() == expected
     a, b = (report["parsers"][p]["cases"] for p in ("pypdf", "pymupdf"))
     assert len(a) == len(b) == 24
+    assert [(c["fixture_id"], c["gold_sha256"]) for c in a] == [
+        (c["fixture_id"], c["gold_sha256"]) for c in baseline["cases"]
+    ]
+    assert report["corpus_sha256"] == digest(
+        [(c["fixture_id"], c["pdf_sha256"], c["gold_sha256"]) for c in a]
+    )
     for x, y in zip(a, b, strict=True):
         assert x["pdf_sha256"] == y["pdf_sha256"]
         assert x["gold_sha256"] == y["gold_sha256"]
