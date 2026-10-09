@@ -67,6 +67,13 @@ def test_measured_advantages_and_regressions_are_both_reported(report):
     assert pairs["table-column-order"]["text_preference"] == "pymupdf"
     assert pairs["plain-de"]["text_preference"] == "no_clear_advantage"
     assert report["comparison"]["production_default"] == "pypdf"
+    table = next(
+        case
+        for case in report["parsers"]["pymupdf"]["cases"]
+        if case["fixture_id"] == "table-row-order"
+    )
+    assert not any(f["kind"] == "table_structure_lost" for f in table["failures"])
+    assert "header flags" in table["metrics"]["table_cell_extraction_accuracy"]["reason"]
     for name in ("pypdf", "pymupdf"):
         metrics = report["parsers"][name]["aggregate"]
         assert metrics["header_association_precision"]["metric"]["status"] == "unsupported"

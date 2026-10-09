@@ -12,8 +12,8 @@ from time import perf_counter
 
 from axiory.evaluation.fixtures import generator_metadata, render_pdf
 from axiory.evaluation.goldstandard import corpus
-from axiory.evaluation.layout_metrics import association_metrics, cell_metrics
-from axiory.evaluation.metrics import aggregate, classify, locate_evidence, measured, score
+from axiory.evaluation.layout_metrics import association_metrics, cell_metrics, findings
+from axiory.evaluation.metrics import aggregate, locate_evidence, measured, score, unavailable
 from axiory.evaluation.reporting import digest
 from axiory.evaluation.runner import git_metadata
 from axiory.evaluation.schemas import BenchmarkConfig, CaseResult, GoldFixture, Observation
@@ -107,11 +107,20 @@ def run_case(gold, raw, destination, config, benchmark_config):
         observations.append((receipt, extracted, observation))
     receipt, extracted, observation = observations[0]
     metrics = score(gold, observation)
+    reasons = {
+        "clause_boundary_accuracy": "Adapter does not output clause boundaries",
+        "table_cell_extraction_accuracy": (
+            "Legacy score requires table structure and reliable header flags; "
+            "see separate cell precision/recall"
+        ),
+        "table_header_value_association": "No reliable header/value relations",
+    }
+    for name, reason in reasons.items():
+        if metrics[name].status == "unsupported":
+            metrics[name] = unavailable("unsupported", reason)
     if extracted:
         metrics.update(cell_metrics(gold, extracted))
     else:
-        from axiory.evaluation.metrics import unavailable
-
         for name in ("table_cell_precision", "table_cell_recall"):
             metrics[name] = unavailable("not_evaluable", "No extraction")
     metrics.update(association_metrics((), None))
@@ -145,7 +154,7 @@ def run_case(gold, raw, destination, config, benchmark_config):
         extraction_sha256=artifact_id(extracted) if extracted else None,
         observation=observation,
         metrics=metrics,
-        failures=classify(metrics, observation),
+        failures=findings(metrics, observation, extracted),
         diagnostics=tuple(diagnostics),
         repeat_fingerprints=tuple(fingerprints),
         runtimes_ms=tuple(store_times),

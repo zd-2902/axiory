@@ -2,7 +2,8 @@
 
 from collections import Counter
 
-from axiory.evaluation.metrics import measured, unavailable
+from axiory.evaluation.metrics import classify, measured, unavailable
+from axiory.evaluation.schemas import Failure
 
 
 def cell_metrics(gold, extraction):
@@ -67,3 +68,21 @@ def association_metrics(reference, actual):
         names[0]: measured(correct, sum(found.values())),
         names[1]: measured(correct, sum(wanted.values())),
     }
+
+
+def findings(metrics, observation, extraction):
+    result = list(classify(metrics, observation))
+    if extraction and extraction.capabilities.tables != "unsupported":
+        # Lack of legacy header flags does not imply lack of geometrically detected cells.
+        result = [item for item in result if item.kind != "table_structure_lost"]
+        for name in ("table_cell_precision", "table_cell_recall"):
+            metric = metrics[name]
+            if metric.status == "measured" and metric.value < 1:
+                result.append(
+                    Failure(
+                        kind="table_structure_lost",
+                        basis="measured",
+                        detail=f"{name}={metric.value:.6f}",
+                    )
+                )
+    return tuple(result)

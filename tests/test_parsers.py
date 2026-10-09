@@ -10,7 +10,7 @@ from pydantic import ValidationError
 
 from axiory.evaluation.fixtures import render_pdf
 from axiory.evaluation.goldstandard import corpus
-from axiory.evaluation.layout_metrics import association_metrics, cell_metrics
+from axiory.evaluation.layout_metrics import association_metrics, cell_metrics, findings
 from axiory.ingestion import DocumentStore, IntegrityError, ParserVersionError
 from axiory.ingestion_models import IngestionLimits, LogicalDocument
 from axiory.parsers.adapters import PyMuPDFAdapter, adapter
@@ -282,6 +282,15 @@ def test_table_scores_penalize_wrong_extra_and_duplicate_cells():
     changed = LayoutArtifact.model_validate_json(json.dumps(data))
     assert cell_metrics(gold, changed)["table_cell_precision"].value < 1
     assert cell_metrics(gold, changed)["table_cell_recall"].value < 1
+    from axiory.evaluation.metrics import score
+    from axiory.evaluation.schemas import Observation
+
+    observation = Observation(status="success", pages=tuple(p.text for p in changed.pages))
+    metrics = score(gold, observation) | cell_metrics(gold, changed)
+    assert any(
+        f.kind == "table_structure_lost" and f.basis == "measured"
+        for f in findings(metrics, observation, changed)
+    )
     extra = json.loads(json.dumps(data["pages"][0]["tables"][0]))
     extra["id"] = "spurious-table"
     data["pages"][0]["tables"].append(extra)
