@@ -51,3 +51,5 @@ Andere Generatorbytes oder Konfigurationen führen zu nicht vergleichbaren Läuf
 Laufzeiten werden nicht automatisch zwischen Maschinen verglichen.
 
 Sprint 6: `sprint6-offline-summary.json` records an OFFLINE_PROTOCOL_TEST of 120 DE/FR/IT cases. `live_quality` is null. All ratios and intervals are fixture statistics, not measured model quality. See ../REAL_LLM_BENCHMARK.md and ../SPRINT6_RESULTS.md.
+
+`sprint6-live-attempt-summary.json` records eight API attempts across two pilot runs and a diagnosis: four model outputs, two DE/dev cases, only one complete A/B/C case, then credit_balance_exhausted. It includes partial observations, replay fingerprints and known usage/cost coverage; no general model-quality conclusion is justified. Raw CAS stores remain local and ignored.

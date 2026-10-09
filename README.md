@@ -169,5 +169,5 @@ Neue Module: src/axiory/experiments; Freeze/Gold: datasets/multilingual.
 Installation des optionalen SDK, Preisannahmen, Metrikdefinitionen und Grenzen:
 [Real LLM Benchmark](docs/REAL_LLM_BENCHMARK.md),
 [Ergebnisse](docs/SPRINT6_RESULTS.md), [ADR 0006](docs/adr/0006-real-llm-evaluation.md).
-Nächster Schritt: API-Secret einrichten, begrenzten Pilot durchführen und dessen Fehler
+Nächster Schritt: API-Guthaben ergänzen (Secret eingerichtet), begrenzten Pilot abschliessen und dessen Fehler
 fachlich blind prüfen, bevor ein grösserer bezahlter Lauf erwogen wird.

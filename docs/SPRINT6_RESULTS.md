@@ -2,11 +2,40 @@
 
 ## Stand
 
-Offline-Infrastruktur und Goldstandard implementiert. **Kein echter LLM-Aufruf**,
-keine API-Kosten durch diesen Sprintlauf, keine empirische Modellqualitätsbehauptung.
-Der Live-Start wurde wegen fehlendem OPENAI_API_KEY vor der Providererzeugung abgebrochen.
-Die explizite Freigabe des Nutzers gilt für 24 synthetische Fälle bis maximal 2 USD;
-der vollständige 120-Fälle-Korpus wurde nur offline ausgeführt.
+Offline-Infrastruktur und Goldstandard implementiert. Am **10. Oktober 2026** wurde
+nach Einrichtung des API-Schlüssels der genehmigte 24-Fälle-Pilot gestartet. Nach zwei
+abgewiesenen Pilotversuchen und einer Diagnose wurde auf Nutzerwunsch erneut geprüft:
+**vier Modellantworten**, danach erneut **HTTP 429, credit_balance_exhausted,
+insufficient_quota**. Der zweite Lauf stoppte nach zwei von 24 Fällen. Insgesamt
+acht API-Versuche; kein weiterer kostenpflichtiger Versuch läuft.
+
+Beobachtet wurden ausschliesslich zwei deutsche Dev-Fälle:
+
+- `document-de-0-00`: Annullierung, CHF 1200 pro Ereignis. A stimmt mit Gold überein;
+  B und C melden supported, Quellenprüfung erfolgreich, alle drei Gates geben frei.
+- `document-de-0-05`: Reisegepäck CHF 1325 pro Ereignis, Elektronik-Sublimite CHF 200
+  pro Gegenstand. A stimmt mit Gold überein; B scheitert am API-Guthaben, C wird nicht
+  aufgerufen. B/C halten daher operativ zurück; dies ist keine Modellablehnung.
+
+Nur **ein vollständig gepaarter A/B/C-Fall**; keine FR-/IT-/Holdout-Antworten und keine
+belastbare Aussage zur Verifierwirkung. Die geplanten 24 Fälle sind nicht abgeschlossen.
+Der kostenpflichtige 120-Fälle-Lauf wurde nicht gestartet.
+
+Erfasst: 5081 Input- und 919 Output-Token für vier Antworten. Bei den dokumentierten
+Preisen ergibt dies aufgerundet je Aufruf **0.003505 USD geschätzte bekannte Kosten**.
+Für vier fehlgeschlagene Versuche fehlen Usage-Werte; Gesamtkosten/Rechnungsbetrag
+bleiben unbekannt. Vorsorglich bleiben **0.0896 USD** reserviert, sodass **1.9104 USD**
+des genehmigten 2-USD-Budgets für weitere Zulassung verbleiben. Reservierung ist keine
+Abrechnung. Der erneute Lauf verwendete max_retries=0 und berücksichtigte frühere
+Reservierungen. Kein automatischer weiterer Versuch bei fehlendem Guthaben.
+
+Beide Pilot-Stores und die Diagnose bleiben lokal unter `datasets/evaluation-real/`
+erhalten und von Git ausgeschlossen. Offline-Replay beider Pilotläufe ist erfolgreich.
+Der erneute Lauf protokolliert git_dirty=true wegen laufender Berichtsedits; Code,
+Prompts und Gold blieben unverändert. Der
+[sanitisierte Versuchsbericht](benchmarks/sprint6-live-attempt-summary.json) enthält
+Run-IDs, Konfigurationen, Fingerprints, beobachtete Fälle und Kostenabdeckung. Er allein
+ersetzt die lokalen CAS-Stores nicht und erlaubt keine unabhängige Live-Reproduktion.
 
 Basis: offener, getesteter PR #4, codex/structured-insurance-extraction,
 4d4adabf1b06e55b375c5bf54bf0c8d5d06f4659. Featurebranch:
@@ -20,8 +49,9 @@ codex/real-llm-evaluation. main und PR #1 bis #4 wurden nicht gemergt.
 2. **Fälle:** 120 neue synthetische Fälle, DE/FR/IT je 40, zwölf Szenarien, fünf Codes,
    60 Dev/60 Holdout und disjunkte Familien/Templates. Pilot: 24 vorab festgelegte Fälle,
    acht je Sprache, zwölf je Split, alle Szenarien. Keine unabhängige Fachannotation.
-3. **Echte Aufrufe:** null. Secret fehlte in Prozess-, Benutzer- und Systemumgebung.
-   Budgetfreigabe allein ist kein API-Zugang. Kein Schlüssel wurde gespeichert/geloggt.
+3. **Echte Aufrufe:** acht API-Versuche, vier Antworten, zwei deutsche Dev-Fälle;
+   nur ein Fall vollständig A/B/C. Secret funktioniert, API meldet erneut fehlendes
+   Guthaben. Kein Schlüssel wurde im Repository oder in Logs gespeichert.
 4. **A/B/C:** A extrahiert einmal; B prüft exakt dieselbe gespeicherte A-Antwort;
    C ergänzt einen kritisch instruierten Aufruf und kombiniert beide Gates. Alle
    nutzen Originalkontext; C sieht Bs Urteil nicht. Ein Modell in drei Rollen
@@ -32,16 +62,19 @@ codex/real-llm-evaluation. main und PR #1 bis #4 wurden nicht gemergt.
 6. **Übersehene Fehler:** noch nicht empirisch bekannt. Insbesondere exakt zitierte,
    falsch interpretierte Ausnahmen, Tabellenbeträge und Bezugsgrössen bleiben möglich.
 7. **Falsch zurückgehaltene Claims:** als End-to-End-Gaterate samt Zähler/Nenner und
-   Complete-case-Sensitivität implementiert, aber für reale Modelle noch ungemessen.
+   Complete-case-Sensitivität implementiert, bei den zwei beobachteten Fällen nur transportbedingt aufgetreten.
+   Daraus folgt keine Aussage über die semantische Fehlerrate eines Verifiers.
 8. **Kosten/Latenz:** A/B/C verwenden im Protokolllauf kumulativ 120/240/360 Calls,
    insgesamt 360 unterschiedliche simulierte Calls. Das ist keine API-Latenzprognose.
    Tatsächliche Token-/Kostenwerte und menschliche Reviewzeit bleiben dort null.
-   Live-Plan: 72 Calls, maximal 144 Versuche mit Retry, konservativ 1.6128 USD bei
-   konfiguriertem 2-USD-Limit. Preis-/Snapshotdetails im Benchmarkdokument.
+   Standard-Live-Plan: 72 Calls, maximal 144 Versuche mit Retry, konservativ 1.6128 USD.
+   Der erneute Lauf deaktivierte Retries (max_calls=72) und senkte das Run-Budget um
+   frühere Reservierungen. Fünf Versuche dauerten zusammen rund 21.986 Sekunden API-Zeit;
+   bekannte Kosten und Messlücken siehe oben. Preis-/Snapshotdetails im Benchmarkdokument.
 9. **Statistik:** gepaarte Familienbootstrap-Intervalle sind implementiert und mit
    bekannten Testkonstellationen geprüft. Offlineintervalle sind Protokollwerte;
    es gibt keine statistisch belastbare Aussage zur realen Verbesserung von B/C.
-10. **Grösster nächster Nutzen:** Secret bereitstellen, einmaligen Pilot ausführen,
+10. **Grösster nächster Nutzen:** API-Guthaben klären, begrenzten Pilot abschliessen,
     falsch freigegebene und falsch abgelehnte Fälle blind fachlich prüfen und Gold
     unabhängig validieren. Danach Reviewzeit, praktische Fehlerrisiken und Mehrkosten
     abwägen, bevor ein grösserer bezahlter Lauf oder weiteres Modell gewählt wird.
@@ -77,7 +110,11 @@ erzwingt LF-Dateibytes auch unter Windows, damit Checkout-Zeilenenden keinen Has
 - axiory-demo, axiory-eval, axiory-semantic-eval: erfolgreich.
 - axiory-real-eval --dry-run: 24 Fälle innerhalb des 2-USD-Limits.
 - Vollkorpus offline und Replay: erfolgreich.
-- Live-Pilot: nicht ausgeführt; fehlendes Secret, keine bezahlten Versuche.
+- Aktueller lokaler Lauf mit OpenAI-Extra: **320 bestanden, 33 PyMuPDF-Skips**.
+- Live-Pilot unvollständig: vier Antworten, dann Guthabenfehler. Nur ein vollständiger
+  A/B/C-Fall; keine belastbare Aussage über Modell- oder Verifierqualität.
+- Offline-Replay beider abgebrochener Pilotläufe: erfolgreich. Technische Scores
+  unerledigter Fälle sind keine Messung der Modellgenauigkeit.
 
 SDK-Vertragstests verwenden nur In-Memory-HTTP. Standard-CI isoliert Runtime-Netzwerk
 über Linux-Netzwerknamespace; pytest blockiert zusätzlich Socketverbindungen. Setup
@@ -98,7 +135,7 @@ und Artefaktupload benötigen weiterhin Netzwerkzugang ausserhalb dieser Runtime
 - README, Architektur, Evaluation, Roadmap, Benchmarkbericht, Verifikationsstrategie
   und ADR 0006: Datenmodell, Preisannahmen, Metriken, Grenzen und nächster Schritt.
 
-Offen: unabhängige Fachannotation, reale Pilotbeobachtungen, akzeptable Freigabeschwellen,
+Offen: unabhängige Fachannotation, vollständiger Pilot, akzeptable Freigabeschwellen,
 Ontologieverantwortung, Modellvielfalt und gemessener menschlicher Reviewaufwand.
 Hashintegrität ist keine digitale Authentizität. Kein automatisches Crash-Resume oder
 kontoweites Budget über fremde Prozesse; harte Workerlimits fehlen weiterhin.

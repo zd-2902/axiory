@@ -1,0 +1,525 @@
+{
+  "measurement": "PARTIAL_LIVE_PILOT",
+  "attempt_date_local": "2026-10-10",
+  "timezone": "Europe/Zurich",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "corpus_sha256": "ea6a500ee4f2ae427d2e86f447c64bca7e7efc27b3c010e2101d2b34f81a8418",
+  "freeze_sha256": "7bf367f96598c6796fb9e025bdabd4bd60ac7322b6ad5674c6f6c97fe2879bae",
+  "authorized_cases": 24,
+  "distinct_cases_with_model_outputs": 2,
+  "complete_abc_cases": 1,
+  "total_api_attempts": 8,
+  "model_outputs_received": 4,
+  "authorized_budget_microusd": 2000000,
+  "total_reserved_microusd": 89600,
+  "remaining_after_reservations_microusd": 1910400,
+  "input_tokens_known": 5081,
+  "output_tokens_known": 919,
+  "estimated_microusd_known": 3505,
+  "usage_coverage_calls": {
+    "known": 4,
+    "total": 8
+  },
+  "estimated_total_microusd": null,
+  "billed_cost_usd": null,
+  "independent_human_gold_reviews": 0,
+  "aggregate_model_quality_conclusion": null,
+  "runs": [
+    {
+      "local_store": "datasets/evaluation-real/live-pilot-24",
+      "run_id": "run-00d28b1723484887bc4d50ee70198346",
+      "git_commit": "ac798c5641361ed946ea7ed416f0cdeca277c330",
+      "git_dirty": false,
+      "config": {
+        "bootstrap_replicates": 1000,
+        "critic": {
+          "input_usd_per_million": "0.40",
+          "model": "gpt-4.1-mini-2025-04-14",
+          "output_usd_per_million": "1.60",
+          "pricing_checked_on": "2026-10-09",
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+          "temperature": 0.0
+        },
+        "extract": {
+          "input_usd_per_million": "0.40",
+          "model": "gpt-4.1-mini-2025-04-14",
+          "output_usd_per_million": "1.60",
+          "pricing_checked_on": "2026-10-09",
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+          "temperature": 0.0
+        },
+        "max_calls": 144,
+        "max_context_chars": 10000,
+        "max_cost_microusd": 2000000,
+        "max_input_tokens": 20000,
+        "max_output_tokens": 2000,
+        "max_response_bytes": 1048576,
+        "max_retries": 1,
+        "max_total_tokens": 3168000,
+        "schema_version": "experiment-config-1",
+        "seed": 1729,
+        "timeout_seconds": 45.0,
+        "total_seconds": 1800.0,
+        "verify": {
+          "input_usd_per_million": "0.40",
+          "model": "gpt-4.1-mini-2025-04-14",
+          "output_usd_per_million": "1.60",
+          "pricing_checked_on": "2026-10-09",
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+          "temperature": 0.0
+        }
+      },
+      "complete": false,
+      "stop_reason": "api_status",
+      "attempted_cases": 1,
+      "model_outputs_received": 0,
+      "quality_fingerprint": "64d09e91da8224bf972fab5e9bfc9b503da0f0c171c0b2fa0512618a33ffa8b2",
+      "replay_verified": true,
+      "observability": {
+        "arms": {
+          "A": {
+            "actual_calls": 2,
+            "additional_verification_latency_seconds": 0,
+            "retry_attempts": 1,
+            "errors": 2,
+            "latency_seconds_per_attempted_document": {
+              "numerator": 21.796000000002095,
+              "denominator": 1,
+              "case_count": 1,
+              "value": 21.796000000002095
+            },
+            "recorded_call_latency_seconds": 21.796000000002095,
+            "input_tokens_known": null,
+            "output_tokens_known": null,
+            "usage_coverage": {
+              "numerator": 0,
+              "denominator": 2,
+              "case_count": 1,
+              "value": 0.0
+            },
+            "estimated_microusd_known": null,
+            "estimated_total_microusd": null,
+            "additional_verification_microusd": null,
+            "cost_coverage": {
+              "numerator": 0,
+              "denominator": 2,
+              "case_count": 1,
+              "value": 0.0
+            },
+            "human_review_seconds": null
+          },
+          "B": {
+            "actual_calls": 2,
+            "additional_verification_latency_seconds": 0,
+            "retry_attempts": 1,
+            "errors": 2,
+            "latency_seconds_per_attempted_document": {
+              "numerator": 21.796000000002095,
+              "denominator": 1,
+              "case_count": 1,
+              "value": 21.796000000002095
+            },
+            "recorded_call_latency_seconds": 21.796000000002095,
+            "input_tokens_known": null,
+            "output_tokens_known": null,
+            "usage_coverage": {
+              "numerator": 0,
+              "denominator": 2,
+              "case_count": 1,
+              "value": 0.0
+            },
+            "estimated_microusd_known": null,
+            "estimated_total_microusd": null,
+            "additional_verification_microusd": null,
+            "cost_coverage": {
+              "numerator": 0,
+              "denominator": 2,
+              "case_count": 1,
+              "value": 0.0
+            },
+            "human_review_seconds": null
+          },
+          "C": {
+            "actual_calls": 2,
+            "additional_verification_latency_seconds": 0,
+            "retry_attempts": 1,
+            "errors": 2,
+            "latency_seconds_per_attempted_document": {
+              "numerator": 21.796000000002095,
+              "denominator": 1,
+              "case_count": 1,
+              "value": 21.796000000002095
+            },
+            "recorded_call_latency_seconds": 21.796000000002095,
+            "input_tokens_known": null,
+            "output_tokens_known": null,
+            "usage_coverage": {
+              "numerator": 0,
+              "denominator": 2,
+              "case_count": 1,
+              "value": 0.0
+            },
+            "estimated_microusd_known": null,
+            "estimated_total_microusd": null,
+            "additional_verification_microusd": null,
+            "cost_coverage": {
+              "numerator": 0,
+              "denominator": 2,
+              "case_count": 1,
+              "value": 0.0
+            },
+            "human_review_seconds": null
+          }
+        },
+        "unique_calls": 2,
+        "reserved_cost_microusd": 22400,
+        "reserved_token_upper_bound": 44000,
+        "note": "Arms share A calls; do not sum arm totals. Unknown timeout usage is not zero. API-only elapsed times exclude PDF preparation. Offline latencies are not LLM latency."
+      },
+      "observed_rows": []
+    },
+    {
+      "local_store": "datasets/evaluation-real/live-pilot-24-recheck",
+      "run_id": "run-e37d147553194208b697cfe6e797cf79",
+      "git_commit": "ac798c5641361ed946ea7ed416f0cdeca277c330",
+      "git_dirty": true,
+      "config": {
+        "bootstrap_replicates": 1000,
+        "critic": {
+          "input_usd_per_million": "0.40",
+          "model": "gpt-4.1-mini-2025-04-14",
+          "output_usd_per_million": "1.60",
+          "pricing_checked_on": "2026-10-09",
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+          "temperature": 0.0
+        },
+        "extract": {
+          "input_usd_per_million": "0.40",
+          "model": "gpt-4.1-mini-2025-04-14",
+          "output_usd_per_million": "1.60",
+          "pricing_checked_on": "2026-10-09",
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+          "temperature": 0.0
+        },
+        "max_calls": 72,
+        "max_context_chars": 10000,
+        "max_cost_microusd": 1966400,
+        "max_input_tokens": 20000,
+        "max_output_tokens": 2000,
+        "max_response_bytes": 1048576,
+        "max_retries": 0,
+        "max_total_tokens": 1584000,
+        "schema_version": "experiment-config-1",
+        "seed": 1729,
+        "timeout_seconds": 45.0,
+        "total_seconds": 1800.0,
+        "verify": {
+          "input_usd_per_million": "0.40",
+          "model": "gpt-4.1-mini-2025-04-14",
+          "output_usd_per_million": "1.60",
+          "pricing_checked_on": "2026-10-09",
+          "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+          "temperature": 0.0
+        }
+      },
+      "complete": false,
+      "stop_reason": "api_status",
+      "attempted_cases": 2,
+      "model_outputs_received": 4,
+      "quality_fingerprint": "08f77b1e9410d2380d962b94a76123f0c668338f1abf38c7a791db3b50a0ef88",
+      "replay_verified": true,
+      "observability": {
+        "arms": {
+          "A": {
+            "actual_calls": 2,
+            "additional_verification_latency_seconds": 0,
+            "retry_attempts": 0,
+            "errors": 0,
+            "latency_seconds_per_attempted_document": {
+              "numerator": 10.51600000000326,
+              "denominator": 2,
+              "case_count": 2,
+              "value": 5.25800000000163
+            },
+            "recorded_call_latency_seconds": 10.51600000000326,
+            "input_tokens_known": 2628,
+            "output_tokens_known": 436,
+            "usage_coverage": {
+              "numerator": 2,
+              "denominator": 2,
+              "case_count": 2,
+              "value": 1.0
+            },
+            "estimated_microusd_known": 1750,
+            "estimated_total_microusd": 1750,
+            "additional_verification_microusd": null,
+            "cost_coverage": {
+              "numerator": 2,
+              "denominator": 2,
+              "case_count": 2,
+              "value": 1.0
+            },
+            "human_review_seconds": null
+          },
+          "B": {
+            "actual_calls": 4,
+            "additional_verification_latency_seconds": 8.703999999997905,
+            "retry_attempts": 0,
+            "errors": 1,
+            "latency_seconds_per_attempted_document": {
+              "numerator": 19.220000000001164,
+              "denominator": 2,
+              "case_count": 2,
+              "value": 9.610000000000582
+            },
+            "recorded_call_latency_seconds": 19.220000000001164,
+            "input_tokens_known": 3829,
+            "output_tokens_known": 680,
+            "usage_coverage": {
+              "numerator": 3,
+              "denominator": 4,
+              "case_count": 2,
+              "value": 0.75
+            },
+            "estimated_microusd_known": 2621,
+            "estimated_total_microusd": null,
+            "additional_verification_microusd": null,
+            "cost_coverage": {
+              "numerator": 3,
+              "denominator": 4,
+              "case_count": 2,
+              "value": 0.75
+            },
+            "human_review_seconds": null
+          },
+          "C": {
+            "actual_calls": 5,
+            "additional_verification_latency_seconds": 11.470000000001164,
+            "retry_attempts": 0,
+            "errors": 1,
+            "latency_seconds_per_attempted_document": {
+              "numerator": 21.986000000004424,
+              "denominator": 2,
+              "case_count": 2,
+              "value": 10.993000000002212
+            },
+            "recorded_call_latency_seconds": 21.986000000004424,
+            "input_tokens_known": 5081,
+            "output_tokens_known": 919,
+            "usage_coverage": {
+              "numerator": 4,
+              "denominator": 5,
+              "case_count": 2,
+              "value": 0.8
+            },
+            "estimated_microusd_known": 3505,
+            "estimated_total_microusd": null,
+            "additional_verification_microusd": null,
+            "cost_coverage": {
+              "numerator": 4,
+              "denominator": 5,
+              "case_count": 2,
+              "value": 0.8
+            },
+            "human_review_seconds": null
+          }
+        },
+        "unique_calls": 5,
+        "reserved_cost_microusd": 56000,
+        "reserved_token_upper_bound": 110000,
+        "note": "Arms share A calls; do not sum arm totals. Unknown timeout usage is not zero. API-only elapsed times exclude PDF preparation. Offline latencies are not LLM latency."
+      },
+      "observed_rows": [
+        {
+          "case_id": "document-de-0-00",
+          "family": "family-de-0-0",
+          "language": "de",
+          "coverage_code": "cancellation",
+          "scenario": "clear",
+          "difficulty": "simple",
+          "split": "dev",
+          "baseline_present": true,
+          "baseline_correct": true,
+          "baseline_error": false,
+          "gold_asserted": true,
+          "gold_unknown": false,
+          "gold_nonexcluded": true,
+          "has_limit": true,
+          "has_deductible": false,
+          "hallucinated_evidence": false,
+          "source_supported": true,
+          "errors": [],
+          "arms": {
+            "A": {
+              "released": true,
+              "asserted": true,
+              "correct_assertion": true,
+              "status_correct": true,
+              "money_correct": true,
+              "full_correct": true,
+              "evidence_supported": true,
+              "unknown_correct": false,
+              "unsupported": false,
+              "false_exclusion": false,
+              "critical_error": false,
+              "false_rejection": false,
+              "missed_error": false,
+              "withheld": false
+            },
+            "B": {
+              "released": true,
+              "asserted": true,
+              "correct_assertion": true,
+              "status_correct": true,
+              "money_correct": true,
+              "full_correct": true,
+              "evidence_supported": true,
+              "unknown_correct": false,
+              "unsupported": false,
+              "false_exclusion": false,
+              "critical_error": false,
+              "false_rejection": false,
+              "missed_error": false,
+              "withheld": false
+            },
+            "C": {
+              "released": true,
+              "asserted": true,
+              "correct_assertion": true,
+              "status_correct": true,
+              "money_correct": true,
+              "full_correct": true,
+              "evidence_supported": true,
+              "unknown_correct": false,
+              "unsupported": false,
+              "false_exclusion": false,
+              "critical_error": false,
+              "false_rejection": false,
+              "missed_error": false,
+              "withheld": false
+            }
+          }
+        },
+        {
+          "case_id": "document-de-0-05",
+          "family": "family-de-0-1",
+          "language": "de",
+          "coverage_code": "baggage",
+          "scenario": "sublimit",
+          "difficulty": "moderate",
+          "split": "dev",
+          "baseline_present": true,
+          "baseline_correct": true,
+          "baseline_error": false,
+          "gold_asserted": true,
+          "gold_unknown": false,
+          "gold_nonexcluded": true,
+          "has_limit": true,
+          "has_deductible": false,
+          "hallucinated_evidence": false,
+          "source_supported": true,
+          "errors": [
+            "verify:api_status",
+            "critic:api_status"
+          ],
+          "arms": {
+            "A": {
+              "released": true,
+              "asserted": true,
+              "correct_assertion": true,
+              "status_correct": true,
+              "money_correct": true,
+              "full_correct": true,
+              "evidence_supported": true,
+              "unknown_correct": false,
+              "unsupported": false,
+              "false_exclusion": false,
+              "critical_error": false,
+              "false_rejection": false,
+              "missed_error": false,
+              "withheld": false
+            },
+            "B": {
+              "released": false,
+              "asserted": false,
+              "correct_assertion": false,
+              "status_correct": false,
+              "money_correct": false,
+              "full_correct": false,
+              "evidence_supported": false,
+              "unknown_correct": false,
+              "unsupported": false,
+              "false_exclusion": false,
+              "critical_error": false,
+              "false_rejection": true,
+              "missed_error": false,
+              "withheld": true
+            },
+            "C": {
+              "released": false,
+              "asserted": false,
+              "correct_assertion": false,
+              "status_correct": false,
+              "money_correct": false,
+              "full_correct": false,
+              "evidence_supported": false,
+              "unknown_correct": false,
+              "unsupported": false,
+              "false_exclusion": false,
+              "critical_error": false,
+              "false_rejection": true,
+              "missed_error": false,
+              "withheld": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "diagnostic": {
+    "diagnostic_attempts": 1,
+    "reserved_microusd": 11200,
+    "total_reserved_microusd_including_initial_run": 33600,
+    "http_observations": [
+      {
+        "http_status": 429,
+        "error_code": "credit_balance_exhausted",
+        "error_type": "insufficient_quota"
+      }
+    ],
+    "calls": [
+      "166d9a88a43413eaa43d9b021201910d7c692176db0fe9a564000d49f48085c8"
+    ],
+    "reservations": [
+      "c05270c210df900831eea7fdabb8a6b39cb7fa3666c03ed3d68ce931c934ca01"
+    ]
+  },
+  "recheck_http_observations": [
+    {
+      "http_status": 200,
+      "error_code": "other_or_absent",
+      "error_type": "other_or_absent"
+    },
+    {
+      "http_status": 200,
+      "error_code": "other_or_absent",
+      "error_type": "other_or_absent"
+    },
+    {
+      "http_status": 200,
+      "error_code": "other_or_absent",
+      "error_type": "other_or_absent"
+    },
+    {
+      "http_status": 200,
+      "error_code": "other_or_absent",
+      "error_type": "other_or_absent"
+    },
+    {
+      "http_status": 429,
+      "error_code": "credit_balance_exhausted",
+      "error_type": "insufficient_quota"
+    }
+  ],
+  "note": "Four successful responses then HTTP 429 credit_balance_exhausted. First DE/dev case completed A/B/C, second only A; no FR/IT/holdout responses. Both A claims match synthetic gold. Missing reviews caused operational withholding, not a model rejection. One complete paired case cannot establish verifier effectiveness. Failed-attempt usage is unknown, not zero. Reservations are conservative admission accounting, not billed cost. Recheck git_dirty reflects report-only edits; code, prompts and gold were unchanged. Stores remain local and ignored; this snapshot alone cannot reproduce live outputs."
+}

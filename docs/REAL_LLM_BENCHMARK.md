@@ -10,8 +10,14 @@ keine Goldlabels und antwortet absichtlich unknown/requires_human_review.
 
 Der aktuelle Live-Pilot ist auf **24 Fälle und höchstens 2 USD** begrenzt. Alle 120 Fälle
 kostenpflichtig auszuführen ist weder freigegeben noch über diese CLI möglich.
-Ohne OPENAI_API_KEY entstehen keine echten Aufrufe. Der Ergebnisstand und ausgeführte
-Prüfungen stehen in [Sprint-6-Bericht](SPRINT6_RESULTS.md).
+Das Secret funktioniert. Nach anfänglichen Ablehnungen lieferte die erneute Prüfung
+vier Antworten für zwei deutsche Dev-Fälle, bevor erneut `credit_balance_exhausted`
+auftrat. Insgesamt acht Versuche, nur ein vollständiger A/B/C-Fall. Kein belastbarer
+Qualitätsvergleich; 0.0896 USD konservativ reserviert, 0.003505 USD bekannte geschätzte
+Kosten der vier Antworten, fehlende Usage weiterer Versuche bleibt unbekannt.
+Weitere Versuche müssen alle bisherigen Reservierungen berücksichtigen; ein neuer
+Output-Pfad setzt die nutzerseitige 2-USD-Gesamtfreigabe nicht zurück.
+Ergebnisstand und Prüfungen stehen im [Sprint-6-Bericht](SPRINT6_RESULTS.md).
 
 ## Reproduzieren
 
