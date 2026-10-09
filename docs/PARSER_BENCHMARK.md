@@ -170,7 +170,7 @@ Für Schema 1 weiterhin DocumentStore verwenden. Die gespeicherte Config und
 Parser-Version sind für spätere Verifikation verbindlich; unbekannte Konfigurationen
 werden nicht stillschweigend auf aktuelle Defaults umgesetzt.
 
-## Gemessene Baseline (sauberer Commit 365d29a)
+## Gemessene Baseline (sauberer Commit df4f45c)
 
 [Menschenlesbarer Export](benchmarks/sprint4-comparison.md) und
 [maschinenlesbare Zusammenfassung](benchmarks/sprint4-summary.json).
@@ -182,7 +182,7 @@ Dieser nachfolgende Dokumentationscommit ändert keine Implementierung/Sollwerte
 
 Windows, Python 3.12.14; pypdf 6.19.0, PyMuPDF 1.28.2; zwei Wiederholungen pro Fall.
 Zwei vollständige Läufe ergeben denselben Qualitätsfingerprint
-0b75bc44ddd0e119b2e81af1149ec67f72581b49c43fdf80abe0f902ce5a51eb.
+649c62251741506a839036c8473a3c597292dfe589831adf65f43b1e5b676bc8.
 
 | Messung | pypdf | PyMuPDF |
 | --- | --- | --- |
@@ -191,11 +191,11 @@ Zwei vollständige Läufe ergeben denselben Qualitätsfingerprint
 | Ankerreihenfolge | 270/282 = 95,74 % | 280/282 = 99,29 % |
 | Ankerabdeckung | 105/111 | 105/111 |
 | Zell-Precision / Recall | unsupported | jeweils 36/36 |
-| Parserlaufzeit, Mittel | 15,90 ms | 25,08 ms |
-| Store + Reload + Evidence, Mittel | 154,48 ms | 181,97 ms |
+| Parserlaufzeit, Mittel | 15,94 ms | 26,19 ms |
+| Store + Reload + Evidence, Mittel | 156,20 ms | 183,36 ms |
 
 PyMuPDF ist in dieser Konfiguration inklusive Tabellen/Layout im Parseraufruf etwa
-1,58-mal so langsam; im vollständigen Storepfad etwa 1,18-mal. Keine allgemeine
+1,64-mal so langsam; im vollständigen Storepfad etwa 1,17-mal. Keine allgemeine
 Geschwindigkeitsbehauptung und kein kontrollierter Vergleich gleicher Fähigkeiten.
 
 Fallweise Textregel: PyMuPDF gewinnt bei table-column-order und headers-footers;
@@ -234,3 +234,8 @@ je Lauf. Wiederholte Läufe müssen weiterhin identische Qualitätsfingerprints 
 Keine Änderung am Goldstandard, Renderer oder an den Parserergebnissen.
 Plattformübergreifende Läufe mit verschiedenen PDF-Hashes dürfen nicht als derselbe
 Byte-Korpus aggregiert werden; die gespeicherte Windows-Messung bleibt so gekennzeichnet.
+
+Die endgültige Diagnose unterscheidet geometrisch erkannte Zellen von fehlenden
+Headerflags: Letztere führen beim Legacy-Score zu unsupported, nicht pauschal zu
+Strukturverlust. Gemessene Zellfehler verwenden die neuen Precision-/Recall-Werte.
+Diese Präzisierung ändert keine Sollwerte oder numerischen Qualitätsmetriken.

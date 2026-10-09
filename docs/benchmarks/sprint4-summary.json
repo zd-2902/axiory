@@ -1,7 +1,7 @@
 {
   "summary_schema_version": "1",
   "source_report_schema_version": "multi-parser-1",
-  "source_quality_sha256": "0b75bc44ddd0e119b2e81af1149ec67f72581b49c43fdf80abe0f902ce5a51eb",
+  "source_quality_sha256": "649c62251741506a839036c8473a3c597292dfe589831adf65f43b1e5b676bc8",
   "source_report_path": "datasets/evaluation-parsers/comparison.json",
   "omissions": "Raw texts, layout artifacts, evidence candidates; retained in full local/CI report",
   "metrics_version": "2",
@@ -21,10 +21,10 @@
     "font_sha256": "c4c45690b345435b2cba52ecabe275f05e49b389b39fe68ad03afbb551288d3d"
   },
   "metadata": {
-    "git_commit": "365d29a369d2fa61a0db45c84829c3bab69fd14b",
+    "git_commit": "df4f45c0b487a252500b447cef493080a8f52eef",
     "git_dirty": false,
     "git_reason": null,
-    "timestamp": "2026-10-09T20:25:40.503490+00:00",
+    "timestamp": "2026-10-09T20:34:26.977006+00:00",
     "python": "3.12.14",
     "platform": "Windows-11-10.0.26300-SP0",
     "dependencies": {
@@ -34,7 +34,7 @@
       "pillow": "12.3.0",
       "pydantic": "2.13.5"
     },
-    "artifacts_directory": "run-kr80k0u6"
+    "artifacts_directory": "run-uemddak3"
   },
   "comparison": {
     "rule_version": "1",
@@ -47,7 +47,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.3516513766694656
+        "parser_time_ratio_pymupdf_over_pypdf": 1.723068570102389
       },
       {
         "fixture_id": "multipage-de",
@@ -56,7 +56,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.347446302092471
+        "parser_time_ratio_pymupdf_over_pypdf": 2.068638062778949
       },
       {
         "fixture_id": "columns-column-order",
@@ -69,7 +69,7 @@
         ],
         "unavailable": [],
         "text_preference": "pypdf",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.7709486296098678
+        "parser_time_ratio_pymupdf_over_pypdf": 1.5307642864570756
       },
       {
         "fixture_id": "columns-interleaved",
@@ -78,7 +78,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.052384532509241
+        "parser_time_ratio_pymupdf_over_pypdf": 1.239952353971266
       },
       {
         "fixture_id": "table-row-order",
@@ -87,7 +87,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.6713149188708654
+        "parser_time_ratio_pymupdf_over_pypdf": 1.924917484029715
       },
       {
         "fixture_id": "table-column-order",
@@ -100,7 +100,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "pymupdf",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.016015773463255
+        "parser_time_ratio_pymupdf_over_pypdf": 2.3031355651352676
       },
       {
         "fixture_id": "table-merged-header",
@@ -109,7 +109,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 3.031213789911497
+        "parser_time_ratio_pymupdf_over_pypdf": 2.5050910580845414
       },
       {
         "fixture_id": "table-merged-row",
@@ -118,7 +118,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.1114695762008515
+        "parser_time_ratio_pymupdf_over_pypdf": 2.388114248544384
       },
       {
         "fixture_id": "footnote-de",
@@ -127,7 +127,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.3626281680847736
+        "parser_time_ratio_pymupdf_over_pypdf": 2.3909282383003068
       },
       {
         "fixture_id": "clause-across-pages",
@@ -136,7 +136,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.6371888860330133
+        "parser_time_ratio_pymupdf_over_pypdf": 1.4089435641202086
       },
       {
         "fixture_id": "negations-de",
@@ -145,7 +145,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.4398884598287673
+        "parser_time_ratio_pymupdf_over_pypdf": 1.8843650035002177
       },
       {
         "fixture_id": "exception-de",
@@ -154,7 +154,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.6290280372165562
+        "parser_time_ratio_pymupdf_over_pypdf": 2.5082362057652157
       },
       {
         "fixture_id": "sublimits-de",
@@ -163,7 +163,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.625054012960129
+        "parser_time_ratio_pymupdf_over_pypdf": 1.611663200306541
       },
       {
         "fixture_id": "currencies-de",
@@ -172,7 +172,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.7368910695895807
+        "parser_time_ratio_pymupdf_over_pypdf": 1.7106745335274378
       },
       {
         "fixture_id": "french-accents",
@@ -181,7 +181,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.8027026868100813
+        "parser_time_ratio_pymupdf_over_pypdf": 2.027829400345221
       },
       {
         "fixture_id": "italian-accents",
@@ -190,7 +190,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.8747374882393257
+        "parser_time_ratio_pymupdf_over_pypdf": 3.1939729160015466
       },
       {
         "fixture_id": "german-unicode",
@@ -199,7 +199,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.195943128536179
+        "parser_time_ratio_pymupdf_over_pypdf": 1.4278613898307133
       },
       {
         "fixture_id": "font-sizes",
@@ -208,7 +208,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.674293986322969
+        "parser_time_ratio_pymupdf_over_pypdf": 1.8404988914271427
       },
       {
         "fixture_id": "headers-footers",
@@ -221,7 +221,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "pymupdf",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.0467589676932882
+        "parser_time_ratio_pymupdf_over_pypdf": 1.9293125858848057
       },
       {
         "fixture_id": "repeated-clause-numbers",
@@ -230,7 +230,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 2.091828083152748
+        "parser_time_ratio_pymupdf_over_pypdf": 1.8131333587243386
       },
       {
         "fixture_id": "vector-text",
@@ -243,7 +243,7 @@
           "page_reference_accuracy"
         ],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.2678345963096298
+        "parser_time_ratio_pymupdf_over_pypdf": 1.2265489235400358
       },
       {
         "fixture_id": "image-only",
@@ -256,7 +256,7 @@
           "page_reference_accuracy"
         ],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 1.937412568150184
+        "parser_time_ratio_pymupdf_over_pypdf": 1.5523963544840687
       },
       {
         "fixture_id": "mixed-text-image",
@@ -265,7 +265,7 @@
         "regressed": [],
         "unavailable": [],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 0.7768318438159935
+        "parser_time_ratio_pymupdf_over_pypdf": 2.2216509655373917
       },
       {
         "fixture_id": "empty-page",
@@ -283,7 +283,7 @@
           "missing_evidence_rate"
         ],
         "text_preference": "no_clear_advantage",
-        "parser_time_ratio_pymupdf_over_pypdf": 0.598141096652304
+        "parser_time_ratio_pymupdf_over_pypdf": 1.1500985148763085
       }
     ],
     "by_layout": {
@@ -295,7 +295,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.6713149188708654
+          "parser_time_ratio_pymupdf_over_pypdf": 1.924917484029715
         },
         {
           "fixture_id": "table-column-order",
@@ -308,7 +308,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "pymupdf",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.016015773463255
+          "parser_time_ratio_pymupdf_over_pypdf": 2.3031355651352676
         }
       ],
       "cross_page_clause": [
@@ -319,7 +319,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.6371888860330133
+          "parser_time_ratio_pymupdf_over_pypdf": 1.4089435641202086
         }
       ],
       "currencies_units": [
@@ -330,7 +330,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.7368910695895807
+          "parser_time_ratio_pymupdf_over_pypdf": 1.7106745335274378
         }
       ],
       "empty": [
@@ -350,7 +350,7 @@
             "missing_evidence_rate"
           ],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 0.598141096652304
+          "parser_time_ratio_pymupdf_over_pypdf": 1.1500985148763085
         }
       ],
       "exclusion_exception": [
@@ -361,7 +361,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.6290280372165562
+          "parser_time_ratio_pymupdf_over_pypdf": 2.5082362057652157
         }
       ],
       "flowing_text": [
@@ -372,7 +372,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.3516513766694656
+          "parser_time_ratio_pymupdf_over_pypdf": 1.723068570102389
         }
       ],
       "font_sizes": [
@@ -383,7 +383,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.674293986322969
+          "parser_time_ratio_pymupdf_over_pypdf": 1.8404988914271427
         }
       ],
       "footnotes": [
@@ -394,7 +394,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.3626281680847736
+          "parser_time_ratio_pymupdf_over_pypdf": 2.3909282383003068
         }
       ],
       "headers_footers": [
@@ -409,7 +409,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "pymupdf",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.0467589676932882
+          "parser_time_ratio_pymupdf_over_pypdf": 1.9293125858848057
         }
       ],
       "image_only": [
@@ -424,7 +424,7 @@
             "page_reference_accuracy"
           ],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.937412568150184
+          "parser_time_ratio_pymupdf_over_pypdf": 1.5523963544840687
         }
       ],
       "merged_cells": [
@@ -435,7 +435,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 3.031213789911497
+          "parser_time_ratio_pymupdf_over_pypdf": 2.5050910580845414
         },
         {
           "fixture_id": "table-merged-row",
@@ -444,7 +444,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.1114695762008515
+          "parser_time_ratio_pymupdf_over_pypdf": 2.388114248544384
         }
       ],
       "mixed_text_image": [
@@ -455,7 +455,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 0.7768318438159935
+          "parser_time_ratio_pymupdf_over_pypdf": 2.2216509655373917
         }
       ],
       "multilingual": [
@@ -466,7 +466,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.8027026868100813
+          "parser_time_ratio_pymupdf_over_pypdf": 2.027829400345221
         },
         {
           "fixture_id": "italian-accents",
@@ -475,7 +475,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.8747374882393257
+          "parser_time_ratio_pymupdf_over_pypdf": 3.1939729160015466
         },
         {
           "fixture_id": "german-unicode",
@@ -484,7 +484,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.195943128536179
+          "parser_time_ratio_pymupdf_over_pypdf": 1.4278613898307133
         }
       ],
       "multipage": [
@@ -495,7 +495,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.347446302092471
+          "parser_time_ratio_pymupdf_over_pypdf": 2.068638062778949
         }
       ],
       "negation": [
@@ -506,7 +506,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.4398884598287673
+          "parser_time_ratio_pymupdf_over_pypdf": 1.8843650035002177
         }
       ],
       "non_extractable": [
@@ -521,7 +521,7 @@
             "page_reference_accuracy"
           ],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.2678345963096298
+          "parser_time_ratio_pymupdf_over_pypdf": 1.2265489235400358
         }
       ],
       "repeated_numbers": [
@@ -532,7 +532,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.091828083152748
+          "parser_time_ratio_pymupdf_over_pypdf": 1.8131333587243386
         }
       ],
       "sublimits_deductibles": [
@@ -543,7 +543,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.625054012960129
+          "parser_time_ratio_pymupdf_over_pypdf": 1.611663200306541
         }
       ],
       "two_columns": [
@@ -558,7 +558,7 @@
           ],
           "unavailable": [],
           "text_preference": "pypdf",
-          "parser_time_ratio_pymupdf_over_pypdf": 1.7709486296098678
+          "parser_time_ratio_pymupdf_over_pypdf": 1.5307642864570756
         },
         {
           "fixture_id": "columns-interleaved",
@@ -567,7 +567,7 @@
           "regressed": [],
           "unavailable": [],
           "text_preference": "no_clear_advantage",
-          "parser_time_ratio_pymupdf_over_pypdf": 2.052384532509241
+          "parser_time_ratio_pymupdf_over_pypdf": 1.239952353971266
         }
       ]
     },
@@ -690,10 +690,10 @@
         "parser_runtime_ms": {
           "metric": {
             "status": "measured",
-            "numerator": 763.1411999755073,
+            "numerator": 765.1190001924988,
             "denominator": 48.0,
             "reason": null,
-            "value": 15.898774999489737
+            "value": 15.939979170677057
           },
           "measured_cases": 24,
           "unsupported_cases": 0,
@@ -750,10 +750,10 @@
         "runtime_per_document_ms": {
           "metric": {
             "status": "measured",
-            "numerator": 7414.834499970311,
+            "numerator": 7497.834899986628,
             "denominator": 48.0,
             "reason": null,
-            "value": 154.47571874938149
+            "value": 156.20489374972144
           },
           "measured_cases": 24,
           "unsupported_cases": 0,
@@ -957,10 +957,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 48.078799998620525,
+              "numerator": 50.95440003788099,
               "denominator": 4.0,
               "reason": null,
-              "value": 12.019699999655131
+              "value": 12.738600009470247
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -1017,10 +1017,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 659.7407999797724,
+              "numerator": 591.887599992333,
               "denominator": 4.0,
               "reason": null,
-              "value": 164.9351999949431
+              "value": 147.97189999808325
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -1223,10 +1223,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 20.68790001794696,
+              "numerator": 28.0112000182271,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.34395000897348
+              "value": 14.00560000911355
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -1283,10 +1283,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 300.34370001521893,
+              "numerator": 309.45990001782775,
               "denominator": 2.0,
               "reason": null,
-              "value": 150.17185000760946
+              "value": 154.72995000891387
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -1489,10 +1489,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 22.46559999184683,
+              "numerator": 18.589100014651194,
               "denominator": 2.0,
               "reason": null,
-              "value": 11.232799995923415
+              "value": 9.294550007325597
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -1549,10 +1549,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 320.11170001351275,
+              "numerator": 327.5818999973126,
               "denominator": 2.0,
               "reason": null,
-              "value": 160.05585000675637
+              "value": 163.7909499986563
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -1755,10 +1755,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 12.21149999764748,
+              "numerator": 5.582999991020188,
               "denominator": 2.0,
               "reason": null,
-              "value": 6.10574999882374
+              "value": 2.791499995510094
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -1815,10 +1815,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 224.23859999980778,
+              "numerator": 216.22439997736365,
               "denominator": 2.0,
               "reason": null,
-              "value": 112.11929999990389
+              "value": 108.11219998868182
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -2021,10 +2021,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 20.248699991498142,
+              "numerator": 15.984300000127405,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.124349995749071
+              "value": 7.9921500000637025
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -2081,10 +2081,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 297.81550003099255,
+              "numerator": 309.65790001209825,
               "denominator": 2.0,
               "reason": null,
-              "value": 148.90775001549628
+              "value": 154.82895000604913
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -2287,10 +2287,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 18.160600011469796,
+              "numerator": 11.97300001513213,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.080300005734898
+              "value": 5.986500007566065
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -2347,10 +2347,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 255.42789997416548,
+              "numerator": 231.76880000391975,
               "denominator": 2.0,
               "reason": null,
-              "value": 127.71394998708274
+              "value": 115.88440000195988
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -2553,10 +2553,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 19.27719998639077,
+              "numerator": 13.413700013188645,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.638599993195385
+              "value": 6.706850006594323
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -2613,10 +2613,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 297.24860002170317,
+              "numerator": 296.7034000030253,
               "denominator": 2.0,
               "reason": null,
-              "value": 148.62430001085158
+              "value": 148.35170000151265
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -2819,10 +2819,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 18.75529997050762,
+              "numerator": 20.368700003018603,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.37764998525381
+              "value": 10.184350001509301
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -2879,10 +2879,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 338.5314999904949,
+              "numerator": 293.45909995026886,
               "denominator": 2.0,
               "reason": null,
-              "value": 169.26574999524746
+              "value": 146.72954997513443
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -3085,10 +3085,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 21.747699996922165,
+              "numerator": 20.20019997144118,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.873849998461083
+              "value": 10.10009998572059
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -3145,10 +3145,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 297.01619999832474,
+              "numerator": 333.6606999801006,
               "denominator": 2.0,
               "reason": null,
-              "value": 148.50809999916237
+              "value": 166.8303499900503
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -3351,10 +3351,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 7.792300020810217,
+              "numerator": 7.663700031116605,
               "denominator": 2.0,
               "reason": null,
-              "value": 3.8961500104051083
+              "value": 3.8318500155583024
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -3411,10 +3411,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 259.15319999330677,
+              "numerator": 265.6695000187028,
               "denominator": 2.0,
               "reason": null,
-              "value": 129.57659999665339
+              "value": 132.8347500093514
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -3617,10 +3617,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 46.714399999473244,
+              "numerator": 42.54030005540699,
               "denominator": 4.0,
               "reason": null,
-              "value": 11.678599999868311
+              "value": 10.635075013851747
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -3677,10 +3677,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 620.9707999951206,
+              "numerator": 567.2114000190049,
               "denominator": 4.0,
               "reason": null,
-              "value": 155.24269999878015
+              "value": 141.80285000475124
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -3883,10 +3883,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 49.95650000637397,
+              "numerator": 34.777200024109334,
               "denominator": 2.0,
               "reason": null,
-              "value": 24.978250003186986
+              "value": 17.388600012054667
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -3943,10 +3943,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 344.9146000202745,
+              "numerator": 334.1901999665424,
               "denominator": 2.0,
               "reason": null,
-              "value": 172.45730001013726
+              "value": 167.0950999832712
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -4149,10 +4149,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 56.59999995259568,
+              "numerator": 55.15180001384579,
               "denominator": 6.0,
               "reason": null,
-              "value": 9.433333325432613
+              "value": 9.191966668974297
             },
             "measured_cases": 3,
             "unsupported_cases": 0,
@@ -4209,10 +4209,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 969.341699994402,
+              "numerator": 885.8610999886878,
               "denominator": 6.0,
               "reason": null,
-              "value": 161.556949999067
+              "value": 147.6435166647813
             },
             "measured_cases": 3,
             "unsupported_cases": 0,
@@ -4415,10 +4415,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 9.43340003141202,
+              "numerator": 18.839400028809905,
               "denominator": 2.0,
               "reason": null,
-              "value": 4.71670001570601
+              "value": 9.419700014404953
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -4475,10 +4475,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 161.7730999714695,
+              "numerator": 243.02990004071034,
               "denominator": 2.0,
               "reason": null,
-              "value": 80.88654998573475
+              "value": 121.51495002035517
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -4681,10 +4681,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 18.72020002338104,
+              "numerator": 17.81900000059977,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.36010001169052
+              "value": 8.909500000299886
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -4741,10 +4741,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 304.133700003149,
+              "numerator": 267.87649997277185,
               "denominator": 2.0,
               "reason": null,
-              "value": 152.0668500015745
+              "value": 133.93824998638593
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -4947,10 +4947,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 324.32889999472536,
+              "numerator": 328.6927999870386,
               "denominator": 2.0,
               "reason": null,
-              "value": 162.16444999736268
+              "value": 164.3463999935193
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -5007,10 +5007,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 896.5864000201691,
+              "numerator": 866.1949000088498,
               "denominator": 2.0,
               "reason": null,
-              "value": 448.29320001008455
+              "value": 433.0974500044249
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -5213,10 +5213,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 20.051600004080683,
+              "numerator": 21.00909996079281,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.025800002040341
+              "value": 10.504549980396405
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -5273,10 +5273,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 317.8489999845624,
+              "numerator": 313.54979999014176,
               "denominator": 2.0,
               "reason": null,
-              "value": 158.9244999922812
+              "value": 156.77489999507088
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -5479,10 +5479,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 18.97659999667667,
+              "numerator": 20.6890000263229,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.488299998338334
+              "value": 10.34450001316145
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -5539,10 +5539,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 291.9530999788549,
+              "numerator": 304.72070001997054,
               "denominator": 2.0,
               "reason": null,
-              "value": 145.97654998942744
+              "value": 152.36035000998527
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -5745,10 +5745,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 8.93399998312816,
+              "numerator": 32.85909999976866,
               "denominator": 4.0,
               "reason": null,
-              "value": 2.23349999578204
+              "value": 8.214774999942165
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -5805,10 +5805,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 257.6843999850098,
+              "numerator": 539.1272000269964,
               "denominator": 4.0,
               "reason": null,
-              "value": 64.42109999625245
+              "value": 134.7818000067491
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -5955,7 +5955,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -6051,17 +6051,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 255.42789997416548,
+              "numerator": 231.76880000391975,
               "denominator": 2.0,
               "reason": null,
-              "value": 127.71394998708274
+              "value": 115.88440000195988
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 18.160600011469796,
+              "numerator": 11.97300001513213,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.080300005734898
+              "value": 5.986500007566065
             }
           },
           "diagnostics": [],
@@ -6070,12 +6070,12 @@
             "19cf3f807e10fcf3dda0408804f159026510d4f6b86fe1aed2621ab8b20461ca"
           ],
           "runtimes_ms": [
-            135.79349999781698,
-            119.6343999763485
+            126.42590000177734,
+            105.34290000214241
           ],
           "parse_runtimes_ms": [
-            13.10640000156127,
-            5.054200009908527
+            5.0755999982357025,
+            6.897400016896427
           ],
           "provenance_passed": true,
           "config": {
@@ -6150,7 +6150,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -6246,17 +6246,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 161.7730999714695,
+              "numerator": 243.02990004071034,
               "denominator": 2.0,
               "reason": null,
-              "value": 80.88654998573475
+              "value": 121.51495002035517
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 9.43340003141202,
+              "numerator": 18.839400028809905,
               "denominator": 2.0,
               "reason": null,
-              "value": 4.71670001570601
+              "value": 9.419700014404953
             }
           },
           "diagnostics": [],
@@ -6265,12 +6265,12 @@
             "8bf4ea2db111efac23abf7e104e15573edc79faf47cbf8c35bcd9d73faaa11ad"
           ],
           "runtimes_ms": [
-            85.72959998855367,
-            76.04349998291582
+            131.47310001659207,
+            111.55680002411827
           ],
           "parse_runtimes_ms": [
-            4.515100008575246,
-            4.918300022836775
+            8.720200014067814,
+            10.119200014742091
           ],
           "provenance_passed": true,
           "config": {
@@ -6345,7 +6345,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -6441,17 +6441,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 134.90139998611994,
+              "numerator": 215.8383000351023,
               "denominator": 2.0,
               "reason": null,
-              "value": 67.45069999305997
+              "value": 107.91915001755115
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 5.077899986645207,
+              "numerator": 10.10749998386018,
               "denominator": 2.0,
               "reason": null,
-              "value": 2.5389499933226034
+              "value": 5.05374999193009
             }
           },
           "diagnostics": [],
@@ -6460,12 +6460,12 @@
             "b1c4308c1b3b205186c1592c28b33106abd795fa1d4125cccb82717abee18984"
           ],
           "runtimes_ms": [
-            70.98540000151843,
-            63.91599998460151
+            110.31670001102611,
+            105.52160002407618
           ],
           "parse_runtimes_ms": [
-            3.1083999783731997,
-            1.969500008272007
+            3.9278999902307987,
+            6.179599993629381
           ],
           "provenance_passed": true,
           "config": {
@@ -6540,7 +6540,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -6636,17 +6636,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 122.78299999888986,
+              "numerator": 323.28889999189414,
               "denominator": 2.0,
               "reason": null,
-              "value": 61.39149999944493
+              "value": 161.64444999594707
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 3.8560999964829534,
+              "numerator": 22.75160001590848,
               "denominator": 2.0,
               "reason": null,
-              "value": 1.9280499982414767
+              "value": 11.37580000795424
             }
           },
           "diagnostics": [],
@@ -6655,12 +6655,12 @@
             "f1e75914c8b0c8726299cba20eb44c4e52c2a742e1d1128f54ac5e4fe6e9c59f"
           ],
           "runtimes_ms": [
-            58.95919998874888,
-            63.823800010140985
+            162.76229999493808,
+            160.52659999695607
           ],
           "parse_runtimes_ms": [
-            2.025800000410527,
-            1.8302999960724264
+            11.846700013848022,
+            10.904900002060458
           ],
           "provenance_passed": true,
           "config": {
@@ -6742,14 +6742,14 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "Legacy score requires table structure and reliable header flags; see separate cell precision/recall",
               "value": null
             },
             "table_header_value_association": {
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "No reliable header/value relations",
               "value": null
             },
             "evidence_span_validity": {
@@ -6831,17 +6831,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 296.35699998470955,
+              "numerator": 333.17169998190366,
               "denominator": 2.0,
               "reason": null,
-              "value": 148.17849999235477
+              "value": 166.58584999095183
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 20.337399997515604,
+              "numerator": 28.298200020799413,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.168699998757802
+              "value": 14.149100010399707
             }
           },
           "diagnostics": [],
@@ -6850,12 +6850,12 @@
             "0d28390267581f55a7ada434c602939ea5cf1c4ac20c4229c4407db016849f8b"
           ],
           "runtimes_ms": [
-            162.058399990201,
-            134.29859999450855
+            179.39400000614114,
+            153.77769997576252
           ],
           "parse_runtimes_ms": [
-            8.31619999371469,
-            12.021200003800914
+            16.965200018603355,
+            11.333000002196059
           ],
           "provenance_passed": true,
           "config": {
@@ -6937,14 +6937,14 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "Legacy score requires table structure and reliable header flags; see separate cell precision/recall",
               "value": null
             },
             "table_header_value_association": {
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "No reliable header/value relations",
               "value": null
             },
             "evidence_span_validity": {
@@ -7026,17 +7026,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 363.3837999950629,
+              "numerator": 258.7159000104293,
               "denominator": 2.0,
               "reason": null,
-              "value": 181.69189999753144
+              "value": 129.35795000521466
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 27.74140000110492,
+              "numerator": 22.656200017081574,
               "denominator": 2.0,
               "reason": null,
-              "value": 13.87070000055246
+              "value": 11.328100008540787
             }
           },
           "diagnostics": [],
@@ -7045,12 +7045,12 @@
             "fe15b4b8023c172813900836d260b63d0a67394f041c4d59872e2c6d09235490"
           ],
           "runtimes_ms": [
-            183.38810000568628,
-            179.9956999893766
+            126.23990001156926,
+            132.47599999886006
           ],
           "parse_runtimes_ms": [
-            12.133999989600852,
-            15.607400011504069
+            10.009400022681803,
+            12.646799994399771
           ],
           "provenance_passed": true,
           "config": {
@@ -7132,14 +7132,14 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "Legacy score requires table structure and reliable header flags; see separate cell precision/recall",
               "value": null
             },
             "table_header_value_association": {
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "No reliable header/value relations",
               "value": null
             },
             "evidence_span_validity": {
@@ -7221,17 +7221,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 325.8643999870401,
+              "numerator": 277.67410001251847,
               "denominator": 2.0,
               "reason": null,
-              "value": 162.93219999352004
+              "value": 138.83705000625923
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 23.560100002214313,
+              "numerator": 24.209100025473163,
               "denominator": 2.0,
               "reason": null,
-              "value": 11.780050001107156
+              "value": 12.104550012736581
             }
           },
           "diagnostics": [],
@@ -7240,12 +7240,12 @@
             "b8c62d40ea21cd1cb3d348efcc49d1926a7e5d22dd89e688a326cef1ff1b0e01"
           ],
           "runtimes_ms": [
-            162.64169997884892,
-            163.22270000819117
+            146.77170000504702,
+            130.90240000747144
           ],
           "parse_runtimes_ms": [
-            13.67230000323616,
-            9.887799998978153
+            9.37410001643002,
+            14.835000009043142
           ],
           "provenance_passed": true,
           "config": {
@@ -7327,14 +7327,14 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "Legacy score requires table structure and reliable header flags; see separate cell precision/recall",
               "value": null
             },
             "table_header_value_association": {
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "No reliable header/value relations",
               "value": null
             },
             "evidence_span_validity": {
@@ -7416,17 +7416,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 295.1064000080805,
+              "numerator": 289.5373000064865,
               "denominator": 2.0,
               "reason": null,
-              "value": 147.55320000404026
+              "value": 144.76865000324324
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 23.15429999725893,
+              "numerator": 18.331200029933825,
               "denominator": 2.0,
               "reason": null,
-              "value": 11.577149998629466
+              "value": 9.165600014966913
             }
           },
           "diagnostics": [],
@@ -7435,12 +7435,12 @@
             "a99834b2d27f0b38a113d5101ee25579017cb357fa6802871e9bb097a868177d"
           ],
           "runtimes_ms": [
-            139.14420001674443,
-            155.9621999913361
+            146.44690000568517,
+            143.0904000008013
           ],
           "parse_runtimes_ms": [
-            9.327000007033348,
-            13.827299990225583
+            9.64540001587011,
+            8.685800014063716
           ],
           "provenance_passed": true,
           "config": {
@@ -7515,7 +7515,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -7611,17 +7611,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 338.5314999904949,
+              "numerator": 293.45909995026886,
               "denominator": 2.0,
               "reason": null,
-              "value": 169.26574999524746
+              "value": 146.72954997513443
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 18.75529997050762,
+              "numerator": 20.368700003018603,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.37764998525381
+              "value": 10.184350001509301
             }
           },
           "diagnostics": [],
@@ -7630,12 +7630,12 @@
             "a5bc9b594d3f07b495517060e194d13b5af60b9d019a8ff0b8c23568aefe0763"
           ],
           "runtimes_ms": [
-            187.6574000052642,
-            150.8740999852307
+            146.86679997248575,
+            146.5922999777831
           ],
           "parse_runtimes_ms": [
-            9.113499982049689,
-            9.641799988457933
+            9.988000005250797,
+            10.380699997767806
           ],
           "provenance_passed": true,
           "config": {
@@ -7710,7 +7710,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -7806,17 +7806,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 300.34370001521893,
+              "numerator": 309.45990001782775,
               "denominator": 2.0,
               "reason": null,
-              "value": 150.17185000760946
+              "value": 154.72995000891387
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 20.68790001794696,
+              "numerator": 28.0112000182271,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.34395000897348
+              "value": 14.00560000911355
             }
           },
           "diagnostics": [],
@@ -7825,12 +7825,12 @@
             "2226228178a907a56f44b167f81ba50959e895f9c7efc49681defbc25a1aaaf3"
           ],
           "runtimes_ms": [
-            150.6991000205744,
-            149.64459999464452
+            153.7506000022404,
+            155.70930001558736
           ],
           "parse_runtimes_ms": [
-            10.815400019055232,
-            9.872499998891726
+            13.454600004479289,
+            14.556600013747811
           ],
           "provenance_passed": true,
           "config": {
@@ -7905,7 +7905,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -8001,17 +8001,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 304.133700003149,
+              "numerator": 267.87649997277185,
               "denominator": 2.0,
               "reason": null,
-              "value": 152.0668500015745
+              "value": 133.93824998638593
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 18.72020002338104,
+              "numerator": 17.81900000059977,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.36010001169052
+              "value": 8.909500000299886
             }
           },
           "diagnostics": [],
@@ -8020,12 +8020,12 @@
             "5f5179adf4a3c8e4b9602bdd389b55b608c67c0f926462fd67951cb707b82d0e"
           ],
           "runtimes_ms": [
-            145.42829999118112,
-            158.70540001196787
+            140.534399979515,
+            127.34209999325685
           ],
           "parse_runtimes_ms": [
-            8.131300011882558,
-            10.588900011498481
+            7.506399997510016,
+            10.312600003089756
           ],
           "provenance_passed": true,
           "config": {
@@ -8100,7 +8100,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -8196,17 +8196,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 297.81550003099255,
+              "numerator": 309.65790001209825,
               "denominator": 2.0,
               "reason": null,
-              "value": 148.90775001549628
+              "value": 154.82895000604913
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 20.248699991498142,
+              "numerator": 15.984300000127405,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.124349995749071
+              "value": 7.9921500000637025
             }
           },
           "diagnostics": [],
@@ -8215,12 +8215,12 @@
             "17caaf2f152d0f0f94c90c8addf0f150736cc2335d54897f81ef4401bbba229e"
           ],
           "runtimes_ms": [
-            137.05440002377145,
-            160.7611000072211
+            160.45749999466352,
+            149.20040001743473
           ],
           "parse_runtimes_ms": [
-            6.181000004289672,
-            14.06769998720847
+            6.371099996613339,
+            9.613200003514066
           ],
           "provenance_passed": true,
           "config": {
@@ -8295,7 +8295,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -8391,17 +8391,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 291.9530999788549,
+              "numerator": 304.72070001997054,
               "denominator": 2.0,
               "reason": null,
-              "value": 145.97654998942744
+              "value": 152.36035000998527
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 18.97659999667667,
+              "numerator": 20.6890000263229,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.488299998338334
+              "value": 10.34450001316145
             }
           },
           "diagnostics": [],
@@ -8410,12 +8410,12 @@
             "66fe3dbd2c5694a08e79fc0e1f49434b2e68f78aa4d60a8b4336cbd26fc8c9c1"
           ],
           "runtimes_ms": [
-            148.3826999901794,
-            143.5703999886755
+            162.6346000120975,
+            142.08610000787303
           ],
           "parse_runtimes_ms": [
-            9.403200005181134,
-            9.573399991495535
+            9.499500010861084,
+            11.189500015461817
           ],
           "provenance_passed": true,
           "config": {
@@ -8490,7 +8490,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -8586,17 +8586,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 320.11170001351275,
+              "numerator": 327.5818999973126,
               "denominator": 2.0,
               "reason": null,
-              "value": 160.05585000675637
+              "value": 163.7909499986563
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 22.46559999184683,
+              "numerator": 18.589100014651194,
               "denominator": 2.0,
               "reason": null,
-              "value": 11.232799995923415
+              "value": 9.294550007325597
             }
           },
           "diagnostics": [],
@@ -8605,12 +8605,12 @@
             "148042423e36dd3e6b9a7b82564a8419f7768f3f96faae038dbefb715414f160"
           ],
           "runtimes_ms": [
-            169.40109999268316,
-            150.7106000208296
+            169.81970000779256,
+            157.76219998952
           ],
           "parse_runtimes_ms": [
-            9.614299982786179,
-            12.851300009060651
+            8.864800009177998,
+            9.724300005473197
           ],
           "provenance_passed": true,
           "config": {
@@ -8685,7 +8685,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -8781,17 +8781,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 287.0297000044957,
+              "numerator": 313.7253999884706,
               "denominator": 2.0,
               "reason": null,
-              "value": 143.51485000224784
+              "value": 156.8626999942353
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 18.263300007674843,
+              "numerator": 20.76940002734773,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.131650003837422
+              "value": 10.384700013673864
             }
           },
           "diagnostics": [],
@@ -8800,12 +8800,12 @@
             "cd7361bc05fc76c54a64934144b338150eeda2021c383764af6effbec31812e6"
           ],
           "runtimes_ms": [
-            145.2397000102792,
-            141.7899999942165
+            165.00519998953678,
+            148.72019999893382
           ],
           "parse_runtimes_ms": [
-            7.9249000118579715,
-            10.338399995816872
+            9.675900015281513,
+            11.093500012066215
           ],
           "provenance_passed": true,
           "config": {
@@ -8880,7 +8880,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -8976,17 +8976,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 342.73750000284053,
+              "numerator": 278.5057000000961,
               "denominator": 2.0,
               "reason": null,
-              "value": 171.36875000142027
+              "value": 139.25285000004806
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 19.90379998460412,
+              "numerator": 13.578699989011511,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.95189999230206
+              "value": 6.789349994505756
             }
           },
           "diagnostics": [],
@@ -8995,12 +8995,12 @@
             "11878921a9a246a46308f2570b421a8e6e0f4827a1af1c1e589d9223a4d42d1c"
           ],
           "runtimes_ms": [
-            169.377699989127,
-            173.35980001371354
+            137.8186999936588,
+            140.6870000064373
           ],
           "parse_runtimes_ms": [
-            8.643399982247502,
-            11.260400002356619
+            6.262799986870959,
+            7.315900002140552
           ],
           "provenance_passed": true,
           "config": {
@@ -9075,7 +9075,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -9171,17 +9171,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 339.5744999870658,
+              "numerator": 293.6300000001211,
               "denominator": 2.0,
               "reason": null,
-              "value": 169.7872499935329
+              "value": 146.81500000006054
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 18.432899960316718,
+              "numerator": 20.803699997486547,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.216449980158359
+              "value": 10.401849998743273
             }
           },
           "diagnostics": [],
@@ -9190,12 +9190,12 @@
             "0bd9defbbf639b70890c7a4457be2940165e750d0c5fa470e9019a0e02440a0a"
           ],
           "runtimes_ms": [
-            191.02540001040325,
-            148.54909997666255
+            146.76200001849793,
+            146.86799998162314
           ],
           "parse_runtimes_ms": [
-            8.903599984478205,
-            9.529299975838512
+            10.81279999925755,
+            9.990899998228997
           ],
           "provenance_passed": true,
           "config": {
@@ -9270,7 +9270,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -9366,17 +9366,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 297.24860002170317,
+              "numerator": 296.7034000030253,
               "denominator": 2.0,
               "reason": null,
-              "value": 148.62430001085158
+              "value": 148.35170000151265
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 19.27719998639077,
+              "numerator": 13.413700013188645,
               "denominator": 2.0,
               "reason": null,
-              "value": 9.638599993195385
+              "value": 6.706850006594323
             }
           },
           "diagnostics": [],
@@ -9385,12 +9385,12 @@
             "3b0d63a1a6b94f13a23d2021e3dd710cf87b468b86c5786463dd9a8ce9b8f6b5"
           ],
           "runtimes_ms": [
-            152.0885000063572,
-            145.16010001534596
+            151.78889999515377,
+            144.91450000787154
           ],
           "parse_runtimes_ms": [
-            10.765799990622327,
-            8.511399995768443
+            7.282700011273846,
+            6.131000001914799
           ],
           "provenance_passed": true,
           "config": {
@@ -9465,7 +9465,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -9561,17 +9561,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 297.01619999832474,
+              "numerator": 333.6606999801006,
               "denominator": 2.0,
               "reason": null,
-              "value": 148.50809999916237
+              "value": 166.8303499900503
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 21.747699996922165,
+              "numerator": 20.20019997144118,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.873849998461083
+              "value": 10.10009998572059
             }
           },
           "diagnostics": [],
@@ -9580,12 +9580,12 @@
             "b17c387880b64ba51f00b068d13424062a57d24b1fb2e048437ac66795916b14"
           ],
           "runtimes_ms": [
-            155.45510000083596,
-            141.56109999748878
+            192.02899999800138,
+            141.63169998209924
           ],
           "parse_runtimes_ms": [
-            13.45729999593459,
-            8.290400000987574
+            11.938599986024201,
+            8.261599985416979
           ],
           "provenance_passed": true,
           "config": {
@@ -9660,7 +9660,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -9756,17 +9756,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 317.8489999845624,
+              "numerator": 313.54979999014176,
               "denominator": 2.0,
               "reason": null,
-              "value": 158.9244999922812
+              "value": 156.77489999507088
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 20.051600004080683,
+              "numerator": 21.00909996079281,
               "denominator": 2.0,
               "reason": null,
-              "value": 10.025800002040341
+              "value": 10.504549980396405
             }
           },
           "diagnostics": [],
@@ -9775,12 +9775,12 @@
             "40a87d547ab3e6554ac137c3720f2eba4bc353e60339751446410eb69b203afe"
           ],
           "runtimes_ms": [
-            165.76299999724142,
-            152.08599998732097
+            162.23389998776838,
+            151.31590000237338
           ],
           "parse_runtimes_ms": [
-            10.610099998302758,
-            9.441500005777925
+            9.763299982296303,
+            11.245799978496507
           ],
           "provenance_passed": true,
           "config": {
@@ -9855,7 +9855,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -9951,17 +9951,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 896.5864000201691,
+              "numerator": 866.1949000088498,
               "denominator": 2.0,
               "reason": null,
-              "value": 448.29320001008455
+              "value": 433.0974500044249
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 324.32889999472536,
+              "numerator": 328.6927999870386,
               "denominator": 2.0,
               "reason": null,
-              "value": 162.16444999736268
+              "value": 164.3463999935193
             }
           },
           "diagnostics": [],
@@ -9970,12 +9970,12 @@
             "eb0d3dd5695b477eb02d9c48bbfbf99e5a266897c92982d377aa07bc40c7abb1"
           ],
           "runtimes_ms": [
-            454.03530000476167,
-            442.5511000154074
+            425.15359999379143,
+            441.04130001505837
           ],
           "parse_runtimes_ms": [
-            171.29480000585318,
-            153.03409998887219
+            180.57929998030886,
+            148.11350000672974
           ],
           "provenance_passed": true,
           "config": {
@@ -10050,7 +10050,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -10146,17 +10146,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 259.15319999330677,
+              "numerator": 265.6695000187028,
               "denominator": 2.0,
               "reason": null,
-              "value": 129.57659999665339
+              "value": 132.8347500093514
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 7.792300020810217,
+              "numerator": 7.663700031116605,
               "denominator": 2.0,
               "reason": null,
-              "value": 3.8961500104051083
+              "value": 3.8318500155583024
             }
           },
           "diagnostics": [],
@@ -10165,12 +10165,12 @@
             "2eafe4ced04238b9f14b371e5d31cf8a121c1aed86162829822d86b47c0fcc88"
           ],
           "runtimes_ms": [
-            130.40369999362156,
-            128.7494999996852
+            132.53329999861307,
+            133.13620002008975
           ],
           "parse_runtimes_ms": [
-            3.5080000234302133,
-            4.284299997380003
+            3.3706000249367207,
+            4.293100006179884
           ],
           "provenance_passed": true,
           "config": {
@@ -10245,7 +10245,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -10341,17 +10341,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 344.9146000202745,
+              "numerator": 334.1901999665424,
               "denominator": 2.0,
               "reason": null,
-              "value": 172.45730001013726
+              "value": 167.0950999832712
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 49.95650000637397,
+              "numerator": 34.777200024109334,
               "denominator": 2.0,
               "reason": null,
-              "value": 24.978250003186986
+              "value": 17.388600012054667
             }
           },
           "diagnostics": [],
@@ -10360,12 +10360,12 @@
             "8713903cbc71799fe7566e18be778fb775c725d83322d4f2b53d245876982808"
           ],
           "runtimes_ms": [
-            151.3264000241179,
-            193.58819999615662
+            183.5603999788873,
+            150.62979998765513
           ],
           "parse_runtimes_ms": [
-            18.58659999561496,
-            31.36990001075901
+            17.101400007959455,
+            17.67580001614988
           ],
           "provenance_passed": true,
           "config": {
@@ -10536,17 +10536,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 224.23859999980778,
+              "numerator": 216.22439997736365,
               "denominator": 2.0,
               "reason": null,
-              "value": 112.11929999990389
+              "value": 108.11219998868182
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 12.21149999764748,
+              "numerator": 5.582999991020188,
               "denominator": 2.0,
               "reason": null,
-              "value": 6.10574999882374
+              "value": 2.791499995510094
             }
           },
           "diagnostics": [
@@ -10557,12 +10557,12 @@
             "43ca5cdc0a7b43f35447cabec82d2f979eba8328f9c9f86ded869ab4418ffbbf"
           ],
           "runtimes_ms": [
-            109.50019999290816,
-            114.73840000689961
+            104.55289998208173,
+            111.67149999528192
           ],
           "parse_runtimes_ms": [
-            4.019299987703562,
-            8.192200009943917
+            2.861699991626665,
+            2.7212999993935227
           ],
           "provenance_passed": true,
           "config": {
@@ -10698,10 +10698,10 @@
         "parser_runtime_ms": {
           "metric": {
             "status": "measured",
-            "numerator": 1203.9910000166856,
+            "numerator": 1257.023099984508,
             "denominator": 48.0,
             "reason": null,
-            "value": 25.08314583368095
+            "value": 26.18798124967725
           },
           "measured_cases": 24,
           "unsupported_cases": 0,
@@ -10758,10 +10758,10 @@
         "runtime_per_document_ms": {
           "metric": {
             "status": "measured",
-            "numerator": 8734.668899909593,
+            "numerator": 8801.336399948923,
             "denominator": 48.0,
             "reason": null,
-            "value": 181.97226874811653
+            "value": 183.3611749989359
           },
           "measured_cases": 24,
           "unsupported_cases": 0,
@@ -10965,10 +10965,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 110.25470000458881,
+              "numerator": 106.65200001676567,
               "denominator": 4.0,
               "reason": null,
-              "value": 27.563675001147203
+              "value": 26.663000004191417
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -11025,10 +11025,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 704.9485999741592,
+              "numerator": 729.8524999641813,
               "denominator": 4.0,
               "reason": null,
-              "value": 176.2371499935398
+              "value": 182.46312499104533
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -11231,10 +11231,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 33.869999984744936,
+              "numerator": 39.466199988964945,
               "denominator": 2.0,
               "reason": null,
-              "value": 16.934999992372468
+              "value": 19.733099994482473
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -11291,10 +11291,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 354.4174999697134,
+              "numerator": 350.49609999987297,
               "denominator": 2.0,
               "reason": null,
-              "value": 177.2087499848567
+              "value": 175.24804999993648
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -11497,10 +11497,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 39.020299998810515,
+              "numerator": 31.79989999625832,
               "denominator": 2.0,
               "reason": null,
-              "value": 19.510149999405257
+              "value": 15.89994999812916
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -11557,10 +11557,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 361.53849997208454,
+              "numerator": 366.08209999394603,
               "denominator": 2.0,
               "reason": null,
-              "value": 180.76924998604227
+              "value": 183.04104999697302
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -11763,10 +11763,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 7.304200000362471,
+              "numerator": 6.420999998226762,
               "denominator": 2.0,
               "reason": null,
-              "value": 3.6521000001812354
+              "value": 3.210499999113381
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -11823,10 +11823,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 202.54630001727492,
+              "numerator": 230.80789999221452,
               "denominator": 2.0,
               "reason": null,
-              "value": 101.27315000863746
+              "value": 115.40394999610726
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -12029,10 +12029,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 32.985700003337115,
+              "numerator": 40.0923999841325,
               "denominator": 2.0,
               "reason": null,
-              "value": 16.492850001668558
+              "value": 20.04619999206625
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -12089,10 +12089,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 348.3515999978408,
+              "numerator": 329.9565000052098,
               "denominator": 2.0,
               "reason": null,
-              "value": 174.1757999989204
+              "value": 164.9782500026049
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -12295,10 +12295,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 24.546800006646663,
+              "numerator": 20.630300015909597,
               "denominator": 2.0,
               "reason": null,
-              "value": 12.273400003323331
+              "value": 10.315150007954799
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -12355,10 +12355,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 280.5582000000868,
+              "numerator": 249.44260000484064,
               "denominator": 2.0,
               "reason": null,
-              "value": 140.2791000000434
+              "value": 124.72130000242032
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -12561,10 +12561,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 32.27570001035929,
+              "numerator": 24.68790000420995,
               "denominator": 2.0,
               "reason": null,
-              "value": 16.137850005179644
+              "value": 12.343950002104975
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -12621,10 +12621,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 332.25609999499284,
+              "numerator": 318.5937000089325,
               "denominator": 2.0,
               "reason": null,
-              "value": 166.12804999749642
+              "value": 159.29685000446625
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -12827,10 +12827,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 44.31180001120083,
+              "numerator": 48.70010001468472,
               "denominator": 2.0,
               "reason": null,
-              "value": 22.155900005600415
+              "value": 24.35005000734236
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -12887,10 +12887,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 331.0119000088889,
+              "numerator": 368.23150000418536,
               "denominator": 2.0,
               "reason": null,
-              "value": 165.50595000444446
+              "value": 184.11575000209268
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -13093,10 +13093,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 44.51229999540374,
+              "numerator": 38.97250004229136,
               "denominator": 2.0,
               "reason": null,
-              "value": 22.25614999770187
+              "value": 19.48625002114568
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -13153,10 +13153,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 367.16189997969195,
+              "numerator": 337.00459997635335,
               "denominator": 2.0,
               "reason": null,
-              "value": 183.58094998984598
+              "value": 168.50229998817667
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -13359,10 +13359,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 15.096899995114654,
+              "numerator": 11.897099990164861,
               "denominator": 2.0,
               "reason": null,
-              "value": 7.548449997557327
+              "value": 5.9485499950824305
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -13419,10 +13419,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 286.03499999735504,
+              "numerator": 318.5708000091836,
               "denominator": 2.0,
               "reason": null,
-              "value": 143.01749999867752
+              "value": 159.2854000045918
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -13625,10 +13625,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 120.3053000208456,
+              "numerator": 104.42299998248927,
               "denominator": 4.0,
               "reason": null,
-              "value": 30.0763250052114
+              "value": 26.10574999562232
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -13685,10 +13685,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 856.3845999597106,
+              "numerator": 799.5769000262953,
               "denominator": 4.0,
               "reason": null,
-              "value": 214.09614998992765
+              "value": 199.89422500657383
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -13891,10 +13891,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 38.80780001054518,
+              "numerator": 77.2628000122495,
               "denominator": 2.0,
               "reason": null,
-              "value": 19.40390000527259
+              "value": 38.63140000612475
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -13951,10 +13951,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 415.343800035771,
+              "numerator": 363.00690000643954,
               "denominator": 2.0,
               "reason": null,
-              "value": 207.6719000178855
+              "value": 181.50345000321977
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -14157,10 +14157,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 110.71529999026097,
+              "numerator": 115.19159999443218,
               "denominator": 6.0,
               "reason": null,
-              "value": 18.452549998376828
+              "value": 19.19859999907203
             },
             "measured_cases": 3,
             "unsupported_cases": 0,
@@ -14217,10 +14217,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 1092.2814000223298,
+              "numerator": 1089.003600005526,
               "denominator": 6.0,
               "reason": null,
-              "value": 182.04690000372162
+              "value": 181.50060000092103
             },
             "measured_cases": 3,
             "unsupported_cases": 0,
@@ -14423,10 +14423,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 22.144400019897148,
+              "numerator": 38.971899979515,
               "denominator": 2.0,
               "reason": null,
-              "value": 11.072200009948574
+              "value": 19.4859499897575
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -14483,10 +14483,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 258.596600004239,
+              "numerator": 306.86129999230616,
               "denominator": 2.0,
               "reason": null,
-              "value": 129.2983000021195
+              "value": 153.43064999615308
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -14689,10 +14689,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 26.95499997935258,
+              "numerator": 33.57749999850057,
               "denominator": 2.0,
               "reason": null,
-              "value": 13.47749998967629
+              "value": 16.788749999250285
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -14749,10 +14749,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 333.0654000164941,
+              "numerator": 311.87420000787824,
               "denominator": 2.0,
               "reason": null,
-              "value": 166.53270000824705
+              "value": 155.93710000393912
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -14955,10 +14955,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 411.1953999963589,
+              "numerator": 403.15779999946244,
               "denominator": 2.0,
               "reason": null,
-              "value": 205.59769999817945
+              "value": 201.57889999973122
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -15015,10 +15015,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 1138.3369999821298,
+              "numerator": 1115.8048999786843,
               "denominator": 2.0,
               "reason": null,
-              "value": 569.1684999910649
+              "value": 557.9024499893421
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -15221,10 +15221,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 41.94450000068173,
+              "numerator": 38.09229997568764,
               "denominator": 2.0,
               "reason": null,
-              "value": 20.972250000340864
+              "value": 19.04614998784382
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -15281,10 +15281,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 421.4687000203412,
+              "numerator": 371.57550000119954,
               "denominator": 2.0,
               "reason": null,
-              "value": 210.7343500101706
+              "value": 185.78775000059977
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -15487,10 +15487,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 30.83799997693859,
+              "numerator": 33.34369999356568,
               "denominator": 2.0,
               "reason": null,
-              "value": 15.418999988469295
+              "value": 16.67184999678284
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -15547,10 +15547,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 364.72919999505393,
+              "numerator": 318.30720001016743,
               "denominator": 2.0,
               "reason": null,
-              "value": 182.36459999752697
+              "value": 159.15360000508372
             },
             "measured_cases": 1,
             "unsupported_cases": 0,
@@ -15753,10 +15753,10 @@
           "parser_runtime_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 16.906900011235848,
+              "numerator": 43.68309999699704,
               "denominator": 4.0,
               "reason": null,
-              "value": 4.226725002808962
+              "value": 10.92077499924926
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -15813,10 +15813,10 @@
           "runtime_per_document_ms": {
             "metric": {
               "status": "measured",
-              "numerator": 285.6365999614354,
+              "numerator": 526.2875999615062,
               "denominator": 4.0,
               "reason": null,
-              "value": 71.40914999035886
+              "value": 131.57189999037655
             },
             "measured_cases": 2,
             "unsupported_cases": 0,
@@ -15963,7 +15963,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -16059,17 +16059,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 280.5582000000868,
+              "numerator": 249.44260000484064,
               "denominator": 2.0,
               "reason": null,
-              "value": 140.2791000000434
+              "value": 124.72130000242032
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 24.546800006646663,
+              "numerator": 20.630300015909597,
               "denominator": 2.0,
               "reason": null,
-              "value": 12.273400003323331
+              "value": 10.315150007954799
             }
           },
           "diagnostics": [],
@@ -16078,12 +16078,12 @@
             "5873e3639563f84720a29ddce7d94c679095d8cec77e78fcfe14224cdd6907ca"
           ],
           "runtimes_ms": [
-            149.7903999988921,
-            130.7678000011947
+            142.72890001302585,
+            106.71369999181479
           ],
           "parse_runtimes_ms": [
-            11.351100023603067,
-            13.195699983043596
+            11.871599999722093,
+            8.758700016187504
           ],
           "provenance_passed": true,
           "config": {
@@ -16158,7 +16158,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -16254,17 +16254,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 258.596600004239,
+              "numerator": 306.86129999230616,
               "denominator": 2.0,
               "reason": null,
-              "value": 129.2983000021195
+              "value": 153.43064999615308
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 22.144400019897148,
+              "numerator": 38.971899979515,
               "denominator": 2.0,
               "reason": null,
-              "value": 11.072200009948574
+              "value": 19.4859499897575
             }
           },
           "diagnostics": [],
@@ -16273,12 +16273,12 @@
             "aee9edf7dde12061c20463986eb0b05f8de88c1ef4f5ba925a194469f66b841f"
           ],
           "runtimes_ms": [
-            124.95019999914803,
-            133.64640000509098
+            134.31349999154918,
+            172.54780000075698
           ],
           "parse_runtimes_ms": [
-            11.365100013790652,
-            10.779300006106496
+            17.16859999578446,
+            21.80329998373054
           ],
           "provenance_passed": true,
           "config": {
@@ -16353,7 +16353,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -16449,17 +16449,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 142.4169999663718,
+              "numerator": 246.3030999933835,
               "denominator": 2.0,
               "reason": null,
-              "value": 71.2084999831859
+              "value": 123.15154999669176
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 8.992700022645295,
+              "numerator": 15.472200000658631,
               "denominator": 2.0,
               "reason": null,
-              "value": 4.496350011322647
+              "value": 7.736100000329316
             }
           },
           "diagnostics": [],
@@ -16468,12 +16468,12 @@
             "4930844edb188ad47831f4fec40e1857228d7fedd62fe723ab78845a5a2f79a5"
           ],
           "runtimes_ms": [
-            78.28779998817481,
-            64.129199978197
+            122.47860000934452,
+            123.824499984039
           ],
           "parse_runtimes_ms": [
-            4.219800001010299,
-            4.772900021634996
+            8.346899994648993,
+            7.125300006009638
           ],
           "provenance_passed": true,
           "config": {
@@ -16548,7 +16548,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -16644,17 +16644,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 143.21959999506362,
+              "numerator": 279.9844999681227,
               "denominator": 2.0,
               "reason": null,
-              "value": 71.60979999753181
+              "value": 139.99224998406135
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 7.914199988590553,
+              "numerator": 28.210899996338412,
               "denominator": 2.0,
               "reason": null,
-              "value": 3.9570999942952767
+              "value": 14.105449998169206
             }
           },
           "diagnostics": [],
@@ -16663,12 +16663,12 @@
             "a6da799213f59d9263c9663aa9d5a5b5d16bae1916c4484e30bd0f9c0ff7484b"
           ],
           "runtimes_ms": [
-            77.69159998861142,
-            65.5280000064522
+            130.42899998254143,
+            149.55549998558126
           ],
           "parse_runtimes_ms": [
-            4.49819999630563,
-            3.415999992284924
+            8.836499997414649,
+            19.374399998923764
           ],
           "provenance_passed": true,
           "config": {
@@ -16750,14 +16750,14 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "Legacy score requires table structure and reliable header flags; see separate cell precision/recall",
               "value": null
             },
             "table_header_value_association": {
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "No reliable header/value relations",
               "value": null
             },
             "evidence_span_validity": {
@@ -16839,17 +16839,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 336.6223000048194,
+              "numerator": 380.16799997421913,
               "denominator": 2.0,
               "reason": null,
-              "value": 168.3111500024097
+              "value": 190.08399998710956
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 54.32760002440773,
+              "numerator": 54.471699986606836,
               "denominator": 2.0,
               "reason": null,
-              "value": 27.163800012203865
+              "value": 27.235849993303418
             }
           },
           "diagnostics": [],
@@ -16858,12 +16858,12 @@
             "13ce3ceed5122eccdbb91a530bf01e7f2fe0b065db7da7ec36af17b65dbe68a8"
           ],
           "runtimes_ms": [
-            171.70639999676496,
-            164.91590000805445
+            190.9548999974504,
+            189.21309997676872
           ],
           "parse_runtimes_ms": [
-            28.444700001273304,
-            25.882900023134425
+            28.587899985723197,
+            25.88380000088364
           ],
           "provenance_passed": true,
           "config": {
@@ -16945,14 +16945,14 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "Legacy score requires table structure and reliable header flags; see separate cell precision/recall",
               "value": null
             },
             "table_header_value_association": {
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "No reliable header/value relations",
               "value": null
             },
             "evidence_span_validity": {
@@ -17034,17 +17034,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 368.32629996933974,
+              "numerator": 349.6844999899622,
               "denominator": 2.0,
               "reason": null,
-              "value": 184.16314998466987
+              "value": 174.8422499949811
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 55.92709998018108,
+              "numerator": 52.18030003015883,
               "denominator": 2.0,
               "reason": null,
-              "value": 27.96354999009054
+              "value": 26.090150015079416
             }
           },
           "diagnostics": [],
@@ -17053,12 +17053,12 @@
             "332b1bd801b4d14f415b626fb959fb919903ecfd161c9cdc86e3a61ec3a6659c"
           ],
           "runtimes_ms": [
-            188.81299998611212,
-            179.51329998322763
+            178.10249998001382,
+            171.5820000099484
           ],
           "parse_runtimes_ms": [
-            28.092099993955344,
-            27.83499998622574
+            24.933400010922924,
+            27.24690001923591
           ],
           "provenance_passed": true,
           "config": {
@@ -17140,14 +17140,14 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "Legacy score requires table structure and reliable header flags; see separate cell precision/recall",
               "value": null
             },
             "table_header_value_association": {
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "No reliable header/value relations",
               "value": null
             },
             "evidence_span_validity": {
@@ -17229,17 +17229,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 454.3956999841612,
+              "numerator": 411.1713000165764,
               "denominator": 2.0,
               "reason": null,
-              "value": 227.1978499920806
+              "value": 205.5856500082882
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 71.41570001840591,
+              "numerator": 60.64599999808706,
               "denominator": 2.0,
               "reason": null,
-              "value": 35.70785000920296
+              "value": 30.32299999904353
             }
           },
           "diagnostics": [],
@@ -17248,12 +17248,12 @@
             "edd5372d906f686e386440afc7d796ce25d258af7f6b9a5eb88740c20777b200"
           ],
           "runtimes_ms": [
-            223.19650001008995,
-            231.19919997407123
+            206.7782000231091,
+            204.39309999346733
           ],
           "parse_runtimes_ms": [
-            33.0246000085026,
-            38.39110000990331
+            28.164799994556233,
+            32.48120000353083
           ],
           "provenance_passed": true,
           "config": {
@@ -17335,14 +17335,14 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "Legacy score requires table structure and reliable header flags; see separate cell precision/recall",
               "value": null
             },
             "table_header_value_association": {
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter outputs no table structure",
+              "reason": "No reliable header/value relations",
               "value": null
             },
             "evidence_span_validity": {
@@ -17424,17 +17424,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 401.98889997554943,
+              "numerator": 388.4056000097189,
               "denominator": 2.0,
               "reason": null,
-              "value": 200.99444998777471
+              "value": 194.20280000485945
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 48.88960000243969,
+              "numerator": 43.77699998440221,
               "denominator": 2.0,
               "reason": null,
-              "value": 24.444800001219846
+              "value": 21.888499992201105
             }
           },
           "diagnostics": [],
@@ -17443,12 +17443,12 @@
             "665251936a75f7b7f537587f493bcabaa76173e068904adab090d574d0c4f1c8"
           ],
           "runtimes_ms": [
-            210.38549998775125,
-            191.60339998779818
+            205.9847000055015,
+            182.4209000042174
           ],
           "parse_runtimes_ms": [
-            23.652900010347366,
-            25.236699992092326
+            20.123499998589978,
+            23.653499985812232
           ],
           "provenance_passed": true,
           "config": {
@@ -17523,7 +17523,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -17619,17 +17619,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 331.0119000088889,
+              "numerator": 368.23150000418536,
               "denominator": 2.0,
               "reason": null,
-              "value": 165.50595000444446
+              "value": 184.11575000209268
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 44.31180001120083,
+              "numerator": 48.70010001468472,
               "denominator": 2.0,
               "reason": null,
-              "value": 22.155900005600415
+              "value": 24.35005000734236
             }
           },
           "diagnostics": [],
@@ -17638,12 +17638,12 @@
             "6438459c9bc03680b96f3375332e0bac869c4c4b1fc0ed8c537bf0f29256ebbe"
           ],
           "runtimes_ms": [
-            164.37019998556934,
-            166.64170002331957
+            181.06229999102652,
+            187.16920001315884
           ],
           "parse_runtimes_ms": [
-            22.282199992332608,
-            22.029600018868223
+            24.848600005498156,
+            23.851500009186566
           ],
           "provenance_passed": true,
           "config": {
@@ -17718,7 +17718,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -17814,17 +17814,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 354.4174999697134,
+              "numerator": 350.49609999987297,
               "denominator": 2.0,
               "reason": null,
-              "value": 177.2087499848567
+              "value": 175.24804999993648
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 33.869999984744936,
+              "numerator": 39.466199988964945,
               "denominator": 2.0,
               "reason": null,
-              "value": 16.934999992372468
+              "value": 19.733099994482473
             }
           },
           "diagnostics": [],
@@ -17833,12 +17833,12 @@
             "865297f9727d634f993f2e55f1401ad5ef6ddfb2be63238a222f5cd1417afd85"
           ],
           "runtimes_ms": [
-            170.43489997740835,
-            183.98259999230504
+            178.63360000774264,
+            171.86249999213032
           ],
           "parse_runtimes_ms": [
-            15.369300002930686,
-            18.50069998181425
+            20.34550000098534,
+            19.120699987979606
           ],
           "provenance_passed": true,
           "config": {
@@ -17913,7 +17913,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -18009,17 +18009,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 333.0654000164941,
+              "numerator": 311.87420000787824,
               "denominator": 2.0,
               "reason": null,
-              "value": 166.53270000824705
+              "value": 155.93710000393912
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 26.95499997935258,
+              "numerator": 33.57749999850057,
               "denominator": 2.0,
               "reason": null,
-              "value": 13.47749998967629
+              "value": 16.788749999250285
             }
           },
           "diagnostics": [],
@@ -18028,12 +18028,12 @@
             "e03a52a748036af6f946fdbb9fd046236da3d0f4278f65a1ddae0310da5fb7ac"
           ],
           "runtimes_ms": [
-            174.98330000671558,
-            158.08210000977851
+            159.44439999293536,
+            152.42980001494288
           ],
           "parse_runtimes_ms": [
-            13.025399995967746,
-            13.929599983384833
+            18.34369997959584,
+            15.23380001890473
           ],
           "provenance_passed": true,
           "config": {
@@ -18108,7 +18108,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -18204,17 +18204,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 348.3515999978408,
+              "numerator": 329.9565000052098,
               "denominator": 2.0,
               "reason": null,
-              "value": 174.1757999989204
+              "value": 164.9782500026049
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 32.985700003337115,
+              "numerator": 40.0923999841325,
               "denominator": 2.0,
               "reason": null,
-              "value": 16.492850001668558
+              "value": 20.04619999206625
             }
           },
           "diagnostics": [],
@@ -18223,12 +18223,12 @@
             "7b4a2df6bdbd3ad0bdc611ca671be0a36285088bfcf7737b954a49432b09af00"
           ],
           "runtimes_ms": [
-            192.36180000007153,
-            155.9897999977693
+            165.2229999890551,
+            164.73350001615472
           ],
           "parse_runtimes_ms": [
-            16.413800010923296,
-            16.57189999241382
+            18.193299998529255,
+            21.899099985603243
           ],
           "provenance_passed": true,
           "config": {
@@ -18303,7 +18303,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -18399,17 +18399,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 364.72919999505393,
+              "numerator": 318.30720001016743,
               "denominator": 2.0,
               "reason": null,
-              "value": 182.36459999752697
+              "value": 159.15360000508372
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 30.83799997693859,
+              "numerator": 33.34369999356568,
               "denominator": 2.0,
               "reason": null,
-              "value": 15.418999988469295
+              "value": 16.67184999678284
             }
           },
           "diagnostics": [],
@@ -18418,12 +18418,12 @@
             "2950ff0e341020866e6ce45b7ce93d8b30354968e9a139fda8942fbadce96fed"
           ],
           "runtimes_ms": [
-            165.6109000032302,
-            199.11829999182373
+            161.32549999747425,
+            156.98170001269318
           ],
           "parse_runtimes_ms": [
-            14.780999976210296,
-            16.057000000728294
+            18.631999992066994,
+            14.711700001498684
           ],
           "provenance_passed": true,
           "config": {
@@ -18498,7 +18498,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -18594,17 +18594,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 361.53849997208454,
+              "numerator": 366.08209999394603,
               "denominator": 2.0,
               "reason": null,
-              "value": 180.76924998604227
+              "value": 183.04104999697302
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 39.020299998810515,
+              "numerator": 31.79989999625832,
               "denominator": 2.0,
               "reason": null,
-              "value": 19.510149999405257
+              "value": 15.89994999812916
             }
           },
           "diagnostics": [],
@@ -18613,12 +18613,12 @@
             "7301b3187708a42cae999ba358a942a15a4fb989380eb3f8d04f2493308ad5fe"
           ],
           "runtimes_ms": [
-            202.22839998314157,
-            159.31009998894297
+            209.60480000940152,
+            156.47729998454452
           ],
           "parse_runtimes_ms": [
-            22.081400005845353,
-            16.938899992965162
+            18.455500015988946,
+            13.344399980269372
           ],
           "provenance_passed": true,
           "config": {
@@ -18693,7 +18693,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -18789,17 +18789,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 324.516799999401,
+              "numerator": 356.5802000230178,
               "denominator": 2.0,
               "reason": null,
-              "value": 162.2583999997005
+              "value": 178.2901000115089
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 32.923299993854016,
+              "numerator": 42.116800002986565,
               "denominator": 2.0,
               "reason": null,
-              "value": 16.461649996927008
+              "value": 21.058400001493283
             }
           },
           "diagnostics": [],
@@ -18808,12 +18808,12 @@
             "0c5f414beaa9661b70db6c876c6f2fa0b9e6176803930d4e56700f119f87eaf1"
           ],
           "runtimes_ms": [
-            161.51649999665096,
-            163.00030000275
+            165.33350001554936,
+            191.24670000746846
           ],
           "parse_runtimes_ms": [
-            17.54790000268258,
-            15.375399991171435
+            22.85360000678338,
+            19.263199996203184
           ],
           "provenance_passed": true,
           "config": {
@@ -18888,7 +18888,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -18984,17 +18984,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 352.3386000015307,
+              "numerator": 333.22939998470247,
               "denominator": 2.0,
               "reason": null,
-              "value": 176.16930000076536
+              "value": 166.61469999235123
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 37.31439998955466,
+              "numerator": 43.36999999941327,
               "denominator": 2.0,
               "reason": null,
-              "value": 18.65719999477733
+              "value": 21.684999999706633
             }
           },
           "diagnostics": [],
@@ -19003,12 +19003,12 @@
             "846ca76ce161622eb8da508a612b7892a964efb7bf0916629f5d467b386f4c5b"
           ],
           "runtimes_ms": [
-            169.53909999574535,
-            182.79950000578538
+            163.7668999901507,
+            169.46249999455176
           ],
           "parse_runtimes_ms": [
-            17.608299996936694,
-            19.706099992617965
+            21.823599992785603,
+            21.546400006627664
           ],
           "provenance_passed": true,
           "config": {
@@ -19083,7 +19083,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -19179,17 +19179,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 415.42600002139807,
+              "numerator": 399.1939999978058,
               "denominator": 2.0,
               "reason": null,
-              "value": 207.71300001069903
+              "value": 199.5969999989029
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 40.4776000068523,
+              "numerator": 29.70479999203235,
               "denominator": 2.0,
               "reason": null,
-              "value": 20.23880000342615
+              "value": 14.852399996016175
             }
           },
           "diagnostics": [],
@@ -19198,12 +19198,12 @@
             "0d521a4c71b48637a3d636de0d9d5e1e07f62cd9d378f1e3a9481809e0322f37"
           ],
           "runtimes_ms": [
-            218.9739000168629,
-            196.45210000453517
+            215.55520000401884,
+            183.63879999378696
           ],
           "parse_runtimes_ms": [
-            19.818300002953038,
-            20.65930000389926
+            16.249499982222915,
+            13.455300009809434
           ],
           "provenance_passed": true,
           "config": {
@@ -19278,7 +19278,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -19374,17 +19374,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 332.25609999499284,
+              "numerator": 318.5937000089325,
               "denominator": 2.0,
               "reason": null,
-              "value": 166.12804999749642
+              "value": 159.29685000446625
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 32.27570001035929,
+              "numerator": 24.68790000420995,
               "denominator": 2.0,
               "reason": null,
-              "value": 16.137850005179644
+              "value": 12.343950002104975
             }
           },
           "diagnostics": [],
@@ -19393,12 +19393,12 @@
             "23cfda5784980296d92a7c0aa04118538db7bf4a6581e9f25439c4610ecde501"
           ],
           "runtimes_ms": [
-            167.61209999094717,
-            164.64400000404567
+            163.3573000144679,
+            155.2363999944646
           ],
           "parse_runtimes_ms": [
-            16.256900009466335,
-            16.018800000892952
+            12.351699988357723,
+            12.336200015852228
           ],
           "provenance_passed": true,
           "config": {
@@ -19473,7 +19473,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -19569,17 +19569,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 367.16189997969195,
+              "numerator": 337.00459997635335,
               "denominator": 2.0,
               "reason": null,
-              "value": 183.58094998984598
+              "value": 168.50229998817667
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 44.51229999540374,
+              "numerator": 38.97250004229136,
               "denominator": 2.0,
               "reason": null,
-              "value": 22.25614999770187
+              "value": 19.48625002114568
             }
           },
           "diagnostics": [],
@@ -19588,12 +19588,12 @@
             "8c4a295e8645bc6bf2a5b142e9ff23aa5243a2bfd96649173375efb6fd58ed55"
           ],
           "runtimes_ms": [
-            190.6576000037603,
-            176.50429997593164
+            164.90529998554848,
+            172.09929999080487
           ],
           "parse_runtimes_ms": [
-            24.975700012873858,
-            19.53659998252988
+            21.720800024922937,
+            17.25170001736842
           ],
           "provenance_passed": true,
           "config": {
@@ -19668,7 +19668,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -19764,17 +19764,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 421.4687000203412,
+              "numerator": 371.57550000119954,
               "denominator": 2.0,
               "reason": null,
-              "value": 210.7343500101706
+              "value": 185.78775000059977
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 41.94450000068173,
+              "numerator": 38.09229997568764,
               "denominator": 2.0,
               "reason": null,
-              "value": 20.972250000340864
+              "value": 19.04614998784382
             }
           },
           "diagnostics": [],
@@ -19783,12 +19783,12 @@
             "a215ca178ac2aef1985a1d1f872465f95887a1b75ed4944ab8c7093284cecf24"
           ],
           "runtimes_ms": [
-            210.1752000162378,
-            211.2935000041034
+            192.53070000559092,
+            179.04479999560863
           ],
           "parse_runtimes_ms": [
-            22.00470000389032,
-            19.939799996791407
+            17.802099988330156,
+            20.290199987357482
           ],
           "provenance_passed": true,
           "config": {
@@ -19863,7 +19863,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -19959,17 +19959,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 1138.3369999821298,
+              "numerator": 1115.8048999786843,
               "denominator": 2.0,
               "reason": null,
-              "value": 569.1684999910649
+              "value": 557.9024499893421
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 411.1953999963589,
+              "numerator": 403.15779999946244,
               "denominator": 2.0,
               "reason": null,
-              "value": 205.59769999817945
+              "value": 201.57889999973122
             }
           },
           "diagnostics": [],
@@ -19978,12 +19978,12 @@
             "b8ce4b9988f7777e24603bc8cb3641eab0b092ce8d8ebc11789ff9e8a03a885c"
           ],
           "runtimes_ms": [
-            562.7614999830257,
-            575.5754999991041
+            548.451099981321,
+            567.3537999973632
           ],
           "parse_runtimes_ms": [
-            196.71570000355132,
-            214.47969999280758
+            199.65580001007766,
+            203.50199998938479
           ],
           "provenance_passed": true,
           "config": {
@@ -20058,7 +20058,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -20154,17 +20154,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 286.03499999735504,
+              "numerator": 318.5708000091836,
               "denominator": 2.0,
               "reason": null,
-              "value": 143.01749999867752
+              "value": 159.2854000045918
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 15.096899995114654,
+              "numerator": 11.897099990164861,
               "denominator": 2.0,
               "reason": null,
-              "value": 7.548449997557327
+              "value": 5.9485499950824305
             }
           },
           "diagnostics": [],
@@ -20173,12 +20173,12 @@
             "fc69eb8b8e9f83af4eb399e52f4280d413bb0fde9a54439172f6010cd3a9d3b4"
           ],
           "runtimes_ms": [
-            154.1694999905303,
-            131.86550000682473
+            159.9553999840282,
+            158.6154000251554
           ],
           "parse_runtimes_ms": [
-            7.673799991607666,
-            7.423100003506988
+            6.0464999987743795,
+            5.850599991390482
           ],
           "provenance_passed": true,
           "config": {
@@ -20253,7 +20253,7 @@
               "status": "unsupported",
               "numerator": null,
               "denominator": null,
-              "reason": "pypdf adapter does not output clause boundaries",
+              "reason": "Adapter does not output clause boundaries",
               "value": null
             },
             "table_cell_extraction_accuracy": {
@@ -20349,17 +20349,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 415.343800035771,
+              "numerator": 363.00690000643954,
               "denominator": 2.0,
               "reason": null,
-              "value": 207.6719000178855
+              "value": 181.50345000321977
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 38.80780001054518,
+              "numerator": 77.2628000122495,
               "denominator": 2.0,
               "reason": null,
-              "value": 19.40390000527259
+              "value": 38.63140000612475
             }
           },
           "diagnostics": [],
@@ -20368,12 +20368,12 @@
             "5a133ccec8b932c4e1cb6b1c155f4317a3414c7028a5741c815a4214f35fe8bc"
           ],
           "runtimes_ms": [
-            223.0971000099089,
-            192.24670002586208
+            181.5022999944631,
+            181.50460001197644
           ],
           "parse_runtimes_ms": [
-            19.28920001955703,
-            19.51859999098815
+            19.195200002286583,
+            58.067600009962916
           ],
           "provenance_passed": true,
           "config": {
@@ -20544,17 +20544,17 @@
             },
             "runtime_per_document_ms": {
               "status": "measured",
-              "numerator": 202.54630001727492,
+              "numerator": 230.80789999221452,
               "denominator": 2.0,
               "reason": null,
-              "value": 101.27315000863746
+              "value": 115.40394999610726
             },
             "parser_runtime_ms": {
               "status": "measured",
-              "numerator": 7.304200000362471,
+              "numerator": 6.420999998226762,
               "denominator": 2.0,
               "reason": null,
-              "value": 3.6521000001812354
+              "value": 3.210499999113381
             }
           },
           "diagnostics": [],
@@ -20563,12 +20563,12 @@
             "bd6c5e3bab1470c55755412a79968536b6a05239cdca70737f8efb1bbf20a615"
           ],
           "runtimes_ms": [
-            102.38350002327934,
-            100.16279999399558
+            121.07240001205355,
+            109.73549998016097
           ],
           "parse_runtimes_ms": [
-            3.2301000028382987,
-            4.074099997524172
+            3.3014999935403466,
+            3.119500004686415
           ],
           "provenance_passed": true,
           "config": {
