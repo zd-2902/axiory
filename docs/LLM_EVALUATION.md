@@ -131,7 +131,7 @@ Erst daraus Modell-/Verifierentscheidung und Freigabeschwellen ableiten.
 
 ## Ausgeführte Regressionen
 
-Vollständige Suite mit llm-openai und experimental-pymupdf: **304 bestanden**.
+Vollständige Suite mit llm-openai und experimental-pymupdf: **307 bestanden**.
 Ruff Lint und Formatcheck bestanden; axiory-demo, axiory-eval und optionaler
 axiory-parser-benchmark erfolgreich. Sprint-3-Fingerprint bleibt
 f6a854948483cccde0c42e237e9963c3ad9843100b172bbd218dd3205f3e932d,
@@ -140,5 +140,5 @@ Sprint-4-Fingerprint bleibt
 Die SDK-Tests nutzen ausschliesslich einen In-Memory-Transport. Benchmark-Exit 0
 bedeutet erfolgreiche Ausführung, nicht ausreichende fachliche Qualität.
 
-Standardinstallation ohne Extras: **266 bestanden, 38 bewusst übersprungen**
-(33 PyMuPDF- und fünf OpenAI-SDK-Vertragstests). Die Extrasuite deckt alle 304 ab.
+Standardinstallation ohne Extras: **269 bestanden, 38 bewusst übersprungen**
+(33 PyMuPDF- und fünf OpenAI-SDK-Vertragstests). Die Extrasuite deckt alle 307 ab.

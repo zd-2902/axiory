@@ -52,6 +52,7 @@ class CallRecord(ArtifactModel):
     output_sha256: Digest | None
     latency_seconds: Annotated[float, Field(ge=0, allow_inf_nan=False)]
     retry_count: Annotated[int, Field(ge=0)]
+    retryable: bool
     error: str | None
     estimated_cost_usd: Annotated[float, Field(ge=0, allow_inf_nan=False)] | None
     reserved_cost_usd: Annotated[float, Field(ge=0, allow_inf_nan=False)]
@@ -161,16 +162,18 @@ class ReplayProvider:
     def __init__(self, store: DocumentStore, calls: tuple[str, ...], *, method: str):
         self.store = store
         self.records = iter(calls)
+        self.used = 0
         self.method = method
 
     def send(self, request: Request, timeout: float) -> Reply:
         record = self.store._read("model_calls", next(self.records), CallRecord)
+        self.used += 1
         if record.request_sha256 != artifact_id(record.request) or record.request != request:
             raise IntegrityError("Replay request/model/prompt/input mismatch")
         if record.error is not None or record.output_sha256 is None:
             raise ProviderError(
                 record.error or "recorded_error",
-                retryable=record.error in ("timeout", "connection", "api_status"),
+                retryable=record.retryable,
             )
         return self.store._read("model_outputs", record.output_sha256, Reply)
 
@@ -264,6 +267,7 @@ class Caller:
                 output_sha256=output,
                 latency_seconds=time.monotonic() - started,
                 retry_count=retry,
+                retryable=retryable,
                 error=error,
                 estimated_cost_usd=estimate,
                 reserved_cost_usd=cost,

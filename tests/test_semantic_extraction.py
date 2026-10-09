@@ -520,3 +520,24 @@ def test_reported_token_overrun_preserves_raw_but_fails(setup):
     )
     assert result.errors == ("reported_token_budget",) and not result.claims
     assert store._read("model_calls", result.calls[0], CallRecord).output_sha256
+
+
+@pytest.mark.parametrize("retryable,expected_calls", [(False, 1), (True, 2)])
+def test_replay_keeps_recorded_retry_classification(setup, retryable, expected_calls):
+    store, context = setup
+    key, result = run(
+        store, context, MockProvider([ProviderError("api_status", retryable=retryable)] * 3)
+    )
+    assert len(result.calls) == expected_calls
+    _, rebuilt = replay(store, key)
+    assert rebuilt.errors == result.errors == ("api_status",)
+    assert len(rebuilt.calls) == expected_calls
+
+
+def test_replay_rejects_unconsumed_extra_records(setup):
+    store, context = setup
+    _, result = run(store, context, MockProvider([answer(context)]))
+    forged = changed(result, calls=list(result.calls) * 2)
+    key = store._put("semantic_runs", canonical_bytes(forged))
+    with pytest.raises(IntegrityError, match="unconsumed"):
+        replay(store, key)

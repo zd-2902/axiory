@@ -142,6 +142,8 @@ def replay(store, result_hash, *, budget=None):
         budget=budget or result.budget,
         predecessor=result.predecessor_sha256,
     )
+    if provider.used != len(result.calls):
+        raise IntegrityError("Replay left unconsumed call records")
     if (rebuilt.claims, rebuilt.verdicts, rebuilt.errors) != (
         result.claims,
         result.verdicts,

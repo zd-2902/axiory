@@ -136,7 +136,7 @@ Der bestehende append-only SHA-256-Store wird um semantic_contexts, model_output
 model_calls und semantic_runs ergänzt. Original-PDFs bleiben in originals; alle
 Referenzen sind hashgebunden. model_outputs enthalten Rohtext, Modellkennung,
 Status, verfügbare Usage und den SDK-Response-Envelope. model_calls referenzieren
-Request- und Outputhash, Run-ID, Promptversion, Inputhashes, Versuch/Reihenfolge,
+Request- und Outputhash, Run-ID, Promptversion, Inputhashes, Versuch/Reihenfolge und Retry-Klassifikation,
 Latenz, redigierten Fehlercode, Preisannahmen im Runbudget und Kostenschätzung.
 Modelldaten stehen in synthetischen Artefakten; Konsolenlogs enthalten nur IDs/Status.
 HTTP-Fehlertexte und Zugangsdaten werden nicht protokolliert.
@@ -152,7 +152,7 @@ store = LayoutStore(Path("datasets/evaluation-semantic/cases/family-0-clear_cove
 ```
 
 Replay lädt und reproduziert Original/Parser/Context, vergleicht Request, Modell,
-Schema und Prompt und validiert die Rohantworten erneut. Importierte Claim-/Verifier-
+Schema und Prompt und validiert die Rohantworten erneut. Alle aufgezeichneten Versuche müssen vollständig verbraucht werden. Importierte Claim-/Verifier-
 Flags werden nicht übernommen. Abweichungen vom neu berechneten Ergebnis führen zu
 IntegrityError. Vom Originalrun replayen, nicht von einem Replayrun. Zeit, Run-IDs
 und Aufrufartefakthashes ändern sich; Claims, Verdicts und Fehler sind der semantische
