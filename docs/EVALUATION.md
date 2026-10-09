@@ -194,3 +194,9 @@ Originale und Sollwerte werden auf Hashgleichheit zwischen beiden Parsern geprü
 Definitionen, Entscheidungsregel, Lizenzkontext und gemessene Berichte:
 [PARSER_BENCHMARK](PARSER_BENCHMARK.md). Der Vergleich enthält keine erfundenen
 Signifikanzen, keinen gewichteten Gesamtscore und keine Produktionsfreigabe.
+
+## Separate Semantik-Evaluation
+
+Sprint 5 ergänzt einen unabhängigen 120-Fälle-Korpus. Dieser Layoutgoldstandard
+bleibt unverändert. Verfahren, Zähler/Nenner und Grenzen des Offline-Mock-Vergleichs:
+[LLM_EVALUATION](LLM_EVALUATION.md).

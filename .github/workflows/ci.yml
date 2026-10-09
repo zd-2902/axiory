@@ -18,12 +18,15 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run pytest
       - run: uv run axiory-demo
+      - run: uv run axiory-semantic-eval
       - run: uv run axiory-eval
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: synthetic-layout-evaluation
-          path: datasets/evaluation/
+          path: |
+            datasets/evaluation/
+            datasets/evaluation-semantic/
           if-no-files-found: warn
           retention-days: 14
   experimental-parser:
@@ -45,3 +48,16 @@ jobs:
           path: datasets/evaluation-parsers/
           if-no-files-found: warn
           retention-days: 14
+
+  optional-openai-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.23"
+          enable-cache: true
+      - run: uv python install 3.12
+      - run: uv sync --locked --dev --extra llm-openai
+      # In-memory HTTP transport; no API key, secrets or live network call.
+      - run: uv run --extra llm-openai pytest tests/test_openai_adapter.py

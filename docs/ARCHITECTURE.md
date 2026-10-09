@@ -3,7 +3,8 @@
 Installierbares Python-3.12+-Paket mit synchronen, deterministischen Funktionen.
 Laufzeitabhängigkeiten: Pydantic für Datenverträge, pypdf für PDF-Textauslesung,
 ReportLab für synthetische Evaluations-PDFs (eingebetteter Vera-Font).
-Keine Datenbank, Server, LLMs oder Agentenorchestrierung.
+Keine Datenbank, Server oder Agentenorchestrierung. Sprint 5 ergänzt einen optionalen
+LLM-Adapter hinter einer standardmässig offline ausgeführten Providergrenze.
 
 ## Fachmodell und Kompatibilität
 
@@ -17,7 +18,7 @@ Das bisherige Document/Evidence-Modell und die Text-Demo (Schema 0.1.0) bleiben 
 provenance.verify_source prüft weiterhin deren UTF-8-Originalbytes. Claim akzeptiert
 zusätzlich PdfEvidence (pdf-1); PDF-Fundstellen müssen über DocumentStore geprüft werden.
 Es gibt keine automatische Umdeutung alter Text-Offsets in PDF-Positionen.
-Die Ontologie bleibt 0.1.0.
+Die Legacy-Ontologie bleibt 0.1.0; additive Sprint-5-Claims verwenden travel-1.
 
 ## PDF-Datenfluss
 
@@ -133,3 +134,14 @@ Alte Receipts bleiben über DocumentStore lesbar, neue über LayoutStore mit exa
 Die neue Vergleichs-CLI nutzt beide Adapter an identischen Bytes und unverändertem
 Goldstandard. Keine Produktionsumschaltung aufgrund eines pauschalen Scores.
 [ADR 0004](adr/0004-multi-parser-architecture.md) dokumentiert Migration, Lizenz und Schulden.
+
+## Semantische Pipeline (Sprint 5)
+
+LayoutStore.load → build_context → Provider/Caller → model_outputs → strikte DTOs →
+resolve/check_candidate → optionaler Verifier → semantic_runs. Die alte Demo und
+Quellenprüfung bleiben getrennt erhalten. Neue Collections ergänzen den CAS;
+keine stillschweigende Migration. `replay` revalidiert Rohantworten und Herkunft,
+nicht importierte Flags. Quelle, semantische Bewertung und fachlicher Review sind
+verschiedene Vertrauensstufen. Kostenreservationen und Timeout-Prüfungen ersetzen
+keinen isolierten Prozess. Details und Datenmodelle: [LLM_EXTRACTION](LLM_EXTRACTION.md),
+[ADR 0005](adr/0005-llm-extraction-architecture.md).

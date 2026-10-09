@@ -48,6 +48,7 @@ src/axiory/provenance.py         Legacy-UTF-8-Quellenprüfung
 src/axiory/ingestion_models.py   Strikte PDF-/Versions-/Evidence-Schemas
 src/axiory/pdf_extraction.py     Deterministischer pypdf-Adapter
 src/axiory/ingestion.py          Dateispeicher, Ingestion, Reload, Verifikation
+src/axiory/extraction/          Context, Provider, Evidence, Verifier und Replay
 src/axiory/evaluation/          Synthetischer Korpus, Goldstandard, Metriken, Reports
 tests/                          Synthetische PDF-Generatoren und Regressionen
 docs/                           Produkt, Architektur, Roadmap, Evaluation, ADRs
@@ -64,7 +65,7 @@ beweisen keine semantische oder juristische Richtigkeit. Importierte Verifikatio
 sind keine Prüfnachweise. Geldbeträge verwenden Decimal; Bedingungen und Bezugsgrössen
 bleiben Teil des Vergleichs. Die Ontologie ist noch provisorisch.
 
-Noch nicht implementiert: Netzwerk-Ingestion, OCR, LLM-Extraktion, UI, fachlicher
+Noch nicht implementiert: Netzwerk-Ingestion, OCR, UI, fachlicher
 Review und produktiver Betrieb. Die Legacy-PDF-Seitenreferenzen enthalten keine visuellen Bounding
 Boxes; experimentelle Layoutartefakte ergänzen Geometrie und heuristische Tabellen. Parserupgrades benötigen versionierte Re-Extraktion.
 Der lokale Store benötigt Hardlinks. Konfigurierbare Zulassungsgrenzen für PDF-Grösse
@@ -110,7 +111,7 @@ Derselbe unveränderte 24-Fälle-Goldstandard wird für beide Parser verwendet.
 Details, Metrikdefinitionen und Grenzen: [Parserbenchmark](docs/PARSER_BENCHMARK.md),
 [ADR 0004](docs/adr/0004-multi-parser-architecture.md).
 
-**Nächster Schritt:** Sortierkonfigurationen und spaltenbewusste Ordnung gezielt
+**Offene Parserarbeit:** Sortierkonfigurationen und spaltenbewusste Ordnung gezielt
 vergleichen, Struktur-Goldstandard erweitern und isolierten Worker entwickeln.
 Lizenzstrategie und Ingestion-Gate bleiben vor echten Quellen erforderlich.
 
@@ -123,3 +124,27 @@ Review-Fixes: DocumentStore akzeptiert IngestionLimits (Standard 20 MiB / 200 Se
 Überschreitungen werfen ResourceLimitError, ohne ein neues Extraktionsergebnis zu
 veröffentlichen. Eine Dokument-ID bleibt dauerhaft an ein Produkt gebunden;
 Konflikte ergeben IdentityConflictError. Details und Konfiguration: [INGESTION](docs/INGESTION.md).
+
+## Strukturierte Extraktion (Sprint 5)
+
+```sh
+uv run axiory-semantic-eval
+```
+
+120 separate synthetische Semantikfälle (72 Entwicklung/48 Holdout) vergleichen
+Rules, deterministischen Mock-Extractor und ein experimentelles Verifier-Gate.
+Der Benchmark läuft ohne API-Schlüssel; er misst **keine Live-LLM-Qualität**.
+Neue travel-1-Claims bewahren Bedingungen, Ausschlüsse, Sublimiten und exakte
+pdf-1-Fundstellen. Rohantworten, Prompts, Modellkennungen, Kosten-/Tokenmesslücken
+und nachvollziehbare Korrekturversionen werden separat gespeichert. Der optionale
+OpenAI-SDK-Adapter benötigt --live, explizite Modell-/Budgetwahl und ausschliesslich
+synthetische Eingaben. Kein Live-Aufruf in Standardtests oder CI.
+
+[Installation, Architektur und Replay](docs/LLM_EXTRACTION.md),
+[Metriken und Ergebnisse](docs/LLM_EVALUATION.md),
+[ADR 0005](docs/adr/0005-llm-extraction-architecture.md).
+
+Nächster fachlicher Schritt: vielfältigere, doppelt annotierte synthetische DE/FR/IT-
+Klauseln und Tabellen; danach ein begrenzter, ausdrücklich aktivierter Live-Vergleich
+mit Fehleranalyse und Reviewaufwand. Worker-Isolation und Quellenfreigabe bleiben
+Voraussetzung vor echten AVB. Verifier-Ausgaben sind keine fachliche Freigabe.
