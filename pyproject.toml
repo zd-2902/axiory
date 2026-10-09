@@ -11,9 +11,11 @@ requires-python = ">=3.12"
 dependencies = ["pydantic>=2.10,<3", "pypdf>=6.19,<7", "reportlab>=4.4,<5"]
 
 [project.optional-dependencies]
+llm-openai = ["openai>=2.0,<3"]
 experimental-pymupdf = ["pymupdf>=1.26,<2"]
 
 [project.scripts]
+axiory-semantic-eval = "axiory.evaluation.semantic:main"
 axiory-demo = "axiory.demo:main"
 axiory-eval = "axiory.evaluation.runner:main"
 axiory-parser-benchmark = "axiory.evaluation.multi_parser:main"

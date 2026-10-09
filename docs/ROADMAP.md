@@ -15,16 +15,17 @@
    dokumentierter fachlicher Freigabe. Öffentlich zugänglich allein genügt nicht.
 5. **Goldstandard und Ontologie:** nach Gate repräsentative Quellen doppelt annotieren,
    Differenzen klären, Sprachen/Versionen trennen, Bedingungen/Sublimiten ergänzen.
-6. **Extraktion (später):** deterministische Baseline, dann optional LLM mit
-   Schema-Validierung, Modell-/Promptversion und Evaluation. Nicht Teil von Sprint 3.
+6. **Extraktion (Sprint 5, synthetisch):** deterministische Baseline, optionaler LLM-Adapter,
+   Schema-/Evidence-Prüfung, Modell-/Promptversion, Replay und separate Semantik-Evaluation.
 7. **Vergleich (später):** kompatible Bezugsgrössen/Gültigkeitsstände, Quellenansicht,
    fachlicher Review vor Produktivfreigabe. Noch keine Weboberfläche.
 
-Nächste empfohlene Iteration: koordinatenbewusster Parservergleich am unveränderten
+Empfehlung nach Sprint 3 (Parservergleich in Sprint 4 umgesetzt): am unveränderten
 Goldstandard, insbesondere Spalten-/Tabellenreihenfolge und Header/Wert-Zuordnung.
 Struktur-Precision und robuste ID-Zuordnung ergänzen. Isolierten Worker für harte
 CPU-/RAM-/Zeitlimits spezifizieren; Quellenaufnahme bleibt hinter dem Gate.
-Keine Erweiterung um LLMs oder Agenten, bevor diese Baseline verstanden ist.
+Die Parserbaseline bleibt erhalten; Sprint 5 nutzt sie für ein abgegrenztes synthetisches
+LLM-Experiment ohne Agentenorchestrierung.
 
 Offen bleiben Lizenz, Ontologieverantwortung, Review-/Freigabeschwellen, Nutzungsregeln,
 Mehrsprachigkeit und fachliche Dokumentpriorität bei Konflikten. Technische Versionen
@@ -37,9 +38,24 @@ gepaarter Benchmark am unveränderten Korpus sind implementiert. PyMuPDF bleibt
 experimentell und lizenzseitig ungeklärt für proprietäre SaaS. Die Standardbaseline
 bleibt pypdf; Vorteile und Regressionen werden je Fall ausgewiesen.
 
-Nächste empfohlene Iteration: Sortier-Ablation und spaltenbewusste Ordnung, mehr
+Weiterhin offene Parserarbeit: Sortier-Ablation und spaltenbewusste Ordnung, mehr
 unabhängige Strukturannotation (insbesondere zusätzliche/falsche Zellen und
 Header-/Wert-Zuordnung), weitere Fonts/Rotationen sowie isolierter Worker.
 Echte AVB benötigen zusätzlich kontrollierte Aufnahme, Lizenz-/Nutzungsfreigaben
 und fachlichen Review. Die versionierte Schnittstelle erlaubt spätere LLM-Experimente,
 ist aber noch keine verlässliche fachliche Extraktions- oder Produktionsfreigabe.
+
+## Sprint 5 und nächste Iteration
+
+Einzelner strukturierter Extraktor, optionaler unabhängiger Verifier-Aufruf, Mock,
+kontrollierter OpenAI-Adapter, Quellspannenauflösung und Replay sind implementiert.
+120 Semantikfälle bilden eine technische Foundation; die Templateverwandtschaft und
+fehlende fachliche Zweitannotation begrenzen ihre Aussagekraft. Live-LLM-Qualität,
+Kosten/Nutzen des Verifiers und menschlicher Reviewaufwand sind noch ungemessen.
+
+Priorität: unabhängige synthetische DE/FR/IT-Annotation mit neuen Klauselfamilien,
+Konflikt-/Sublimitregeln und Tabellen; festgeschriebener Holdout. Danach ein budgetierter
+Live-Pilot mit Fehleranalyse, echten Token-/Kostenmessungen und Vergleich des Verifier-
+Nutzens gegen zusätzlichen Reviewaufwand. Keine automatische Produktausgabe.
+Quellenaufnahme, Worker-Isolation, Lizenzklärung und fachliche Freigabe vor echten AVB
+bleiben offen. Keine UI oder zusätzlichen Agenten im aktuellen Sprint.

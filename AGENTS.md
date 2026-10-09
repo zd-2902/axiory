@@ -17,3 +17,16 @@
   ohne begründete neue Anforderungen. Bevorzuge deterministische Funktionen.
 - Relevante Architekturentscheidungen als ADR unter docs/adr dokumentieren.
 - Bei Schemaänderungen Tests, Dokumentation und Schema-/Ontologieversion prüfen.
+
+- Sprint 5: Modellantworten vor fachlicher Verarbeitung unverändert im CAS speichern.
+  source_matched beweist nur Fundstellen, keine semantische Wahrheit. Verifier-Urteile
+  sind experimentell; nie automatisch als human_reviewed markieren.
+- Standardtests/CI und axiory-semantic-eval bleiben offline. Live-Aufrufe benötigen
+  explizites --live/allow_live, synthetische Eingaben, bewusste Modellwahl und Preis-/
+  Token-/Zeitbudgets. Keine Schlüssel in Konfiguration, Prompts oder Fehlerlogs.
+- Layoutgold (Sprint 3) und Semantikgold getrennt halten. Holdout nach Produktfamilien;
+  Mock-/Replaymetriken niemals als Live-LLM-Qualität berichten. Messlücken nicht nullen.
+- Semantische Korrekturen als neue Runs mit predecessor speichern. Importierte Flags
+  durch Replay aus Rohantwort und verifiziertem Originalkontext neu berechnen.
+- Bei Provider-/Promptänderungen SDK-Vertragstests mit In-Memory-Transport ausführen;
+  niemals für CI live testen. Optional: uv run --extra llm-openai pytest tests/test_openai_adapter.py.

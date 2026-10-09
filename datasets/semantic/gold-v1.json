@@ -1,0 +1,3607 @@
+{
+  "schema_version": "semantic-gold-1",
+  "synthetic": true,
+  "annotation_method": "Authored synthetic source scenarios and explicit expected semantics; not model or parser derived. No professional adjudication.",
+  "cases": [
+    {
+      "id": "family-0-clear_coverage",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "clear_coverage",
+      "product_id": "product-0",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered. Limit CHF 1000 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1000",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is covered. Limit CHF 1000 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-0-exclusion",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "exclusion",
+      "product_id": "product-0",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-0-conditional",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "conditional",
+      "product_id": "product-0",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1000 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1000",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1000 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-0-sublimit",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "sublimit",
+      "product_id": "product-0",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1000 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1000",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1000 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-0-basis",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "basis",
+      "product_id": "product-0",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered. Limit CHF 1000 per event."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1000",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is covered. Limit CHF 1000 per event."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-0-negation",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "negation",
+      "product_id": "product-0",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-0-exception",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "exception",
+      "product_id": "product-0",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-0-ambiguity",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "product_id": "product-0",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Baggage: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-0-missing",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "missing",
+      "product_id": "product-0",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-0-contradiction",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "contradiction",
+      "product_id": "product-0",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered.",
+          "Rental car deductible is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Rental car deductible is covered.",
+          "Rental car deductible is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-0-cross_page",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "cross_page",
+      "product_id": "product-0",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered. Limit CHF 1000 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1000",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is covered. Limit CHF 1000 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-0-table",
+      "family": "family-0",
+      "split": "dev",
+      "scenario": "table",
+      "product_id": "product-0",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Trip interruption | 1000 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1000",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Trip interruption | 1000 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-1-clear_coverage",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "clear_coverage",
+      "product_id": "product-1",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered. Limit CHF 1100 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1100",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is covered. Limit CHF 1100 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-1-exclusion",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "exclusion",
+      "product_id": "product-1",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-1-conditional",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "conditional",
+      "product_id": "product-1",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered. Limit CHF 1100 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1100",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is covered. Limit CHF 1100 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-1-sublimit",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "sublimit",
+      "product_id": "product-1",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1100 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1100",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1100 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-1-basis",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "basis",
+      "product_id": "product-1",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered. Limit CHF 1100 per year."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1100",
+        "currency": "CHF",
+        "limit_basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is covered. Limit CHF 1100 per year."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-1-negation",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "negation",
+      "product_id": "product-1",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-1-exception",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "exception",
+      "product_id": "product-1",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-1-ambiguity",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "product_id": "product-1",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Medical assistance: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-1-missing",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "missing",
+      "product_id": "product-1",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-1-contradiction",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "contradiction",
+      "product_id": "product-1",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered.",
+          "Cancellation is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Cancellation is covered.",
+          "Cancellation is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-1-cross_page",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "cross_page",
+      "product_id": "product-1",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered. Limit CHF 1100 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1100",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is covered. Limit CHF 1100 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-1-table",
+      "family": "family-1",
+      "split": "dev",
+      "scenario": "table",
+      "product_id": "product-1",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Baggage | 1100 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1100",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Baggage | 1100 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-2-clear_coverage",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "clear_coverage",
+      "product_id": "product-2",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1200 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1200",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1200 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-2-exclusion",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "exclusion",
+      "product_id": "product-2",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-2-conditional",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "conditional",
+      "product_id": "product-2",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered. Limit CHF 1200 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1200",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is covered. Limit CHF 1200 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-2-sublimit",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "sublimit",
+      "product_id": "product-2",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1200 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1200",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1200 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-2-basis",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "basis",
+      "product_id": "product-2",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered. Limit CHF 1200 per event."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1200",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is covered. Limit CHF 1200 per event."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-2-negation",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "negation",
+      "product_id": "product-2",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-2-exception",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "exception",
+      "product_id": "product-2",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-2-ambiguity",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "product_id": "product-2",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Rental car deductible: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-2-missing",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "missing",
+      "product_id": "product-2",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-2-contradiction",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "contradiction",
+      "product_id": "product-2",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered.",
+          "Trip interruption is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Trip interruption is covered.",
+          "Trip interruption is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-2-cross_page",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "cross_page",
+      "product_id": "product-2",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1200 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1200",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1200 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-2-table",
+      "family": "family-2",
+      "split": "dev",
+      "scenario": "table",
+      "product_id": "product-2",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Medical assistance | 1200 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1200",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Medical assistance | 1200 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-3-clear_coverage",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "clear_coverage",
+      "product_id": "product-3",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered. Limit CHF 1300 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1300",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is covered. Limit CHF 1300 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-3-exclusion",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "exclusion",
+      "product_id": "product-3",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-3-conditional",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "conditional",
+      "product_id": "product-3",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered. Limit CHF 1300 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1300",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is covered. Limit CHF 1300 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-3-sublimit",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "sublimit",
+      "product_id": "product-3",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1300 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1300",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1300 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-3-basis",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "basis",
+      "product_id": "product-3",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1300 per year."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1300",
+        "currency": "CHF",
+        "limit_basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1300 per year."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-3-negation",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "negation",
+      "product_id": "product-3",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-3-exception",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "exception",
+      "product_id": "product-3",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-3-ambiguity",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "product_id": "product-3",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Cancellation: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-3-missing",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "missing",
+      "product_id": "product-3",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-3-contradiction",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "contradiction",
+      "product_id": "product-3",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered.",
+          "Baggage is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Baggage is covered.",
+          "Baggage is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-3-cross_page",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "cross_page",
+      "product_id": "product-3",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered. Limit CHF 1300 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1300",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is covered. Limit CHF 1300 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-3-table",
+      "family": "family-3",
+      "split": "dev",
+      "scenario": "table",
+      "product_id": "product-3",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Rental car deductible | 1300 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1300",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Rental car deductible | 1300 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-4-clear_coverage",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "clear_coverage",
+      "product_id": "product-4",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered. Limit CHF 1400 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1400",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is covered. Limit CHF 1400 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-4-exclusion",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "exclusion",
+      "product_id": "product-4",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-4-conditional",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "conditional",
+      "product_id": "product-4",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered. Limit CHF 1400 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1400",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is covered. Limit CHF 1400 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-4-sublimit",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "sublimit",
+      "product_id": "product-4",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1400 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1400",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1400 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-4-basis",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "basis",
+      "product_id": "product-4",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered. Limit CHF 1400 per event."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1400",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is covered. Limit CHF 1400 per event."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-4-negation",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "negation",
+      "product_id": "product-4",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-4-exception",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "exception",
+      "product_id": "product-4",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-4-ambiguity",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "product_id": "product-4",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Trip interruption: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-4-missing",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "missing",
+      "product_id": "product-4",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-4-contradiction",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "contradiction",
+      "product_id": "product-4",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered.",
+          "Medical assistance is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Medical assistance is covered.",
+          "Medical assistance is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-4-cross_page",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "cross_page",
+      "product_id": "product-4",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered. Limit CHF 1400 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1400",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is covered. Limit CHF 1400 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-4-table",
+      "family": "family-4",
+      "split": "dev",
+      "scenario": "table",
+      "product_id": "product-4",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Cancellation | 1400 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1400",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Cancellation | 1400 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-5-clear_coverage",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "clear_coverage",
+      "product_id": "product-5",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered. Limit CHF 1500 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1500",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is covered. Limit CHF 1500 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-5-exclusion",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "exclusion",
+      "product_id": "product-5",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-5-conditional",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "conditional",
+      "product_id": "product-5",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1500 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1500",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1500 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-5-sublimit",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "sublimit",
+      "product_id": "product-5",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1500 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1500",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1500 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-5-basis",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "basis",
+      "product_id": "product-5",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered. Limit CHF 1500 per year."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1500",
+        "currency": "CHF",
+        "limit_basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is covered. Limit CHF 1500 per year."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-5-negation",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "negation",
+      "product_id": "product-5",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-5-exception",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "exception",
+      "product_id": "product-5",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-5-ambiguity",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "product_id": "product-5",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Baggage: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-5-missing",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "missing",
+      "product_id": "product-5",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-5-contradiction",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "contradiction",
+      "product_id": "product-5",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered.",
+          "Rental car deductible is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Rental car deductible is covered.",
+          "Rental car deductible is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-5-cross_page",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "cross_page",
+      "product_id": "product-5",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered. Limit CHF 1500 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1500",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is covered. Limit CHF 1500 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-5-table",
+      "family": "family-5",
+      "split": "dev",
+      "scenario": "table",
+      "product_id": "product-5",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Trip interruption | 1500 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1500",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Trip interruption | 1500 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-6-clear_coverage",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "clear_coverage",
+      "product_id": "product-6",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered. Limit CHF 1600 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1600",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is covered. Limit CHF 1600 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-6-exclusion",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "product_id": "product-6",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-6-conditional",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "conditional",
+      "product_id": "product-6",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered. Limit CHF 1600 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1600",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is covered. Limit CHF 1600 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-6-sublimit",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "product_id": "product-6",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1600 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1600",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1600 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-6-basis",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "basis",
+      "product_id": "product-6",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered. Limit CHF 1600 per event."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1600",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is covered. Limit CHF 1600 per event."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-6-negation",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "negation",
+      "product_id": "product-6",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-6-exception",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "exception",
+      "product_id": "product-6",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-6-ambiguity",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "ambiguity",
+      "product_id": "product-6",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Medical assistance: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-6-missing",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "missing",
+      "product_id": "product-6",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-6-contradiction",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "contradiction",
+      "product_id": "product-6",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered.",
+          "Cancellation is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Cancellation is covered.",
+          "Cancellation is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-6-cross_page",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "cross_page",
+      "product_id": "product-6",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered. Limit CHF 1600 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1600",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is covered. Limit CHF 1600 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-6-table",
+      "family": "family-6",
+      "split": "holdout",
+      "scenario": "table",
+      "product_id": "product-6",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Baggage | 1600 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1600",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Baggage | 1600 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-7-clear_coverage",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "clear_coverage",
+      "product_id": "product-7",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1700 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1700",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1700 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-7-exclusion",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "product_id": "product-7",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-7-conditional",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "conditional",
+      "product_id": "product-7",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered. Limit CHF 1700 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1700",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is covered. Limit CHF 1700 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-7-sublimit",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "product_id": "product-7",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1700 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1700",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1700 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-7-basis",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "basis",
+      "product_id": "product-7",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered. Limit CHF 1700 per year."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1700",
+        "currency": "CHF",
+        "limit_basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is covered. Limit CHF 1700 per year."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-7-negation",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "negation",
+      "product_id": "product-7",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-7-exception",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "exception",
+      "product_id": "product-7",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-7-ambiguity",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "ambiguity",
+      "product_id": "product-7",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Rental car deductible: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-7-missing",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "missing",
+      "product_id": "product-7",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-7-contradiction",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "contradiction",
+      "product_id": "product-7",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered.",
+          "Trip interruption is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Trip interruption is covered.",
+          "Trip interruption is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-7-cross_page",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "cross_page",
+      "product_id": "product-7",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1700 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1700",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1700 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-7-table",
+      "family": "family-7",
+      "split": "holdout",
+      "scenario": "table",
+      "product_id": "product-7",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Medical assistance | 1700 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1700",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Medical assistance | 1700 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-8-clear_coverage",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "clear_coverage",
+      "product_id": "product-8",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered. Limit CHF 1800 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1800",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is covered. Limit CHF 1800 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-8-exclusion",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "product_id": "product-8",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-8-conditional",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "conditional",
+      "product_id": "product-8",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is covered. Limit CHF 1800 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1800",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is covered. Limit CHF 1800 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-8-sublimit",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "product_id": "product-8",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1800 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1800",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1800 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-8-basis",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "basis",
+      "product_id": "product-8",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1800 per event."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1800",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1800 per event."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-8-negation",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "negation",
+      "product_id": "product-8",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-8-exception",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "exception",
+      "product_id": "product-8",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-8-ambiguity",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "ambiguity",
+      "product_id": "product-8",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Cancellation: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-8-missing",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "missing",
+      "product_id": "product-8",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-8-contradiction",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "contradiction",
+      "product_id": "product-8",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered.",
+          "Baggage is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Baggage is covered.",
+          "Baggage is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-8-cross_page",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "cross_page",
+      "product_id": "product-8",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered. Limit CHF 1800 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1800",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is covered. Limit CHF 1800 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-8-table",
+      "family": "family-8",
+      "split": "holdout",
+      "scenario": "table",
+      "product_id": "product-8",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Rental car deductible | 1800 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1800",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Rental car deductible | 1800 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    },
+    {
+      "id": "family-9-clear_coverage",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "clear_coverage",
+      "product_id": "product-9",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered. Limit CHF 1900 per person per trip."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1900",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is covered. Limit CHF 1900 per person per trip."
+        ],
+        "rationale": "Explicit coverage with a scoped limit."
+      }
+    },
+    {
+      "id": "family-9-exclusion",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "product_id": "product-9",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "excluded",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is not covered."
+        ],
+        "rationale": "Explicit exclusion, not missing information."
+      }
+    },
+    {
+      "id": "family-9-conditional",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "conditional",
+      "product_id": "product-9",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption is covered. Limit CHF 1900 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1900",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Trip interruption is covered. Limit CHF 1900 per person per trip.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "Approval is a condition on covered status."
+      }
+    },
+    {
+      "id": "family-9-sublimit",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "product_id": "product-9",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "Baggage is covered. Limit CHF 1900 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1900",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Baggage is covered. Limit CHF 1900 per person per trip.",
+          "For electronics, a sublimit of CHF 200 per item applies."
+        ],
+        "rationale": "Electronics sublimit does not replace the overall limit."
+      }
+    },
+    {
+      "id": "family-9-basis",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "basis",
+      "product_id": "product-9",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered. Limit CHF 1900 per year."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1900",
+        "currency": "CHF",
+        "limit_basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Medical assistance is covered. Limit CHF 1900 per year."
+        ],
+        "rationale": "Annual and per-event bases must remain distinct."
+      }
+    },
+    {
+      "id": "family-9-negation",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "negation",
+      "product_id": "product-9",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is not excluded; it is covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is not excluded; it is covered."
+        ],
+        "rationale": "Negating exclusion supports coverage."
+      }
+    },
+    {
+      "id": "family-9-exception",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "exception",
+      "product_id": "product-9",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [
+          "emergency cases",
+          "certified"
+        ],
+        "exclusions": [
+          "non-emergency cases"
+        ],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation is not covered except emergency cases.",
+          "Emergency cases are covered only if certified."
+        ],
+        "rationale": "Emergency exception narrows exclusion; certification remains necessary."
+      }
+    },
+    {
+      "id": "family-9-ambiguity",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "ambiguity",
+      "product_id": "product-9",
+      "coverage_code": "interruption",
+      "pages": [
+        [
+          "Trip interruption: coverage may apply; the applicable terms are unspecified."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Ambiguous terms",
+        "support_anchors": [
+          "Trip interruption: coverage may apply; the applicable terms are unspecified."
+        ],
+        "rationale": "May apply does not establish coverage."
+      }
+    },
+    {
+      "id": "family-9-missing",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "missing",
+      "product_id": "product-9",
+      "coverage_code": "baggage",
+      "pages": [
+        [
+          "This document contains contact information only."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Coverage not stated",
+        "support_anchors": [
+          "This document contains contact information only."
+        ],
+        "rationale": "Silence is unknown, never exclusion."
+      }
+    },
+    {
+      "id": "family-9-contradiction",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "contradiction",
+      "product_id": "product-9",
+      "coverage_code": "medical_assistance",
+      "pages": [
+        [
+          "Medical assistance is covered.",
+          "Medical assistance is not covered."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "unknown",
+        "limit_amount": null,
+        "currency": null,
+        "limit_basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": "Conflicting statements",
+        "support_anchors": [
+          "Medical assistance is covered.",
+          "Medical assistance is not covered."
+        ],
+        "rationale": "No precedence rule resolves the conflicting statements."
+      }
+    },
+    {
+      "id": "family-9-cross_page",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "cross_page",
+      "product_id": "product-9",
+      "coverage_code": "rental_car_deductible",
+      "pages": [
+        [
+          "Rental car deductible is covered. Limit CHF 1900 per person per trip.",
+          "Restrictions on the next page apply."
+        ],
+        [
+          "Coverage applies only if prior approval is obtained."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1900",
+        "currency": "CHF",
+        "limit_basis": "per_person_per_trip",
+        "conditions": [
+          "prior approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Rental car deductible is covered. Limit CHF 1900 per person per trip.",
+          "Restrictions on the next page apply.",
+          "Coverage applies only if prior approval is obtained."
+        ],
+        "rationale": "The next page imposes an explicit approval condition."
+      }
+    },
+    {
+      "id": "family-9-table",
+      "family": "family-9",
+      "split": "holdout",
+      "scenario": "table",
+      "product_id": "product-9",
+      "coverage_code": "cancellation",
+      "pages": [
+        [
+          "Cancellation schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Cancellation | 1900 | per event",
+          "The listed coverage is included."
+        ]
+      ],
+      "annotation": {
+        "coverage_status": "covered",
+        "limit_amount": "1900",
+        "currency": "CHF",
+        "limit_basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "unknown_reason": null,
+        "support_anchors": [
+          "Cancellation schedule:",
+          "Coverage | Limit CHF | Basis",
+          "Cancellation | 1900 | per event",
+          "The listed coverage is included."
+        ],
+        "rationale": "Amount and basis belong to the same named coverage row."
+      }
+    }
+  ]
+}

@@ -18,3 +18,5 @@ datasets/ingestion/
 datasets/evaluation*/
 tmp/
 output/
+
+/datasets/evaluation-semantic/
