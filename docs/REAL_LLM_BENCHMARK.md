@@ -10,14 +10,15 @@ keine Goldlabels und antwortet absichtlich unknown/requires_human_review.
 
 Der aktuelle Live-Pilot ist auf **24 Fälle und höchstens 2 USD** begrenzt. Alle 120 Fälle
 kostenpflichtig auszuführen ist weder freigegeben noch über diese CLI möglich.
-Das Secret funktioniert. Nach anfänglichen Ablehnungen lieferte die erneute Prüfung
-vier Antworten für zwei deutsche Dev-Fälle, bevor erneut `credit_balance_exhausted`
-auftrat. Insgesamt acht Versuche, nur ein vollständiger A/B/C-Fall. Kein belastbarer
-Qualitätsvergleich; 0.0896 USD konservativ reserviert, 0.003505 USD bekannte geschätzte
-Kosten der vier Antworten, fehlende Usage weiterer Versuche bleibt unbekannt.
-Weitere Versuche müssen alle bisherigen Reservierungen berücksichtigen; ein neuer
-Output-Pfad setzt die nutzerseitige 2-USD-Gesamtfreigabe nicht zurück.
-Ergebnisstand und Prüfungen stehen im [Sprint-6-Bericht](SPRINT6_RESULTS.md).
+Am 11. Oktober 2026 wurde der Pilot vollständig ausgeführt: 24 Fälle, 64 Antworten,
+vier fachlich ungültige Extraktionsantworten, keine HTTP-Fehler. Geschätzte Kosten
+0.060195 USD; kumulativ mit früheren Läufen 0.8064 USD vorsorglich reserviert.
+A/B/C-Claim-Precision: 13/17, 13/16, 13/15. Diese selektiven Quoten sind keine
+Gesamterfolgsquote. Verifier-/Gatefehler und Grenzen stehen im
+[Sprint-6-Bericht](SPRINT6_RESULTS.md), vollständige Strata im
+[Live-Snapshot](benchmarks/sprint6-live-pilot-24-summary.json).
+Weitere bezahlte Läufe erfordern eine bewusste Entscheidung; ein neuer Output-Pfad
+setzt die nutzerseitige 2-USD-Gesamtfreigabe nicht zurück.
 
 ## Reproduzieren
 

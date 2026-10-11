@@ -1,83 +1,133 @@
 # Sprint 6 – Ergebnisbericht
 
-## Stand
+## Stand: 24-Fälle-Pilot abgeschlossen
 
-Offline-Infrastruktur und Goldstandard implementiert. Am **10. Oktober 2026** wurde
-nach Einrichtung des API-Schlüssels der genehmigte 24-Fälle-Pilot gestartet. Nach zwei
-abgewiesenen Pilotversuchen und einer Diagnose wurde auf Nutzerwunsch erneut geprüft:
-**vier Modellantworten**, danach erneut **HTTP 429, credit_balance_exhausted,
-insufficient_quota**. Der zweite Lauf stoppte nach zwei von 24 Fällen. Insgesamt
-acht API-Versuche; kein weiterer kostenpflichtiger Versuch läuft.
+Am **11. Oktober 2026** wurden alle **24 synthetischen Pilotfälle** verarbeitet:
+DE/FR/IT je acht, zwölf Dev und zwölf Holdout, zwölf Szenarien. **64 erfolgreiche
+API-Antworten**, keine HTTP-Fehler oder Retries. Vier Extraktionsantworten verletzten
+fachliche Schemainvarianten; ihre acht anschliessenden Reviews wurden ausgelassen.
+complete=true bedeutet vollständige Abarbeitung, nicht 24 korrekte Ergebnisse.
 
-Beobachtet wurden ausschliesslich zwei deutsche Dev-Fälle:
+Modell in allen Rollen: `gpt-4.1-mini-2025-04-14`, temperature=0. Code, Prompts und Gold
+blieben unverändert. Run `run-b393e410c84941d58ce07be289e679e0`, Commit
+`fb9ba677373a039fe1a1a16c4dc61c5afc04b41e`, git_dirty=false. Der Offline-Replay
+rekonstruierte die Ergebnisse erfolgreich, Fingerprint:
+`92f559870c3846c25265c46e7d88b587dbc9e6044354dd6a40268be7721a9b0f`.
 
-- `document-de-0-00`: Annullierung, CHF 1200 pro Ereignis. A stimmt mit Gold überein;
-  B und C melden supported, Quellenprüfung erfolgreich, alle drei Gates geben frei.
-- `document-de-0-05`: Reisegepäck CHF 1325 pro Ereignis, Elektronik-Sublimite CHF 200
-  pro Gegenstand. A stimmt mit Gold überein; B scheitert am API-Guthaben, C wird nicht
-  aufgerufen. B/C halten daher operativ zurück; dies ist keine Modellablehnung.
+[Live-Snapshot mit Manifest, allen Strata, Fallprüfungen und Intervallen](benchmarks/sprint6-live-pilot-24-summary.json).
+Original-PDFs, Rohantworten und CAS-Stores liegen lokal unter
+`datasets/evaluation-real/live-pilot-24-20261011/` und sind von Git ausgeschlossen.
+Der Snapshot allein ersetzt diese Stores nicht und ermöglicht keinen eigenständigen Replay.
+Frühere, wegen Guthaben abgebrochene Läufe bleiben separat erhalten:
+[Historischer Stand vom 10. Oktober](benchmarks/sprint6-live-attempt-summary.json).
+Ihre Antworten fliessen nicht in die Qualitätsmetriken des neuen Pilots ein.
 
-Nur **ein vollständig gepaarter A/B/C-Fall**; keine FR-/IT-/Holdout-Antworten und keine
-belastbare Aussage zur Verifierwirkung. Die geplanten 24 Fälle sind nicht abgeschlossen.
-Der kostenpflichtige 120-Fälle-Lauf wurde nicht gestartet.
-
-Erfasst: 5081 Input- und 919 Output-Token für vier Antworten. Bei den dokumentierten
-Preisen ergibt dies aufgerundet je Aufruf **0.003505 USD geschätzte bekannte Kosten**.
-Für vier fehlgeschlagene Versuche fehlen Usage-Werte; Gesamtkosten/Rechnungsbetrag
-bleiben unbekannt. Vorsorglich bleiben **0.0896 USD** reserviert, sodass **1.9104 USD**
-des genehmigten 2-USD-Budgets für weitere Zulassung verbleiben. Reservierung ist keine
-Abrechnung. Der erneute Lauf verwendete max_retries=0 und berücksichtigte frühere
-Reservierungen. Kein automatischer weiterer Versuch bei fehlendem Guthaben.
-
-Beide Pilot-Stores und die Diagnose bleiben lokal unter `datasets/evaluation-real/`
-erhalten und von Git ausgeschlossen. Offline-Replay beider Pilotläufe ist erfolgreich.
-Der erneute Lauf protokolliert git_dirty=true wegen laufender Berichtsedits; Code,
-Prompts und Gold blieben unverändert. Der
-[sanitisierte Versuchsbericht](benchmarks/sprint6-live-attempt-summary.json) enthält
-Run-IDs, Konfigurationen, Fingerprints, beobachtete Fälle und Kostenabdeckung. Er allein
-ersetzt die lokalen CAS-Stores nicht und erlaubt keine unabhängige Live-Reproduktion.
-
-Basis: offener, getesteter PR #4, codex/structured-insurance-extraction,
+Basis bleibt der offene PR #4, codex/structured-insurance-extraction,
 4d4adabf1b06e55b375c5bf54bf0c8d5d06f4659. Featurebranch:
 codex/real-llm-evaluation. main und PR #1 bis #4 wurden nicht gemergt.
+
+## Beobachtete Ergebnisse
+
+A: Extraktion plus deterministische Quellenprüfung. B: zusätzlich Verifier.
+C: zusätzlich kritisch instruierter Review; kumulativ müssen beide Reviewgates bestehen.
+Die Reviews ändern die A-Behauptung nicht. Werte gelten gegen den eingefrorenen,
+bisher nicht unabhängig fachlich geprüften synthetischen Goldstandard.
+
+| Messwert | A | B | C |
+| --- | ---: | ---: | ---: |
+| Freigegebene Kandidaten einschliesslich unknown | 19/24 | 16/24 | 15/24 |
+| Korrekte freigegebene Deckungsbehauptungen / alle freigegebenen Deckungsbehauptungen | 13/17 (76.5%) | 13/16 (81.3%) | 13/15 (86.7%) |
+| Claim-Recall: korrekte Behauptungen / 21 im Gold bekannte Deckungsstatus | 13/21 | 13/21 | 13/21 |
+| Freigegebener korrekter Deckungsstatus / alle Fälle | 18/24 | 16/24 | 15/24 |
+| Kritische Fehler: fehlerhafte freigegebene Behauptungen / alle Fälle | 4/24 | 3/24 | 2/24 |
+| Freigegebene korrekte unknown / drei Gold-unknown | 2/3 | 0/3 | 0/3 |
+| Geschätzte kumulative API-Kosten (USD) | 0.021608 | 0.041155 | 0.060195 |
+| Kumulative API-Zeit (Sekunden) | 63.814 | 125.315 | 179.471 |
+
+Claim-Precision schliesst unknown aus; sie ist keine Erfolgsquote über alle 24 Fälle.
+A/B/C teilen dieselbe Extraktion: Kosten nicht addieren. Gates erhöhen hier die
+Precision durch Zurückhalten, nicht durch Korrektur. Der zusätzliche Rückgang von
+B auf C beruht auf einer formalen Reviewverletzung, nicht auf erkanntem Semantikfehler.
+
+## Fehleranalyse und Vertrauensgrenzen
+
+- **Vier Schemafehler:** `document-de-0-10` kombiniert unknown mit einem Betrag;
+  `document-de-1-02`, `document-fr-1-03` und `document-it-0-02` nennen CHF ohne
+  vollständige Betrags-/Bezugsgrössenangabe. Rohantworten bleiben gespeichert;
+  Structured Outputs allein garantiert die Pydantic-Fachinvarianten nicht.
+- **Ein semantisch erkannter Fehler:** Bei `document-fr-1-09` nennt A trotz
+  gleichrangiger widersprüchlicher Klauseln covered. B erkennt den Widerspruch und
+  lehnt ab. C urteilt fälschlich supported; das kumulative B-Gate verhindert Freigabe.
+- **Formales Zurückhalten statt semantischer Erkennung:** Bei `document-fr-0-01`
+  erfindet A den Ausschlussatom unattended_items. B und C sagen beide supported.
+  C wird nur wegen incomplete_checks blockiert. Dies ist kein Nachweis, dass der
+  Kritiker die erfundene Einschränkung verstanden hat.
+- **Zwei Fehler bleiben bis C freigegeben:** `document-it-1-10` ordnet CHF 9000 pro
+  Jahr aus der Tabellenzeile Prestazione accessoria fälschlich dem Gepäck zu; korrekt
+  wären CHF 2125 pro Ereignis. Beide Reviews bestätigen den Fehler. Bei
+  `document-it-1-15` fehlt der kanonische Bedingungsatom emergency; beide Reviews
+  akzeptieren medical_certificate plus non_emergency als Ausschluss. Die formale
+  Goldabweichung ist eindeutig; fachliche semantische Äquivalenz separat prüfen.
+- **Zwei korrekte unknown werden zurückgehalten:** `document-de-1-08` und
+  `document-it-0-08`. Die Reviewer antworten insufficient_evidence, obwohl der
+  unknown-Kandidat die Quellenlage korrekt wiedergibt. Das supported-only-Gate
+  behandelt dies als Ablehnung. Unknown bleibt unbekannt und wird nie excluded.
+- **Ein deterministischer Prüfungsfehler:** `document-it-1-00` ist inhaltlich korrekt,
+  wird aber bereits von A mit amount_not_literal zurückgehalten. Die Zahlenregex
+  verwirft `1875.` vor einem Satzpunkt. Beide Reviews sagen supported. Der Fehler
+  bleibt im eingefrorenen Ergebnis sichtbar; keine nachträgliche Scorekorrektur.
+  Die derzeitige Metrik baseline_error enthält diesen Quellenprüfungsfehler und darf
+  daher nicht durchgehend als Fehler des Extraktionsmodells interpretiert werden.
+
+Keine erfundenen Fundstellen unter 20 validen Kandidaten gemessen; das schliesst
+falsch interpretierte, exakt zitierte Tabellen oder Bedingungen nicht aus.
+
+## Kosten und Budget
+
+Dieser Lauf: 83'119 Input- und 16'827 Output-Token, Usage-Abdeckung 64/64.
+Geschätzte Kosten **0.060195 USD**, je Aufruf auf Mikro-USD aufgerundet, ohne
+Cacherabatt; kein bestätigter Rechnungsbetrag. Die Preisannahmen 0.40 USD/M Input und
+1.60 USD/M Output wurden am 11. Oktober anhand der
+[offiziellen Modellseite](https://developers.openai.com/api/docs/models/gpt-4.1-mini)
+erneut geprüft. Das eingefrorene Konfigurationsschema behält sein ursprüngliches
+pricing_checked_on=2026-10-09; die erneute Prüfung steht separat im Snapshot.
+
+Der Run hatte max_retries=0, max_calls=72 und ein Kostenlimit von 1.9104 USD nach
+Abzug früherer Reservierungen. Geplante konservative Obergrenze: 0.8064 USD.
+Tatsächlich reserviert: 0.7168 USD für 64 Aufrufe. Mit früheren 0.0896 USD sind
+**0.8064 USD von 2 USD reserviert**, verbleibend **1.1936 USD**. Bekannte geschätzte
+Kosten aller Läufe: 0.063700 USD; Usage der vier früher fehlgeschlagenen Versuche
+fehlt, weshalb tatsächliche Gesamtkosten unbekannt bleiben. Reservierung ist keine
+Abrechnung. Insgesamt 72 API-Versuche und 68 Antworten über alle Läufe.
 
 ## Antworten auf die Forschungsfragen
 
 1. **Architektur:** additive experiments-Pipeline mit blindem PDF-Kontext, strikten
-   semantic-2/travel-2-Schemas, CAS, gemeinsamem Budgetjournal und Quellen-/Reviewgates.
-   Keine neuen Laufzeitabhängigkeiten oder Agentenframeworks.
-2. **Fälle:** 120 neue synthetische Fälle, DE/FR/IT je 40, zwölf Szenarien, fünf Codes,
-   60 Dev/60 Holdout und disjunkte Familien/Templates. Pilot: 24 vorab festgelegte Fälle,
-   acht je Sprache, zwölf je Split, alle Szenarien. Keine unabhängige Fachannotation.
-3. **Echte Aufrufe:** acht API-Versuche, vier Antworten, zwei deutsche Dev-Fälle;
-   nur ein Fall vollständig A/B/C. Secret funktioniert, API meldet erneut fehlendes
-   Guthaben. Kein Schlüssel wurde im Repository oder in Logs gespeichert.
-4. **A/B/C:** A extrahiert einmal; B prüft exakt dieselbe gespeicherte A-Antwort;
-   C ergänzt einen kritisch instruierten Aufruf und kombiniert beide Gates. Alle
-   nutzen Originalkontext; C sieht Bs Urteil nicht. Ein Modell in drei Rollen
-   liefert keine statistisch unabhängigen Fehler.
-5. **Erkannte Verifierfehler:** technisch prüfbar sind ungültige Quellen/Checks sowie
-   fünf explizite Reviewentscheidungen. Welche semantischen Fehler ein echtes Modell
-   erkennt, ist noch nicht gemessen. Test-Oracles sind kein Wirksamkeitsnachweis.
-6. **Übersehene Fehler:** noch nicht empirisch bekannt. Insbesondere exakt zitierte,
-   falsch interpretierte Ausnahmen, Tabellenbeträge und Bezugsgrössen bleiben möglich.
-7. **Falsch zurückgehaltene Claims:** als End-to-End-Gaterate samt Zähler/Nenner und
-   Complete-case-Sensitivität implementiert, bei den zwei beobachteten Fällen nur transportbedingt aufgetreten.
-   Daraus folgt keine Aussage über die semantische Fehlerrate eines Verifiers.
-8. **Kosten/Latenz:** A/B/C verwenden im Protokolllauf kumulativ 120/240/360 Calls,
-   insgesamt 360 unterschiedliche simulierte Calls. Das ist keine API-Latenzprognose.
-   Tatsächliche Token-/Kostenwerte und menschliche Reviewzeit bleiben dort null.
-   Standard-Live-Plan: 72 Calls, maximal 144 Versuche mit Retry, konservativ 1.6128 USD.
-   Der erneute Lauf deaktivierte Retries (max_calls=72) und senkte das Run-Budget um
-   frühere Reservierungen. Fünf Versuche dauerten zusammen rund 21.986 Sekunden API-Zeit;
-   bekannte Kosten und Messlücken siehe oben. Preis-/Snapshotdetails im Benchmarkdokument.
-9. **Statistik:** gepaarte Familienbootstrap-Intervalle sind implementiert und mit
-   bekannten Testkonstellationen geprüft. Offlineintervalle sind Protokollwerte;
-   es gibt keine statistisch belastbare Aussage zur realen Verbesserung von B/C.
-10. **Grösster nächster Nutzen:** API-Guthaben klären, begrenzten Pilot abschliessen,
-    falsch freigegebene und falsch abgelehnte Fälle blind fachlich prüfen und Gold
-    unabhängig validieren. Danach Reviewzeit, praktische Fehlerrisiken und Mehrkosten
-    abwägen, bevor ein grösserer bezahlter Lauf oder weiteres Modell gewählt wird.
+   semantic-2/travel-2-Schemas, CAS, Budgetjournal und Quellen-/Reviewgates.
+2. **Fälle:** 120 eingefrorene synthetische Fälle; ausschliesslich der vorab festgelegte
+   24-Fälle-Pilot wurde vollständig live ausgeführt. Keine unabhängige Fachannotation.
+3. **Echte Aufrufe:** 64 im vollständigen Pilot, 24 Extraktionen und je 20 Reviews;
+   vier fachlich ungültige Extraktionsantworten. Frühere Versuche separat dokumentiert.
+4. **A/B/C:** identische gespeicherte A-Antwort, gleicher Originalkontext, verschiedene
+   Reviewprompts. C sieht B nicht. Gleiches Modell bedeutet korrelierte Fehler.
+5. **Erkannte Fehler:** B erkennt einen Widerspruch; C blockiert zusätzlich einen
+   fehlerhaften Claim wegen unvollständiger Checks, nicht wegen fachlicher Einsicht.
+6. **Übersehene Fehler:** italienische Tabellenzuordnung und fehlender Bedingungsatom
+   passieren alle Gates. Quellenintegrität beweist keine semantische Richtigkeit.
+7. **Falsch zurückgehalten:** B/C jeweils zwei von 15 laut Metrik korrekten,
+   quellengestützten Kandidaten (beide unknown). Zusätzlich blockiert ein Regexfehler
+   einen korrekten Betrag bereits in A, ausserhalb dieses Nenners.
+8. **Kosten/Latenz:** oben gemessen; C kostet kumulativ rund 2.79-mal so viel wie A.
+   API-Zeiten schliessen PDF-Vorbereitung aus. Menschliche Reviewzeit nicht gemessen.
+9. **Statistik:** explorative Familienbootstrap-Intervalle der kritischen Fehlerrate:
+   B-A -4.17 Prozentpunkte, 95%-Intervall [-12.5; 0]; C-A -8.33 Punkte,
+   [-20.83; 0]. Beide enthalten null. Kleine Stichprobe, ein Modell, ein Goldautor:
+   kein statistisch belastbarer Wirksamkeits- oder Produktionsnachweis.
+10. **Nächster Nutzen:** zuerst deterministische Zahlenprüfung, unknown-Reviewsemantik
+    und nullable Geldfelder mit Regressionen prüfen; Tabellenzuordnung und fehlende
+    Bedingungsatome gezielt evaluieren. Kritische Fälle unabhängig fachlich annotieren,
+    danach eine versionierte Vergleichsiteration planen. Holdoutbeobachtungen sind
+    nun bekannt; für spätere Optimierung frischen unabhängigen Holdout reservieren.
 
 ## Offline-Nachweise
 
@@ -102,23 +152,12 @@ erzwingt LF-Dateibytes auch unter Windows, damit Checkout-Zeilenenden keinen Has
 
 ## Qualitätsprüfungen
 
-- uv sync --locked --dev: erfolgreich.
-- Vollständige Suite mit OpenAI- und PyMuPDF-Extras: **353 Tests bestanden**.
-  Darunter 39 neue Sprint-6-Tests und sieben SDK-Vertragstests. Standardinstallation
-  und isolierte CI prüfen dieselben Regressionen; 40 Tests benötigen optionale Extras.
-- Ruff Lint, Formatcheck und git diff --check: erfolgreich.
-- axiory-demo, axiory-eval, axiory-semantic-eval: erfolgreich.
-- axiory-real-eval --dry-run: 24 Fälle innerhalb des 2-USD-Limits.
-- Vollkorpus offline und Replay: erfolgreich.
-- Aktueller lokaler Lauf mit OpenAI-Extra: **320 bestanden, 33 PyMuPDF-Skips**.
-- Live-Pilot unvollständig: vier Antworten, dann Guthabenfehler. Nur ein vollständiger
-  A/B/C-Fall; keine belastbare Aussage über Modell- oder Verifierqualität.
-- Offline-Replay beider abgebrochener Pilotläufe: erfolgreich. Technische Scores
-  unerledigter Fälle sind keine Messung der Modellgenauigkeit.
-
-SDK-Vertragstests verwenden nur In-Memory-HTTP. Standard-CI isoliert Runtime-Netzwerk
-über Linux-Netzwerknamespace; pytest blockiert zusätzlich Socketverbindungen. Setup
-und Artefaktupload benötigen weiterhin Netzwerkzugang ausserhalb dieser Runtime.
+- Aktueller lokaler Lauf `uv run --extra llm-openai pytest`: **320 bestanden,
+  33 erwartete PyMuPDF-Skips**. Frühere Gesamtsuite mit beiden Extras: 353 bestanden.
+- `uv run ruff check .`, `uv run ruff format --check .`, `uv run axiory-demo`: erfolgreich.
+- Offline-Replay des vollständigen Live-Pilots: erfolgreich; Fingerprint unverändert.
+- Kein Code, kein Prompt und kein Gold nach Beobachtung der Ergebnisse geändert.
+- Kein bezahlter 120-Fälle-Lauf. SDK-/Standardtests bleiben offline.
 
 ## Geänderte Bereiche und offene Entscheidungen
 
@@ -135,7 +174,7 @@ und Artefaktupload benötigen weiterhin Netzwerkzugang ausserhalb dieser Runtime
 - README, Architektur, Evaluation, Roadmap, Benchmarkbericht, Verifikationsstrategie
   und ADR 0006: Datenmodell, Preisannahmen, Metriken, Grenzen und nächster Schritt.
 
-Offen: unabhängige Fachannotation, vollständiger Pilot, akzeptable Freigabeschwellen,
+Offen: unabhängige Fachannotation, Fehlerbehebung aus dem Pilot, akzeptable Freigabeschwellen,
 Ontologieverantwortung, Modellvielfalt und gemessener menschlicher Reviewaufwand.
 Hashintegrität ist keine digitale Authentizität. Kein automatisches Crash-Resume oder
 kontoweites Budget über fremde Prozesse; harte Workerlimits fehlen weiterhin.
