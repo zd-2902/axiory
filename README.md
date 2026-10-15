@@ -171,5 +171,6 @@ Installation des optionalen SDK, Preisannahmen, Metrikdefinitionen und Grenzen:
 [Ergebnisse](docs/SPRINT6_RESULTS.md), [ADR 0006](docs/adr/0006-real-llm-evaluation.md).
 24-Fälle-Live-Pilot abgeschlossen: 64 Antworten, vier Schemafehler, geschätzte Kosten
 0.060195 USD. Ergebnisse und Grenzen stehen im [Sprint-6-Bericht](docs/SPRINT6_RESULTS.md).
-Nächster Schritt: Zahlenprüfung und unknown-Reviewgates korrigieren, Tabellen-/Bedingungsfehler
-fachlich prüfen, bevor weitere bezahlte Evaluationen erwogen werden.
+Korrekturversion v2 ergänzt atomare Geldfelder, explizite unknown-Bestätigung und eine
+korrigierte Zahlenprüfung; alte Replays bleiben unverändert. Siehe [ADR 0007](docs/adr/0007-versioned-pilot-fixes.md).
+Nächster Schritt: diagnostischer Vergleich, danach unabhängiger Fachreview und neue Testfamilien.

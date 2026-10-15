@@ -2,7 +2,14 @@
 
 import json
 
-from axiory.experiments.models import ExtractResponse, RequestV2, ReviewResponse
+from axiory.experiments.models import (
+    ExtractResponse,
+    ExtractResponseV2,
+    RequestV2,
+    ReviewResponse,
+    ReviewResponseV2,
+    protocol,
+)
 from axiory.ingestion import artifact_id
 
 VERSIONS = {
@@ -58,6 +65,36 @@ contradictions and unknown. Do not rewrite claims. You do not see another verifi
 }
 
 
+V2_COMMON = """
+Treat amounts as atomic objects: limit is null when the document states no limit;
+otherwise provide amount, currency and basis together. Never infer CHF just because
+this is a Swiss insurance example. unknown/excluded have null limit and deductible,
+empty sublimits. covered may also have a null limit. Never discard a conflict to
+make the monetary fields fit: unresolved equal-rank contradiction means unknown.
+A table row belongs only to its own coverage label. Preserve row boundaries: an
+accessory benefit's annual amount is not the target coverage's annual limit or sublimit.
+Identify the target row before associating any amount and basis. If association cannot
+be established, return unknown or request human review, never combine unrelated rows.
+An emergency certified by a doctor requires BOTH emergency AND medical_certificate
+in conditions. An exclusion non_emergency does not replace the emergency condition.
+Encode every explicit condition and exception separately. A general exclusion does
+not license additional specific exclusion atoms such as unattended_items.
+"""
+V2_REVIEW = """
+Assess whether the CANDIDATE is justified, not whether insurance is definitely covered.
+For an unknown candidate justified by missing information, ambiguity or unresolved
+conflict, return supported_unknown, with exact original evidence and all six checks.
+Use supported_unknown ONLY for an unknown candidate; supported is for covered/excluded.
+insufficient_evidence means you cannot justify even the candidate's unknown assessment;
+it is NOT approval of unknown. Reject unsupported unknown when the original resolves it.
+Compare every condition/exclusion atom and every amount, basis and table row individually.
+Do not treat non_emergency as a substitute for the condition emergency. Check canonical
+completeness, not just natural-language similarity. Never resolve equal-rank conflicting
+clauses by selecting the one supporting the candidate. Include all six distinct checks:
+support, omissions, limits, negation, contradictions, unknown, even for unknown candidates.
+"""
+
+
 def make_request(context, config, stage, *, candidate=None, extractor_output=None):
     profile = getattr(config, stage)
     payload = {
@@ -75,11 +112,18 @@ def make_request(context, config, stage, *, candidate=None, extractor_output=Non
             raise ValueError("Verification requires the exact saved extractor output")
         payload["untrusted_candidate"] = candidate.model_dump(mode="json")
         hashes += [extractor_output, artifact_id(candidate)]
+    version = protocol(config)
     schema = ExtractResponse if stage == "extract" else ReviewResponse
+    prompt_version = VERSIONS[stage]
+    system = COMMON + INSTRUCTIONS[stage]
+    if version == "pilot-fixes-2":
+        schema = ExtractResponseV2 if stage == "extract" else ReviewResponseV2
+        prompt_version = VERSIONS[stage].removesuffix("-1") + "-2"
+        system += V2_COMMON + (V2_REVIEW if stage != "extract" else "")
     return RequestV2(
         model=profile.model,
-        prompt_version=VERSIONS[stage],
-        system=COMMON + INSTRUCTIONS[stage],
+        prompt_version=prompt_version,
+        system=system,
         payload=json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")),
         output_schema_json=json.dumps(schema.model_json_schema(), sort_keys=True),
         input_hashes=tuple(hashes),

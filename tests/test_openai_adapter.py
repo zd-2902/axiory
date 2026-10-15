@@ -130,22 +130,22 @@ def test_official_sdk_timeout_is_bounded_and_redacted(tmp_path):
 
 
 @pytest.mark.parametrize("temperature", [None, 0.0])
-def test_sprint6_official_sdk_configuration(tmp_path, temperature):
+@pytest.mark.parametrize("protocol_version", [1, 2])
+def test_sprint6_official_sdk_configuration(tmp_path, temperature, protocol_version):
     from pathlib import Path
 
     from axiory.experiments.corpus import load_corpus, prepare
-    from axiory.experiments.models import ExperimentConfig
+    from axiory.experiments.models import parse_config
     from axiory.experiments.prompts import make_request
 
     httpx = pytest.importorskip("httpx")
     openai = pytest.importorskip("openai")
     corpus, _ = load_corpus()
-    config = ExperimentConfig.model_validate_json(
-        Path("datasets/multilingual/pilot-config.json").read_bytes()
-    )
+    name = "pilot-config.json" if protocol_version == 1 else "pilot-config-v2.json"
+    config = parse_config((Path("datasets/multilingual") / name).read_bytes())
     data = config.model_dump(mode="json")
     data["extract"]["temperature"] = temperature
-    config = ExperimentConfig.model_validate_json(json.dumps(data))
+    config = parse_config(json.dumps(data))
     context = prepare(
         LayoutStore(tmp_path), corpus.cases[0].source, max_chars=config.max_context_chars
     )

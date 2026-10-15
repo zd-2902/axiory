@@ -20,6 +20,22 @@ Gesamterfolgsquote. Verifier-/Gatefehler und Grenzen stehen im
 Weitere bezahlte Läufe erfordern eine bewusste Entscheidung; ein neuer Output-Pfad
 setzt die nutzerseitige 2-USD-Gesamtfreigabe nicht zurück.
 
+## Korrekturversion nach dem Pilot
+
+Ab 15. Oktober ist `pilot-config-v2.json` der CLI-Standard: atomare Geldfelder,
+explizites supported_unknown, korrigierte Zahlenprüfung und Prompts v2. Die ursprüngliche
+Version bleibt über `--config datasets/multilingual/pilot-config.json` verfügbar.
+[ADR 0007](adr/0007-versioned-pilot-fixes.md) beschreibt die Kompatibilitätsgrenzen.
+
+Die rein deterministische [Quellennachprüfung](benchmarks/sprint6-source-reassessment-v2.json)
+ändert genau einen von 20 gültigen Kandidaten: CHF 1875 vor Satzpunkt wird nun erkannt.
+Vier ungültige Antworten bleiben ungültig; alte Reviewurteile und Live-Scores bleiben
+unverändert. Reproduktion ohne Modellaufruf:
+
+```sh
+uv run python scripts/reassess_pilot_sources.py datasets/evaluation-real/live-pilot-24-20261011 --output datasets/evaluation-real/source-recheck-new.json
+```
+
 ## Reproduzieren
 
 ```sh

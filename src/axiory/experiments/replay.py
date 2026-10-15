@@ -15,6 +15,7 @@ from axiory.experiments.models import (
     Manifest,
     RequestV2,
     Reservation,
+    protocol,
 )
 from axiory.experiments.pipeline import decode_claim, decode_review
 from axiory.experiments.prompts import make_request
@@ -36,6 +37,7 @@ def require(condition, message):
 def replay(output):
     output = Path(output)
     manifest = Manifest.model_validate_json((output / "manifest.json").read_bytes())
+    version = protocol(manifest.config)
     store = DocumentStore(output / "session")
     require(
         store._read("experiment_manifests", artifact_id(manifest), Manifest) == manifest,
@@ -214,11 +216,11 @@ def replay(output):
             reply = store._read("model_outputs", call.output_sha256, Reply)
             try:
                 if stage == "extract":
-                    claim = decode_claim(reply, stored, context)
+                    claim = decode_claim(reply, stored, context, version=version)
                 elif stage == "verify":
-                    verifier = decode_review(reply, stored, context, claim)
+                    verifier = decode_review(reply, stored, context, claim, version=version)
                 else:
-                    critic = decode_review(reply, stored, context, claim)
+                    critic = decode_review(reply, stored, context, claim, version=version)
             except (ValidationError, ValueError):
                 errors.append(stage + ":invalid_response")
         require(
@@ -226,7 +228,8 @@ def replay(output):
             "Imported claim or verification status differs from raw replay",
         )
         require(
-            gates(claim, verifier, critic) == (run.a_released, run.b_released, run.c_released),
+            gates(claim, verifier, critic, version=version)
+            == (run.a_released, run.b_released, run.c_released),
             "Imported release flags differ from replay",
         )
         require(

@@ -1,9 +1,10 @@
 """Additive Sprint-6 contracts. Legacy schema and hashes remain unchanged."""
 
+import json
 from decimal import Decimal
 from typing import Annotated, Literal, Self
 
-from pydantic import Field, model_validator
+from pydantic import Field, TypeAdapter, model_validator
 
 from axiory.extraction.providers import Request
 from axiory.extraction.schemas import Amount, Basis, Candidate, Code, Quote, Sublimit
@@ -62,6 +63,85 @@ class Review(ArtifactModel):
 
 class ReviewResponse(ArtifactModel):
     reviews: tuple[Review, ...]
+
+
+class Limit(ArtifactModel):
+    amount: Amount
+    currency: Literal["CHF"]
+    basis: Basis
+
+
+class WireCandidate(ArtifactModel):
+    """Provider DTO; money is atomic. Normalize only after strict validation."""
+
+    claim_id: Identifier
+    product_id: Nonempty
+    coverage_code: Code
+    conditions: tuple[Condition, ...]
+    exclusions: tuple[Exclusion, ...]
+    evidence_references: tuple[Quote, ...]
+
+    def candidate(self):
+        data = self.model_dump(mode="json")
+        limit = data.pop("limit")
+        data.update(
+            limit_amount=limit["amount"] if limit else None,
+            currency=limit["currency"] if limit else None,
+            limit_basis=limit["basis"] if limit else None,
+        )
+        return CandidateV2.model_validate_json(json.dumps(data))
+
+
+class CoveredWireCandidate(WireCandidate):
+    coverage_status: Literal["covered"]
+    limit: Limit | None
+    sublimits: tuple[Sublimit, ...]
+    deductible: Deductible | None
+    unknown_reason: None
+
+
+class ExcludedWireCandidate(WireCandidate):
+    coverage_status: Literal["excluded"]
+    limit: None
+    sublimits: Annotated[tuple[Sublimit, ...], Field(max_length=0)]
+    deductible: None
+    unknown_reason: None
+
+
+class UnknownWireCandidate(WireCandidate):
+    coverage_status: Literal["unknown"]
+    limit: None
+    sublimits: Annotated[tuple[Sublimit, ...], Field(max_length=0)]
+    deductible: None
+    unknown_reason: Nonempty
+
+
+class ExtractResponseV2(ArtifactModel):
+    claims: Annotated[
+        tuple[CoveredWireCandidate | ExcludedWireCandidate | UnknownWireCandidate, ...],
+        Field(min_length=1, max_length=1),
+    ]
+
+
+class ReviewV2(Review):
+    decision: Literal[
+        "supported",
+        "supported_unknown",
+        "unsupported",
+        "contradicted",
+        "insufficient_evidence",
+        "requires_human_review",
+    ]
+    checks: Annotated[
+        tuple[
+            Literal["support", "omissions", "limits", "negation", "contradictions", "unknown"], ...
+        ],
+        Field(min_length=6, max_length=6),
+    ]
+
+
+class ReviewResponseV2(ArtifactModel):
+    reviews: Annotated[tuple[ReviewV2, ...], Field(min_length=1, max_length=1)]
 
 
 class Source(ArtifactModel):
@@ -164,6 +244,24 @@ class ExperimentConfig(ArtifactModel):
     seed: int = 1729
 
 
+class ExperimentConfigV2(ExperimentConfig):
+    schema_version: Literal["experiment-config-2"] = "experiment-config-2"
+    protocol_version: Literal["pilot-fixes-2"] = "pilot-fixes-2"
+
+
+RunConfig = Annotated[ExperimentConfig | ExperimentConfigV2, Field(discriminator="schema_version")]
+
+
+def parse_config(data):
+    if "schema_version" not in json.loads(data):
+        return ExperimentConfig.model_validate_json(data)
+    return TypeAdapter(RunConfig).validate_json(data)
+
+
+def protocol(config):
+    return "pilot-fixes-2" if isinstance(config, ExperimentConfigV2) else "pilot-1"
+
+
 class RequestV2(Request):
     schema_version: Literal["llm-request-2"] = "llm-request-2"
     temperature: Annotated[float, Field(ge=0, le=2, allow_inf_nan=False)] | None
@@ -207,7 +305,7 @@ class CheckedClaim(ArtifactModel):
 
 
 class CheckedReview(ArtifactModel):
-    review: Review
+    review: Review | ReviewV2
     source_valid: bool
     issues: tuple[str, ...]
     human_status: Literal["not_reviewed"] = "not_reviewed"
@@ -238,7 +336,7 @@ class Manifest(ArtifactModel):
     measurement: Literal["LIVE", "OFFLINE_PROTOCOL_TEST"]
     git_commit: Digest | Annotated[str, Field(pattern=r"^[0-9a-f]{40}$")] | None
     git_dirty: bool | None
-    config: ExperimentConfig
+    config: RunConfig
     corpus_sha256: Digest
     freeze_sha256: Digest
     selected_ids: tuple[Identifier, ...]

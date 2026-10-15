@@ -158,3 +158,8 @@ LayoutStore für Original/Version/Extraktion. Exklusive Outputpfade verhindern B
 Replay reproduziert Status aus Quellen und Rohantworten; Releaseflags sind nicht trusted.
 [ADR 0006](adr/0006-real-llm-evaluation.md) beschreibt Speicher-/Vertrauensinvarianten,
 [Verifikationsstrategie](VERIFICATION_STRATEGY.md) die drei Prüfebenen.
+
+Post-Pilot-Korrekturen sind über experiment-config-2/pilot-fixes-2 getrennt von historischen
+Läufen: atomare Provider-Geldfelder, supported_unknown und neue Zahlenprüfung, ohne Änderung
+an CandidateV2 oder Gold. Replay wählt die versionierten Regeln aus dem Manifest; siehe
+[ADR 0007](adr/0007-versioned-pilot-fixes.md).

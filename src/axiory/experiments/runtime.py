@@ -5,7 +5,7 @@ import time
 from decimal import ROUND_CEILING, Decimal
 from hashlib import sha256
 
-from axiory.experiments.models import Call, ExperimentConfig, RequestV2, Reservation
+from axiory.experiments.models import Call, ExperimentConfig, RequestV2, Reservation, parse_config
 from axiory.extraction.providers import ProviderError, Reply
 from axiory.ingestion import IntegrityError, artifact_id, canonical_bytes
 
@@ -54,7 +54,7 @@ def dry_run(config: ExperimentConfig, count: int):
 class Session:
     def __init__(self, store, provider, config, run_id):
         self.store, self.provider = store, provider
-        self.config = ExperimentConfig.model_validate_json(config.model_dump_json())
+        self.config = parse_config(config.model_dump_json())
         self.run_id = run_id
         self.started = time.monotonic()
         self.calls, self.reservations = [], []
@@ -197,7 +197,7 @@ class OfflineProvider:
             }
             for s in context["sections"]
         ]
-        if request.prompt_version == "multilingual-extract-1":
+        if request.prompt_version in ("multilingual-extract-1", "multilingual-extract-2"):
             raw = {
                 "claims": [
                     {
@@ -238,4 +238,9 @@ class OfflineProvider:
                     }
                 ]
             }
+        if request.prompt_version == "multilingual-extract-2":
+            candidate = raw["claims"][0]
+            for key in ("limit_amount", "currency", "limit_basis"):
+                candidate.pop(key)
+            candidate["limit"] = None
         return Reply(text=json.dumps(raw, ensure_ascii=False), model="offline-protocol-1")

@@ -5,29 +5,42 @@ import time
 from pydantic import ValidationError
 
 from axiory.experiments.corpus import prepare
-from axiory.experiments.models import Call, CaseRun, ExtractResponse, ReviewResponse
+from axiory.experiments.models import (
+    Call,
+    CaseRun,
+    ExtractResponse,
+    ExtractResponseV2,
+    ReviewResponse,
+    ReviewResponseV2,
+    protocol,
+)
 from axiory.experiments.prompts import make_request
 from axiory.experiments.verification import check_claim, check_review, gates
 from axiory.extraction.providers import ProviderError
 from axiory.ingestion import IntegrityError, canonical_bytes
 
 
-def decode_claim(reply, stored, context):
-    response = ExtractResponse.model_validate_json(reply.text)
+def decode_claim(reply, stored, context, *, version="pilot-1"):
+    schema = ExtractResponseV2 if version == "pilot-fixes-2" else ExtractResponse
+    response = schema.model_validate_json(reply.text)
     if len(response.claims) != 1:
         raise ValueError("Exactly one requested claim")
     candidate = response.claims[0]
-    return check_claim(stored, context, candidate)
+    if version == "pilot-fixes-2":
+        candidate = candidate.candidate()
+    return check_claim(stored, context, candidate, version=version)
 
 
-def decode_review(reply, stored, context, claim):
-    response = ReviewResponse.model_validate_json(reply.text)
+def decode_review(reply, stored, context, claim, *, version="pilot-1"):
+    schema = ReviewResponseV2 if version == "pilot-fixes-2" else ReviewResponse
+    response = schema.model_validate_json(reply.text)
     if len(response.reviews) != 1:
         raise ValueError("Exactly one review required")
-    return check_review(stored, context, claim.candidate, response.reviews[0])
+    return check_review(stored, context, claim.candidate, response.reviews[0], version=version)
 
 
 def evaluate_case(case_store, session, source, *, predecessor=None):
+    version = protocol(session.config)
     context = prepare(case_store, source, max_chars=session.config.max_context_chars)
     stored = case_store.load(context.receipt_sha256)
     context_hash = session.store._put("experiment_contexts", canonical_bytes(context))
@@ -54,11 +67,11 @@ def evaluate_case(case_store, session, source, *, predecessor=None):
             reply, response_hash = session.call(source.id, stage, req)
             if stage == "extract":
                 output = response_hash
-                claim = decode_claim(reply, stored, context)
+                claim = decode_claim(reply, stored, context, version=version)
             elif stage == "verify":
-                verifier = decode_review(reply, stored, context, claim)
+                verifier = decode_review(reply, stored, context, claim, version=version)
             else:
-                critic = decode_review(reply, stored, context, claim)
+                critic = decode_review(reply, stored, context, claim, version=version)
         except ProviderError as exc:
             errors.append(stage + ":" + exc.code)
         except IntegrityError:
@@ -70,7 +83,7 @@ def evaluate_case(case_store, session, source, *, predecessor=None):
             output = session.store._read("experiment_calls", calls[-1], Call).output_sha256
         stages.append(calls)
         latencies.append(time.monotonic() - started)
-    a, b, c = gates(claim, verifier, critic)
+    a, b, c = gates(claim, verifier, critic, version=version)
     result = CaseRun(
         case_id=source.id,
         context_sha256=context_hash,

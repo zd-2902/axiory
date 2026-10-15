@@ -55,3 +55,5 @@ Sprint 6: `sprint6-offline-summary.json` records an OFFLINE_PROTOCOL_TEST of 120
 `sprint6-live-attempt-summary.json` records eight API attempts across two pilot runs and a diagnosis: four model outputs, two DE/dev cases, only one complete A/B/C case, then credit_balance_exhausted. It includes partial observations, replay fingerprints and known usage/cost coverage; no general model-quality conclusion is justified. Raw CAS stores remain local and ignored.
 
 `sprint6-live-pilot-24-summary.json` records the completed 11 October pilot: 24 cases, 64 model outputs, four extraction schema failures, verified replay and cumulative budget accounting. It includes all strata and case audits. See the current Sprint-6 report for model errors versus deterministic gate defects; earlier partial outputs are excluded from its quality metrics.
+
+`sprint6-source-reassessment-v2.json` is an offline source-only reassessment of the saved 24-case pilot. Exactly one source decision changes after the sentence-period fix. It contains no new model outputs and does not rewrite historical scores or review decisions.

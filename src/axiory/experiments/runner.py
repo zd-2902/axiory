@@ -8,7 +8,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from axiory.experiments.corpus import ROOT, load_corpus
-from axiory.experiments.models import ExperimentConfig, Manifest
+from axiory.experiments.models import Manifest, parse_config
 from axiory.experiments.pipeline import evaluate_case
 from axiory.experiments.report import build_report
 from axiory.experiments.runtime import OfflineProvider, Session, dry_run
@@ -42,7 +42,7 @@ def offline_config(config, count):
         max_total_tokens=plan["reserved_token_budget"],
         max_cost_microusd=plan["maximum_estimated_microusd"],
     )
-    return ExperimentConfig.model_validate_json(json.dumps(data))
+    return parse_config(json.dumps(data))
 
 
 def execute(output, corpus, freeze, config, *, provider=None, pilot=True, allow_live=False):
@@ -118,7 +118,7 @@ def main():
     mode.add_argument("--live", action="store_true")
     mode.add_argument("--replay", type=Path)
     parser.add_argument("--all-offline", action="store_true", help="Exercise all 120; never live")
-    parser.add_argument("--config", type=Path, default=ROOT / "pilot-config.json")
+    parser.add_argument("--config", type=Path, default=ROOT / "pilot-config-v2.json")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     if args.replay:
@@ -132,7 +132,7 @@ def main():
         )
         return
     corpus, freeze = load_corpus()
-    config = ExperimentConfig.model_validate_json(args.config.read_bytes())
+    config = parse_config(args.config.read_bytes())
     if args.live and args.all_offline:
         parser.error("--all-offline cannot be combined with --live")
     if args.all_offline:
