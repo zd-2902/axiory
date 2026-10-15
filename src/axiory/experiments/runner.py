@@ -118,7 +118,7 @@ def main():
     mode.add_argument("--live", action="store_true")
     mode.add_argument("--replay", type=Path)
     parser.add_argument("--all-offline", action="store_true", help="Exercise all 120; never live")
-    parser.add_argument("--config", type=Path, default=ROOT / "pilot-config-v2.json")
+    parser.add_argument("--config", type=Path, default=ROOT / "pilot-config-v3.json")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     if args.replay:
@@ -135,8 +135,10 @@ def main():
     config = parse_config(args.config.read_bytes())
     if args.live and args.all_offline:
         parser.error("--all-offline cannot be combined with --live")
-    if args.all_offline:
-        config = offline_config(config, len(corpus.cases))
+    if args.all_offline or (not args.live and not args.dry_run):
+        config = offline_config(
+            config, len(corpus.cases) if args.all_offline else len(freeze.pilot_ids)
+        )
     plan = dry_run(config, len(corpus.cases) if args.all_offline else len(freeze.pilot_ids))
     print(json.dumps(plan, indent=2))
     if args.dry_run:

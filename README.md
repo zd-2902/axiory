@@ -176,3 +176,23 @@ korrigierte Zahlenprüfung; alte Replays bleiben unverändert. Siehe [ADR 0007](
 Diagnostischer v2-Vergleich abgeschlossen: keine Schemafehler, unknown 3/3 erhalten;
 Tabellen- und Belegfehler bleiben. [Ergebnisse und Grenzen](docs/PILOT_FIXES_RESULTS.md).
 Nächster Schritt: strukturierte Tabellen-/Feldbelege, unabhängiger Fachreview und neue Testfamilien.
+
+## Prüfplanung und Reflexion (v3)
+
+Der CLI-Standard `pilot-config-v3.json` erzeugt vor jedem Modellaufruf einen
+hashgebundenen Prüfplan. Ein strukturierter Selbstcheck muss Belege und offene
+Probleme nennen. Unvollständige Kontextbelege, falsche Tabellenzeilen und unklare
+Layouts verhindern die Freigabe auch bei positivem Modellurteil.
+
+```sh
+uv run axiory-real-eval --all-offline --output datasets/evaluation-real/v3-offline
+uv run axiory-real-eval --replay datasets/evaluation-real/v3-offline
+```
+
+Die zwei zuletzt durchgelassenen Fehler werden durch die neuen Strukturregeln bei
+Offline-Nachprüfung blockiert. Die Wirkung des neuen Prompts wurde noch nicht live
+gemessen. Historische Ergebnisse bleiben unverändert; bekannte Pilotfälle gelten
+als Entwicklungsmaterial. Nächster Schritt: unabhängig annotierte neue Familien mit
+vorab eingefrorenen Kriterien, danach separat budgetierte Live-Validierung.
+[Resilienz und Fehlerbehandlung](docs/RESILIENCE.md),
+[ADR 0008](docs/adr/0008-evidence-plan-and-reflection.md).

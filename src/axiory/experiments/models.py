@@ -144,6 +144,38 @@ class ReviewResponseV2(ArtifactModel):
     reviews: Annotated[tuple[ReviewV2, ...], Field(min_length=1, max_length=1)]
 
 
+AuditCheck = Literal[
+    "identity",
+    "evidence_completeness",
+    "table_binding",
+    "semantic_atoms",
+    "contradictions",
+    "unknown",
+]
+
+
+class AuditItem(ArtifactModel):
+    check: AuditCheck
+    outcome: Literal["pass", "fail", "uncertain", "not_applicable"]
+    evidence_indices: tuple[Annotated[int, Field(ge=0)], ...]
+    summary: Annotated[str, Field(min_length=1, max_length=400)]
+
+
+class Reflection(ArtifactModel):
+    """Concise audit findings, not private reasoning or trusted verification flags."""
+
+    plan_sha256: Digest
+    items: Annotated[tuple[AuditItem, ...], Field(min_length=6, max_length=6)]
+
+
+class ExtractResponseV3(ExtractResponseV2):
+    reflection: Reflection
+
+
+class ReviewResponseV3(ReviewResponseV2):
+    reflection: Reflection
+
+
 class Source(ArtifactModel):
     id: Identifier
     product_id: Identifier
@@ -249,7 +281,15 @@ class ExperimentConfigV2(ExperimentConfig):
     protocol_version: Literal["pilot-fixes-2"] = "pilot-fixes-2"
 
 
-RunConfig = Annotated[ExperimentConfig | ExperimentConfigV2, Field(discriminator="schema_version")]
+class ExperimentConfigV3(ExperimentConfig):
+    schema_version: Literal["experiment-config-3"] = "experiment-config-3"
+    protocol_version: Literal["evidence-plan-3"] = "evidence-plan-3"
+
+
+RunConfig = Annotated[
+    ExperimentConfig | ExperimentConfigV2 | ExperimentConfigV3,
+    Field(discriminator="schema_version"),
+]
 
 
 def parse_config(data):
@@ -259,6 +299,8 @@ def parse_config(data):
 
 
 def protocol(config):
+    if isinstance(config, ExperimentConfigV3):
+        return "evidence-plan-3"
     return "pilot-fixes-2" if isinstance(config, ExperimentConfigV2) else "pilot-1"
 
 

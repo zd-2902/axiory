@@ -163,3 +163,17 @@ Post-Pilot-Korrekturen sind über experiment-config-2/pilot-fixes-2 getrennt von
 Läufen: atomare Provider-Geldfelder, supported_unknown und neue Zahlenprüfung, ohne Änderung
 an CandidateV2 oder Gold. Replay wählt die versionierten Regeln aus dem Manifest; siehe
 [ADR 0007](adr/0007-versioned-pilot-fixes.md).
+
+## Evidenzplanung v3
+
+`experiment-config-3 / evidence-plan-3` bindet zusätzliche Provider-DTOs mit
+strukturierter Reflexion an unveränderte CandidateV2-/CaseRun-Formate. Vor jedem
+Request erzeugt `experiments/resilience.py` einen deterministischen EvidencePlan
+allein aus dem verifizierten Kontext. Der Request speichert Plan, Hash und Prompt;
+Rohantworten speichern die Reflexion. Replay rekonstruiert beides und berechnet
+Gates erneut. v1/v2-Schemas und Prompts bleiben bytegleich.
+
+Strukturgates prüfen vollständige Kontextabdeckung mittels aufgelöster PDF-Spannen
+und eng begrenzte synthetische Tabellenzuordnung. Reflexionsflags können diese Gates
+nur verschärfen, nie aufheben. Es bleiben drei begrenzte Modellaufrufe, keine neue
+Agentenrolle oder Abhängigkeit. Details und Grenzen: [ADR 0008](adr/0008-evidence-plan-and-reflection.md).

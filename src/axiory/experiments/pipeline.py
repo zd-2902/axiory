@@ -10,8 +10,10 @@ from axiory.experiments.models import (
     CaseRun,
     ExtractResponse,
     ExtractResponseV2,
+    ExtractResponseV3,
     ReviewResponse,
     ReviewResponseV2,
+    ReviewResponseV3,
     protocol,
 )
 from axiory.experiments.prompts import make_request
@@ -21,22 +23,43 @@ from axiory.ingestion import IntegrityError, canonical_bytes
 
 
 def decode_claim(reply, stored, context, *, version="pilot-1"):
-    schema = ExtractResponseV2 if version == "pilot-fixes-2" else ExtractResponse
+    schema = {
+        "pilot-1": ExtractResponse,
+        "pilot-fixes-2": ExtractResponseV2,
+        "evidence-plan-3": ExtractResponseV3,
+    }[version]
     response = schema.model_validate_json(reply.text)
     if len(response.claims) != 1:
         raise ValueError("Exactly one requested claim")
     candidate = response.claims[0]
-    if version == "pilot-fixes-2":
+    if version in ("pilot-fixes-2", "evidence-plan-3"):
         candidate = candidate.candidate()
-    return check_claim(stored, context, candidate, version=version)
+    return check_claim(
+        stored,
+        context,
+        candidate,
+        version=version,
+        reflection=getattr(response, "reflection", None),
+    )
 
 
 def decode_review(reply, stored, context, claim, *, version="pilot-1"):
-    schema = ReviewResponseV2 if version == "pilot-fixes-2" else ReviewResponse
+    schema = {
+        "pilot-1": ReviewResponse,
+        "pilot-fixes-2": ReviewResponseV2,
+        "evidence-plan-3": ReviewResponseV3,
+    }[version]
     response = schema.model_validate_json(reply.text)
     if len(response.reviews) != 1:
         raise ValueError("Exactly one review required")
-    return check_review(stored, context, claim.candidate, response.reviews[0], version=version)
+    return check_review(
+        stored,
+        context,
+        claim.candidate,
+        response.reviews[0],
+        version=version,
+        reflection=getattr(response, "reflection", None),
+    )
 
 
 def evaluate_case(case_store, session, source, *, predecessor=None):

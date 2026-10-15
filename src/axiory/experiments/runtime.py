@@ -197,7 +197,11 @@ class OfflineProvider:
             }
             for s in context["sections"]
         ]
-        if request.prompt_version in ("multilingual-extract-1", "multilingual-extract-2"):
+        if request.prompt_version in (
+            "multilingual-extract-1",
+            "multilingual-extract-2",
+            "multilingual-extract-3",
+        ):
             raw = {
                 "claims": [
                     {
@@ -238,9 +242,22 @@ class OfflineProvider:
                     }
                 ]
             }
-        if request.prompt_version == "multilingual-extract-2":
+        if request.prompt_version in ("multilingual-extract-2", "multilingual-extract-3"):
             candidate = raw["claims"][0]
             for key in ("limit_amount", "currency", "limit_basis"):
                 candidate.pop(key)
             candidate["limit"] = None
+        if request.prompt_version.endswith("-3"):
+            raw["reflection"] = {
+                "plan_sha256": data["plan_sha256"],
+                "items": [
+                    {
+                        "check": check,
+                        "outcome": "uncertain",
+                        "evidence_indices": [0],
+                        "summary": "Offline fixture; no semantic judgment",
+                    }
+                    for check in data["evidence_plan"]["checks"]
+                ],
+            }
         return Reply(text=json.dumps(raw, ensure_ascii=False), model="offline-protocol-1")

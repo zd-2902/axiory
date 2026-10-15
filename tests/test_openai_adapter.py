@@ -130,7 +130,7 @@ def test_official_sdk_timeout_is_bounded_and_redacted(tmp_path):
 
 
 @pytest.mark.parametrize("temperature", [None, 0.0])
-@pytest.mark.parametrize("protocol_version", [1, 2])
+@pytest.mark.parametrize("protocol_version", [1, 2, 3])
 def test_sprint6_official_sdk_configuration(tmp_path, temperature, protocol_version):
     from pathlib import Path
 
@@ -141,7 +141,9 @@ def test_sprint6_official_sdk_configuration(tmp_path, temperature, protocol_vers
     httpx = pytest.importorskip("httpx")
     openai = pytest.importorskip("openai")
     corpus, _ = load_corpus()
-    name = "pilot-config.json" if protocol_version == 1 else "pilot-config-v2.json"
+    name = (
+        "pilot-config.json" if protocol_version == 1 else f"pilot-config-v{protocol_version}.json"
+    )
     config = parse_config((Path("datasets/multilingual") / name).read_bytes())
     data = config.model_dump(mode="json")
     data["extract"]["temperature"] = temperature

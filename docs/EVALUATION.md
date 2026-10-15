@@ -212,3 +212,18 @@ CLI, alle Zähler/Nenner, Budgetgrenzen, Fehlertypen, Familienbootstrap und
 Complete-case-Sensitivität stehen in [REAL_LLM_BENCHMARK](REAL_LLM_BENCHMARK.md).
 [SPRINT6_RESULTS](SPRINT6_RESULTS.md) trennt Implementierung, Offlineprüfung und echte
 Beobachtungen. Runtime-CI ist über Netzwerknamespace isoliert; Paketsetup erfolgt vorher.
+
+## v3: Strukturregressionen statt Qualitätsbehauptung
+
+Die beiden bekannten v2-C-Fehler werden offline durch neue Beleg-/Tabellenregeln
+zurückgehalten. Der [separate Snapshot](benchmarks/sprint6-structural-reassessment-v3.json)
+referenziert Originalmanifest und Kandidaten; er enthält keine neue Modellmessung,
+keine nachträglich erfundene Reflexion und keine neu interpretierten Live-Gates.
+
+Neue synthetische Mutationstests variieren Zeilen-/Spaltenreihenfolge, Zahlen,
+Sprachen, fehlende Header, doppelte Zielzeilen, Seitenlücken und Reflexionsfehler.
+Sie sind Entwicklungsregressionen desselben Implementierers, kein unabhängiger
+Goldstandard. Vor einer Qualitätsaussage: frische Produkt-/Klauselfamilien separat
+und blind doppelt annotieren, Uneinigkeiten klären, Freeze vor Promptanpassung;
+Precision, Recall, Unknown-Recall und Fehlablehnung gemeinsam vorab definieren.
+Ein Prompt kann diese organisatorische Unabhängigkeit nicht herstellen.

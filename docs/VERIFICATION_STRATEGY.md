@@ -73,3 +73,13 @@ Zuerst fachlich blindes Review des 24-Fälle-Pilots, einschliesslich falsch abge
 korrekter Claims und durchgelassener Fehler. Danach Reviewzeit messen und über C anhand
 von zusätzlichem Nutzen, Kosten und Latenz entscheiden. Kein zusätzlicher Agent ohne
 beobachteten Qualitätsgewinn oder Risikoreduktion.
+
+## v3 – Planen, prüfen, reflektieren
+
+Die Anwendung plant erforderliche Quellspannen und Tabellenprüfungen deterministisch.
+Das Modell liefert zur finalen Aussage sechs kurze, quellenreferenzierte Auditbefunde.
+Unsichere oder widersprüchliche Checks halten Ergebnisse zurück. Eine positive
+Selbstbewertung ist kein Beweis: Struktur-/Provenienzgates werden separat berechnet.
+Keine automatische Promptmutation und keine unbeschränkte Selbstkorrekturschleife.
+Der [Fehlerkatalog](RESILIENCE.md) beschreibt kontrollierte Wiederaufnahme und die
+noch fehlende unabhängige fachliche Validierung.

@@ -1,3 +1,11 @@
+> Aktueller CLI-Standard: `pilot-config-v3.json` / `evidence-plan-3` mit Prüfplan,
+> strukturierter Reflexion und deterministischen Struktur-/Beleggates.
+> [Verfahren, Fehlerzustände und Grenzen](RESILIENCE.md), [ADR 0008](adr/0008-evidence-plan-and-reflection.md).
+> Das verbleibende Pilotbudget beträgt 0.3872 USD. Der normale Dry-Run meldet deshalb
+> `fits_budget=false` für weitere 24 Live-Fälle (maximal 0.8064 USD).
+> Offline-Ausführungen passen ausschliesslich simulierte Reservierungen an; `--live`
+> kann diese Anpassung nicht benutzen. Es wurde kein weiterer Live-Lauf gestartet.
+
 # Real LLM Benchmark – Sprint 6
 
 ## Ergebnisstatus
@@ -22,7 +30,7 @@ setzt die nutzerseitige 2-USD-Gesamtfreigabe nicht zurück.
 
 ## Korrekturversion nach dem Pilot
 
-Ab 15. Oktober ist `pilot-config-v2.json` der CLI-Standard: atomare Geldfelder,
+Die weiterhin explizit wählbare `pilot-config-v2.json` ergänzt: atomare Geldfelder,
 explizites supported_unknown, korrigierte Zahlenprüfung und Prompts v2. Die ursprüngliche
 Version bleibt über `--config datasets/multilingual/pilot-config.json` verfügbar.
 [ADR 0007](adr/0007-versioned-pilot-fixes.md) beschreibt die Kompatibilitätsgrenzen.
