@@ -26,6 +26,8 @@ Ab 15. Oktober ist `pilot-config-v2.json` der CLI-Standard: atomare Geldfelder,
 explizites supported_unknown, korrigierte Zahlenprüfung und Prompts v2. Die ursprüngliche
 Version bleibt über `--config datasets/multilingual/pilot-config.json` verfügbar.
 [ADR 0007](adr/0007-versioned-pilot-fixes.md) beschreibt die Kompatibilitätsgrenzen.
+Der diagnostische v2-Lauf ist abgeschlossen: [Vergleich und offene Fehler](PILOT_FIXES_RESULTS.md).
+Das verbleibende konservative Gesamtbudget beträgt 0.3872 USD, kein neuer 2-USD-Topf.
 
 Die rein deterministische [Quellennachprüfung](benchmarks/sprint6-source-reassessment-v2.json)
 ändert genau einen von 20 gültigen Kandidaten: CHF 1875 vor Satzpunkt wird nun erkannt.

@@ -1,5 +1,8 @@
 # Sprint 6 – Ergebnisbericht
 
+Nachtrag vom 15. Oktober: [Korrekturen und diagnostischer v2-Vergleich](PILOT_FIXES_RESULTS.md).
+Der folgende Bericht dokumentiert weiterhin den unveränderten ersten Live-Pilot.
+
 ## Stand: 24-Fälle-Pilot abgeschlossen
 
 Am **11. Oktober 2026** wurden alle **24 synthetischen Pilotfälle** verarbeitet:

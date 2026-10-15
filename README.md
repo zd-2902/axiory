@@ -173,4 +173,6 @@ Installation des optionalen SDK, Preisannahmen, Metrikdefinitionen und Grenzen:
 0.060195 USD. Ergebnisse und Grenzen stehen im [Sprint-6-Bericht](docs/SPRINT6_RESULTS.md).
 Korrekturversion v2 ergänzt atomare Geldfelder, explizite unknown-Bestätigung und eine
 korrigierte Zahlenprüfung; alte Replays bleiben unverändert. Siehe [ADR 0007](docs/adr/0007-versioned-pilot-fixes.md).
-Nächster Schritt: diagnostischer Vergleich, danach unabhängiger Fachreview und neue Testfamilien.
+Diagnostischer v2-Vergleich abgeschlossen: keine Schemafehler, unknown 3/3 erhalten;
+Tabellen- und Belegfehler bleiben. [Ergebnisse und Grenzen](docs/PILOT_FIXES_RESULTS.md).
+Nächster Schritt: strukturierte Tabellen-/Feldbelege, unabhängiger Fachreview und neue Testfamilien.
