@@ -49,3 +49,13 @@ uv run axiory-eval --output datasets/evaluation-next --compare docs/benchmarks/s
 
 Andere Generatorbytes oder Konfigurationen führen zu nicht vergleichbaren Läufen;
 Laufzeiten werden nicht automatisch zwischen Maschinen verglichen.
+
+Sprint 6: `sprint6-offline-summary.json` records an OFFLINE_PROTOCOL_TEST of 120 DE/FR/IT cases. `live_quality` is null. All ratios and intervals are fixture statistics, not measured model quality. See ../REAL_LLM_BENCHMARK.md and ../SPRINT6_RESULTS.md.
+
+`sprint6-live-attempt-summary.json` records eight API attempts across two pilot runs and a diagnosis: four model outputs, two DE/dev cases, only one complete A/B/C case, then credit_balance_exhausted. It includes partial observations, replay fingerprints and known usage/cost coverage; no general model-quality conclusion is justified. Raw CAS stores remain local and ignored.
+
+`sprint6-live-pilot-24-summary.json` records the completed 11 October pilot: 24 cases, 64 model outputs, four extraction schema failures, verified replay and cumulative budget accounting. It includes all strata and case audits. See the current Sprint-6 report for model errors versus deterministic gate defects; earlier partial outputs are excluded from its quality metrics.
+
+`sprint6-source-reassessment-v2.json` is an offline source-only reassessment of the saved 24-case pilot. Exactly one source decision changes after the sentence-period fix. It contains no new model outputs and does not rewrite historical scores or review decisions.
+
+`sprint6-live-pilot-v2-summary.json` records a diagnostic repeat on the 24 known development cases after protocol changes: 72 replies, zero schema errors, three unknown states retained, persistent table/evidence failures. It is not an independent holdout evaluation.

@@ -1,0 +1,18 @@
+{
+  "schema_version": "resilience-offline-summary-1",
+  "measurement": "OFFLINE_PROTOCOL_TEST",
+  "run_id": "run-faf5f46ae17c4609a00d164f1e4988eb",
+  "manifest_sha256": "146f55fc12fd6fa28d02678e31d630e92912aec3c61f2b798a78856025bf0b2a",
+  "config_schema": "experiment-config-3",
+  "protocol_version": "evidence-plan-3",
+  "git_commit": "545823cbf7d2154f61be83d9a1ec22c4976f3bd1",
+  "git_dirty": true,
+  "case_count": 120,
+  "call_count": 360,
+  "complete": true,
+  "stop_reason": null,
+  "quality_fingerprint": "0eaa8e1ef8cb314aa8ff23a83f40f3d789c16ddc3204eca65ad82fb06916dd56",
+  "live_quality": null,
+  "api_calls": 0,
+  "note": "Mock deliberately reports uncertain reflection and withholds claims. This validates protocol execution, not model quality. Local generated CAS stores remain ignored; this summary cannot replace full replay artifacts."
+}

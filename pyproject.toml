@@ -15,6 +15,7 @@ llm-openai = ["openai>=2.0,<3"]
 experimental-pymupdf = ["pymupdf>=1.26,<2"]
 
 [project.scripts]
+axiory-real-eval = "axiory.experiments.runner:main"
 axiory-semantic-eval = "axiory.evaluation.semantic:main"
 axiory-demo = "axiory.demo:main"
 axiory-eval = "axiory.evaluation.runner:main"

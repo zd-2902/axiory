@@ -148,3 +148,51 @@ Nächster fachlicher Schritt: vielfältigere, doppelt annotierte synthetische DE
 Klauseln und Tabellen; danach ein begrenzter, ausdrücklich aktivierter Live-Vergleich
 mit Fehleranalyse und Reviewaufwand. Worker-Isolation und Quellenfreigabe bleiben
 Voraussetzung vor echten AVB. Verifier-Ausgaben sind keine fachliche Freigabe.
+
+## Mehrsprachiger gepaarter LLM-Benchmark (Sprint 6)
+
+120 zusätzliche synthetische DE/FR/IT-Fälle mit eingefrorenem 24-Fälle-Pilot. A extrahiert,
+B prüft dieselbe gespeicherte Antwort, C ergänzt eine kritische Prüfung. Gemeinsames
+Budgetjournal, Offline-Replay und explizite Gates; kein Agentenframework.
+
+```sh
+uv run axiory-real-eval --dry-run
+uv run axiory-real-eval --all-offline --output datasets/evaluation-real/offline-120
+uv run axiory-real-eval --replay datasets/evaluation-real/offline-120
+```
+
+Ohne --live keine API-Aufrufe. Der Live-Pilot benötigt OPENAI_API_KEY als Secret und
+ist auf 24 Fälle/2 USD begrenzt; die 120 Fälle bleiben offline. Offline-Metriken sind
+kein Nachweis echter Modellleistung. Goldannotation ist noch nicht unabhängig geprüft.
+Neue Module: src/axiory/experiments; Freeze/Gold: datasets/multilingual.
+
+Installation des optionalen SDK, Preisannahmen, Metrikdefinitionen und Grenzen:
+[Real LLM Benchmark](docs/REAL_LLM_BENCHMARK.md),
+[Ergebnisse](docs/SPRINT6_RESULTS.md), [ADR 0006](docs/adr/0006-real-llm-evaluation.md).
+24-Fälle-Live-Pilot abgeschlossen: 64 Antworten, vier Schemafehler, geschätzte Kosten
+0.060195 USD. Ergebnisse und Grenzen stehen im [Sprint-6-Bericht](docs/SPRINT6_RESULTS.md).
+Korrekturversion v2 ergänzt atomare Geldfelder, explizite unknown-Bestätigung und eine
+korrigierte Zahlenprüfung; alte Replays bleiben unverändert. Siehe [ADR 0007](docs/adr/0007-versioned-pilot-fixes.md).
+Diagnostischer v2-Vergleich abgeschlossen: keine Schemafehler, unknown 3/3 erhalten;
+Tabellen- und Belegfehler bleiben. [Ergebnisse und Grenzen](docs/PILOT_FIXES_RESULTS.md).
+Nächster Schritt: strukturierte Tabellen-/Feldbelege, unabhängiger Fachreview und neue Testfamilien.
+
+## Prüfplanung und Reflexion (v3)
+
+Der CLI-Standard `pilot-config-v3.json` erzeugt vor jedem Modellaufruf einen
+hashgebundenen Prüfplan. Ein strukturierter Selbstcheck muss Belege und offene
+Probleme nennen. Unvollständige Kontextbelege, falsche Tabellenzeilen und unklare
+Layouts verhindern die Freigabe auch bei positivem Modellurteil.
+
+```sh
+uv run axiory-real-eval --all-offline --output datasets/evaluation-real/v3-offline
+uv run axiory-real-eval --replay datasets/evaluation-real/v3-offline
+```
+
+Die zwei zuletzt durchgelassenen Fehler werden durch die neuen Strukturregeln bei
+Offline-Nachprüfung blockiert. Die Wirkung des neuen Prompts wurde noch nicht live
+gemessen. Historische Ergebnisse bleiben unverändert; bekannte Pilotfälle gelten
+als Entwicklungsmaterial. Nächster Schritt: unabhängig annotierte neue Familien mit
+vorab eingefrorenen Kriterien, danach separat budgetierte Live-Validierung.
+[Resilienz und Fehlerbehandlung](docs/RESILIENCE.md),
+[ADR 0008](docs/adr/0008-evidence-plan-and-reflection.md).

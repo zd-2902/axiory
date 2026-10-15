@@ -1,0 +1,4428 @@
+{
+  "schema_version": "multilingual-gold-1",
+  "annotation_status": "single_author_synthetic_not_independently_reviewed",
+  "cases": [
+    {
+      "source": {
+        "id": "document-de-0-00",
+        "product_id": "family-de-0-0",
+        "language": "de",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annullierung ist versichert. Die Limite beträgt CHF 1200 pro Ereignis."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-0",
+      "template": "template-de-dev-clear",
+      "split": "dev",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1200",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annullierung ist versichert. Die Limite beträgt CHF 1200 pro Ereignis."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-01",
+        "product_id": "family-de-0-0",
+        "language": "de",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Reiseabbruch ist ausdrücklich nicht versichert."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-0",
+      "template": "template-de-dev-exclusion",
+      "split": "dev",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Reiseabbruch ist ausdrücklich nicht versichert."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-02",
+        "product_id": "family-de-0-0",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Ein Ausschluss der Leistung Reisegepäck besteht nicht; die Leistung ist gedeckt."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-0",
+      "template": "template-de-dev-negation",
+      "split": "dev",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Ein Ausschluss der Leistung Reisegepäck besteht nicht; die Leistung ist gedeckt."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-03",
+        "product_id": "family-de-0-0",
+        "language": "de",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Medizinische Assistance ist ausgeschlossen, ausser bei einem Notfall.",
+            "Im Notfall besteht Deckung nur mit ärztlichem Zeugnis."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-0",
+      "template": "template-de-dev-exception",
+      "split": "dev",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Medizinische Assistance ist ausgeschlossen, ausser bei einem Notfall.",
+          "Im Notfall besteht Deckung nur mit ärztlichem Zeugnis."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-04",
+        "product_id": "family-de-0-1",
+        "language": "de",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Mietwagen-Selbstbehalt ist versichert, sofern eine vorgängige Genehmigung vorliegt.",
+            "Es gilt eine Limite von CHF 1300 pro Person und Reise."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-1",
+      "template": "template-de-dev-conditional",
+      "split": "dev",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1300",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Mietwagen-Selbstbehalt ist versichert, sofern eine vorgängige Genehmigung vorliegt.",
+          "Es gilt eine Limite von CHF 1300 pro Person und Reise."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-05",
+        "product_id": "family-de-0-1",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Reisegepäck ist bis CHF 1325 pro Ereignis versichert.",
+            "Für Elektronik gilt innerhalb dieser Limite eine Sublimite von CHF 200 pro Gegenstand."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-1",
+      "template": "template-de-dev-sublimit",
+      "split": "dev",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1325",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "Reisegepäck ist bis CHF 1325 pro Ereignis versichert.",
+          "Für Elektronik gilt innerhalb dieser Limite eine Sublimite von CHF 200 pro Gegenstand."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-06",
+        "product_id": "family-de-0-1",
+        "language": "de",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Reiseabbruch ist bis CHF 1350 pro Ereignis gedeckt.",
+            "Der Selbstbehalt beträgt CHF 100 pro Ereignis; er ist keine zusätzliche Limite."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-1",
+      "template": "template-de-dev-deductible",
+      "split": "dev",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1350",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Reiseabbruch ist bis CHF 1350 pro Ereignis gedeckt.",
+          "Der Selbstbehalt beträgt CHF 100 pro Ereignis; er ist keine zusätzliche Limite."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-07",
+        "product_id": "family-de-0-1",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Reisegepäck ist gedeckt. Über alle Ereignisse zusammen gilt CHF 1375 pro Jahr."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-1",
+      "template": "template-de-dev-basis",
+      "split": "dev",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1375",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Reisegepäck ist gedeckt. Über alle Ereignisse zusammen gilt CHF 1375 pro Jahr."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-08",
+        "product_id": "family-de-0-2",
+        "language": "de",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Medizinische Assistance kann je nach nicht näher beschriebenem Sachverhalt gedeckt sein.",
+            "Weder Zusage noch Ausschluss lassen sich daraus eindeutig ableiten."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-2",
+      "template": "template-de-dev-ambiguity",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Medizinische Assistance kann je nach nicht näher beschriebenem Sachverhalt gedeckt sein.",
+          "Weder Zusage noch Ausschluss lassen sich daraus eindeutig ableiten."
+        ],
+        "rationale": "Authored ambiguity semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-09",
+        "product_id": "family-de-0-2",
+        "language": "de",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Abschnitt A: Mietwagen-Selbstbehalt ist versichert.",
+            "Abschnitt B: Mietwagen-Selbstbehalt ist nicht versichert. Eine Vorrangregel fehlt."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-2",
+      "template": "template-de-dev-contradiction",
+      "split": "dev",
+      "scenario": "contradiction",
+      "difficulty": "hard",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Abschnitt A: Mietwagen-Selbstbehalt ist versichert.",
+          "Abschnitt B: Mietwagen-Selbstbehalt ist nicht versichert. Eine Vorrangregel fehlt."
+        ],
+        "rationale": "Authored contradiction semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-10",
+        "product_id": "family-de-0-2",
+        "language": "de",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Die Tabelle benennt die versicherten Leistungen.",
+            "Leistung | CHF-Limite | Bezugsgrösse",
+            "Annullierung | 1450 | pro Ereignis",
+            "Zusatzleistung | 9000 | pro Jahr"
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-2",
+      "template": "template-de-dev-table",
+      "split": "dev",
+      "scenario": "table",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "1450",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annullierung",
+          "1450"
+        ],
+        "rationale": "Authored table semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-11",
+        "product_id": "family-de-0-2",
+        "language": "de",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Reiseabbruch ist bis CHF 1475 pro Ereignis versichert.",
+            "Die Voraussetzung auf der folgenden Seite gehört zu dieser Deckung."
+          ],
+          [
+            "Diese Deckung setzt eine vorgängige Genehmigung voraus."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-2",
+      "template": "template-de-dev-cross_page",
+      "split": "dev",
+      "scenario": "cross_page",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "1475",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Reiseabbruch ist bis CHF 1475 pro Ereignis versichert.",
+          "Die Voraussetzung auf der folgenden Seite gehört zu dieser Deckung.",
+          "Diese Deckung setzt eine vorgängige Genehmigung voraus."
+        ],
+        "rationale": "Authored cross_page semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-12",
+        "product_id": "family-de-0-3",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Reisegepäck ist versichert. Die Limite beträgt CHF 1500 pro Ereignis."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-3",
+      "template": "template-de-dev-clear",
+      "split": "dev",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1500",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Reisegepäck ist versichert. Die Limite beträgt CHF 1500 pro Ereignis."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-13",
+        "product_id": "family-de-0-3",
+        "language": "de",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Medizinische Assistance ist ausdrücklich nicht versichert."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-3",
+      "template": "template-de-dev-exclusion",
+      "split": "dev",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Medizinische Assistance ist ausdrücklich nicht versichert."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-14",
+        "product_id": "family-de-0-3",
+        "language": "de",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Ein Ausschluss der Leistung Mietwagen-Selbstbehalt besteht nicht; die Leistung ist gedeckt."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-3",
+      "template": "template-de-dev-negation",
+      "split": "dev",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Ein Ausschluss der Leistung Mietwagen-Selbstbehalt besteht nicht; die Leistung ist gedeckt."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-15",
+        "product_id": "family-de-0-3",
+        "language": "de",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annullierung ist ausgeschlossen, ausser bei einem Notfall.",
+            "Im Notfall besteht Deckung nur mit ärztlichem Zeugnis."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-3",
+      "template": "template-de-dev-exception",
+      "split": "dev",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annullierung ist ausgeschlossen, ausser bei einem Notfall.",
+          "Im Notfall besteht Deckung nur mit ärztlichem Zeugnis."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-16",
+        "product_id": "family-de-0-4",
+        "language": "de",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Reiseabbruch ist versichert, sofern eine vorgängige Genehmigung vorliegt.",
+            "Es gilt eine Limite von CHF 1600 pro Person und Reise."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-4",
+      "template": "template-de-dev-conditional",
+      "split": "dev",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1600",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Reiseabbruch ist versichert, sofern eine vorgängige Genehmigung vorliegt.",
+          "Es gilt eine Limite von CHF 1600 pro Person und Reise."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-17",
+        "product_id": "family-de-0-4",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Reisegepäck ist bis CHF 1625 pro Ereignis versichert.",
+            "Für Elektronik gilt innerhalb dieser Limite eine Sublimite von CHF 200 pro Gegenstand."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-4",
+      "template": "template-de-dev-sublimit",
+      "split": "dev",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1625",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "Reisegepäck ist bis CHF 1625 pro Ereignis versichert.",
+          "Für Elektronik gilt innerhalb dieser Limite eine Sublimite von CHF 200 pro Gegenstand."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-18",
+        "product_id": "family-de-0-4",
+        "language": "de",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Medizinische Assistance ist bis CHF 1650 pro Ereignis gedeckt.",
+            "Der Selbstbehalt beträgt CHF 100 pro Ereignis; er ist keine zusätzliche Limite."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-4",
+      "template": "template-de-dev-deductible",
+      "split": "dev",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1650",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Medizinische Assistance ist bis CHF 1650 pro Ereignis gedeckt.",
+          "Der Selbstbehalt beträgt CHF 100 pro Ereignis; er ist keine zusätzliche Limite."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-0-19",
+        "product_id": "family-de-0-4",
+        "language": "de",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Mietwagen-Selbstbehalt ist gedeckt. Über alle Ereignisse zusammen gilt CHF 1675 pro Jahr."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-0-4",
+      "template": "template-de-dev-basis",
+      "split": "dev",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1675",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Mietwagen-Selbstbehalt ist gedeckt. Über alle Ereignisse zusammen gilt CHF 1675 pro Jahr."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-00",
+        "product_id": "family-de-1-0",
+        "language": "de",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Leistungszusage für Annullierung:",
+            "Je Schadenereignis übernehmen wir Kosten höchstens bis CHF 1275."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-0",
+      "template": "template-de-holdout-clear",
+      "split": "holdout",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1275",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Leistungszusage für Annullierung:",
+          "Je Schadenereignis übernehmen wir Kosten höchstens bis CHF 1275."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-01",
+        "product_id": "family-de-1-0",
+        "language": "de",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Vom Leistungsumfang ausgenommen bleibt der Bereich Reiseabbruch.",
+            "Hierfür wird keinerlei Versicherungsschutz gewährt."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-0",
+      "template": "template-de-holdout-exclusion",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Vom Leistungsumfang ausgenommen bleibt der Bereich Reiseabbruch.",
+          "Hierfür wird keinerlei Versicherungsschutz gewährt."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-02",
+        "product_id": "family-de-1-0",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Für Reisegepäck wäre die Aussage 'kein Versicherungsschutz' falsch.",
+            "Vereinbart ist ausdrücklich eine Deckung ohne hier genannte Höchstsumme."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-0",
+      "template": "template-de-holdout-negation",
+      "split": "holdout",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Für Reisegepäck wäre die Aussage 'kein Versicherungsschutz' falsch.",
+          "Vereinbart ist ausdrücklich eine Deckung ohne hier genannte Höchstsumme."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-03",
+        "product_id": "family-de-1-0",
+        "language": "de",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Notfälle mit ärztlicher Bescheinigung begründen Versicherungsschutz für Medizinische Assistance.",
+            "Ausserhalb dieser Ausnahme sind sämtliche übrigen Ereignisse ausgeschlossen."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-0",
+      "template": "template-de-holdout-exception",
+      "split": "holdout",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Notfälle mit ärztlicher Bescheinigung begründen Versicherungsschutz für Medizinische Assistance.",
+          "Ausserhalb dieser Ausnahme sind sämtliche übrigen Ereignisse ausgeschlossen."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-04",
+        "product_id": "family-de-1-1",
+        "language": "de",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Eine Genehmigung muss vor dem Ereignis eingeholt werden.",
+            "Nur dann werden für Mietwagen-Selbstbehalt bis CHF 1375 je versicherter Person und Reise erstattet."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-1",
+      "template": "template-de-holdout-conditional",
+      "split": "holdout",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1375",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Eine Genehmigung muss vor dem Ereignis eingeholt werden.",
+          "Nur dann werden für Mietwagen-Selbstbehalt bis CHF 1375 je versicherter Person und Reise erstattet."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-05",
+        "product_id": "family-de-1-1",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Im Baustein Reisegepäck zahlen wir je Schadenereignis maximal CHF 1400.",
+            "Elektronik: je Gegenstand höchstens CHF 200, als Teilbetrag der genannten Gesamtsumme."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-1",
+      "template": "template-de-holdout-sublimit",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1400",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "Im Baustein Reisegepäck zahlen wir je Schadenereignis maximal CHF 1400.",
+          "Elektronik: je Gegenstand höchstens CHF 200, als Teilbetrag der genannten Gesamtsumme."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-06",
+        "product_id": "family-de-1-1",
+        "language": "de",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Bei Reiseabbruch verbleiben je Schadenereignis CHF 100 beim Versicherten.",
+            "Die zugesagte Deckung hat davon getrennt eine Obergrenze von CHF 1425 je Ereignis."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-1",
+      "template": "template-de-holdout-deductible",
+      "split": "holdout",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1425",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Bei Reiseabbruch verbleiben je Schadenereignis CHF 100 beim Versicherten.",
+          "Die zugesagte Deckung hat davon getrennt eine Obergrenze von CHF 1425 je Ereignis."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-07",
+        "product_id": "family-de-1-1",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Für den Baustein Reisegepäck wird Versicherungsschutz zugesagt.",
+            "Sämtliche Zahlungen eines Versicherungsjahres sind zusammen auf CHF 1450 begrenzt."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-1",
+      "template": "template-de-holdout-basis",
+      "split": "holdout",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1450",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Für den Baustein Reisegepäck wird Versicherungsschutz zugesagt.",
+          "Sämtliche Zahlungen eines Versicherungsjahres sind zusammen auf CHF 1450 begrenzt."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-08",
+        "product_id": "family-de-1-2",
+        "language": "de",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Ob für Medizinische Assistance eine Leistung vereinbart ist, richtet sich nach einer fehlenden Anlage.",
+            "Der vorliegende Text legt den Deckungsstatus nicht fest."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-2",
+      "template": "template-de-holdout-ambiguity",
+      "split": "holdout",
+      "scenario": "ambiguity",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Ob für Medizinische Assistance eine Leistung vereinbart ist, richtet sich nach einer fehlenden Anlage.",
+          "Der vorliegende Text legt den Deckungsstatus nicht fest."
+        ],
+        "rationale": "Authored ambiguity semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-09",
+        "product_id": "family-de-1-2",
+        "language": "de",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Zusageblatt: Für Mietwagen-Selbstbehalt gilt Versicherungsschutz.",
+            "Nachtragsblatt: Für denselben Bereich entfällt jeder Versicherungsschutz.",
+            "Beide Blätter sind gleichrangig; es gibt keine Auflösung dieses Widerspruchs."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-2",
+      "template": "template-de-holdout-contradiction",
+      "split": "holdout",
+      "scenario": "contradiction",
+      "difficulty": "hard",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Zusageblatt: Für Mietwagen-Selbstbehalt gilt Versicherungsschutz.",
+          "Nachtragsblatt: Für denselben Bereich entfällt jeder Versicherungsschutz.",
+          "Beide Blätter sind gleichrangig; es gibt keine Auflösung dieses Widerspruchs."
+        ],
+        "rationale": "Authored contradiction semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-10",
+        "product_id": "family-de-1-2",
+        "language": "de",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Erstattungsplan; nur nachfolgend aufgeführte Positionen sind eingeschlossen.",
+            "Position | Bezugszeitraum | Maximalbetrag CHF",
+            "Zusatzleistung | Versicherungsjahr | 9000",
+            "Annullierung | einzelnes Ereignis | 1525"
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-2",
+      "template": "template-de-holdout-table",
+      "split": "holdout",
+      "scenario": "table",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "1525",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annullierung",
+          "1525"
+        ],
+        "rationale": "Authored table semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-11",
+        "product_id": "family-de-1-2",
+        "language": "de",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Eine Genehmigung ist vorab zwingend einzuholen; siehe Zusage auf dem nächsten Blatt."
+          ],
+          [
+            "Unter dieser Voraussetzung ist Reiseabbruch gedeckt.",
+            "Die Erstattung endet je Schadenereignis bei CHF 1550."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-2",
+      "template": "template-de-holdout-cross_page",
+      "split": "holdout",
+      "scenario": "cross_page",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "1550",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Eine Genehmigung ist vorab zwingend einzuholen; siehe Zusage auf dem nächsten Blatt.",
+          "Unter dieser Voraussetzung ist Reiseabbruch gedeckt.",
+          "Die Erstattung endet je Schadenereignis bei CHF 1550."
+        ],
+        "rationale": "Authored cross_page semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-12",
+        "product_id": "family-de-1-3",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Leistungszusage für Reisegepäck:",
+            "Je Schadenereignis übernehmen wir Kosten höchstens bis CHF 1575."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-3",
+      "template": "template-de-holdout-clear",
+      "split": "holdout",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1575",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Leistungszusage für Reisegepäck:",
+          "Je Schadenereignis übernehmen wir Kosten höchstens bis CHF 1575."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-13",
+        "product_id": "family-de-1-3",
+        "language": "de",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Vom Leistungsumfang ausgenommen bleibt der Bereich Medizinische Assistance.",
+            "Hierfür wird keinerlei Versicherungsschutz gewährt."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-3",
+      "template": "template-de-holdout-exclusion",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Vom Leistungsumfang ausgenommen bleibt der Bereich Medizinische Assistance.",
+          "Hierfür wird keinerlei Versicherungsschutz gewährt."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-14",
+        "product_id": "family-de-1-3",
+        "language": "de",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Für Mietwagen-Selbstbehalt wäre die Aussage 'kein Versicherungsschutz' falsch.",
+            "Vereinbart ist ausdrücklich eine Deckung ohne hier genannte Höchstsumme."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-3",
+      "template": "template-de-holdout-negation",
+      "split": "holdout",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Für Mietwagen-Selbstbehalt wäre die Aussage 'kein Versicherungsschutz' falsch.",
+          "Vereinbart ist ausdrücklich eine Deckung ohne hier genannte Höchstsumme."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-15",
+        "product_id": "family-de-1-3",
+        "language": "de",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Notfälle mit ärztlicher Bescheinigung begründen Versicherungsschutz für Annullierung.",
+            "Ausserhalb dieser Ausnahme sind sämtliche übrigen Ereignisse ausgeschlossen."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-3",
+      "template": "template-de-holdout-exception",
+      "split": "holdout",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Notfälle mit ärztlicher Bescheinigung begründen Versicherungsschutz für Annullierung.",
+          "Ausserhalb dieser Ausnahme sind sämtliche übrigen Ereignisse ausgeschlossen."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-16",
+        "product_id": "family-de-1-4",
+        "language": "de",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Eine Genehmigung muss vor dem Ereignis eingeholt werden.",
+            "Nur dann werden für Reiseabbruch bis CHF 1675 je versicherter Person und Reise erstattet."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-4",
+      "template": "template-de-holdout-conditional",
+      "split": "holdout",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1675",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Eine Genehmigung muss vor dem Ereignis eingeholt werden.",
+          "Nur dann werden für Reiseabbruch bis CHF 1675 je versicherter Person und Reise erstattet."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-17",
+        "product_id": "family-de-1-4",
+        "language": "de",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Im Baustein Reisegepäck zahlen wir je Schadenereignis maximal CHF 1700.",
+            "Elektronik: je Gegenstand höchstens CHF 200, als Teilbetrag der genannten Gesamtsumme."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-4",
+      "template": "template-de-holdout-sublimit",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1700",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "Im Baustein Reisegepäck zahlen wir je Schadenereignis maximal CHF 1700.",
+          "Elektronik: je Gegenstand höchstens CHF 200, als Teilbetrag der genannten Gesamtsumme."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-18",
+        "product_id": "family-de-1-4",
+        "language": "de",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Bei Medizinische Assistance verbleiben je Schadenereignis CHF 100 beim Versicherten.",
+            "Die zugesagte Deckung hat davon getrennt eine Obergrenze von CHF 1725 je Ereignis."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-4",
+      "template": "template-de-holdout-deductible",
+      "split": "holdout",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1725",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Bei Medizinische Assistance verbleiben je Schadenereignis CHF 100 beim Versicherten.",
+          "Die zugesagte Deckung hat davon getrennt eine Obergrenze von CHF 1725 je Ereignis."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-de-1-19",
+        "product_id": "family-de-1-4",
+        "language": "de",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Für den Baustein Mietwagen-Selbstbehalt wird Versicherungsschutz zugesagt.",
+            "Sämtliche Zahlungen eines Versicherungsjahres sind zusammen auf CHF 1750 begrenzt."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-de-1-4",
+      "template": "template-de-holdout-basis",
+      "split": "holdout",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1750",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Für den Baustein Mietwagen-Selbstbehalt wird Versicherungsschutz zugesagt.",
+          "Sämtliche Zahlungen eines Versicherungsjahres sind zusammen auf CHF 1750 begrenzt."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-00",
+        "product_id": "family-fr-0-0",
+        "language": "fr",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Interruption du voyage est couvert. La limite est de CHF 1500 par événement."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-0",
+      "template": "template-fr-dev-clear",
+      "split": "dev",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1500",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Interruption du voyage est couvert. La limite est de CHF 1500 par événement."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-01",
+        "product_id": "family-fr-0-0",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Bagages est expressément exclu de la couverture."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-0",
+      "template": "template-fr-dev-exclusion",
+      "split": "dev",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Bagages est expressément exclu de la couverture."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-02",
+        "product_id": "family-fr-0-0",
+        "language": "fr",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Assistance médicale ne fait pas l'objet d'une exclusion; cette prestation est couverte."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-0",
+      "template": "template-fr-dev-negation",
+      "split": "dev",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Assistance médicale ne fait pas l'objet d'une exclusion; cette prestation est couverte."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-03",
+        "product_id": "family-fr-0-0",
+        "language": "fr",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Franchise du véhicule de location est exclu, sauf en cas d'urgence.",
+            "En cas d'urgence, la couverture exige un certificat médical."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-0",
+      "template": "template-fr-dev-exception",
+      "split": "dev",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Franchise du véhicule de location est exclu, sauf en cas d'urgence.",
+          "En cas d'urgence, la couverture exige un certificat médical."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-04",
+        "product_id": "family-fr-0-1",
+        "language": "fr",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annulation est couvert sous réserve d'une autorisation préalable.",
+            "La limite est de CHF 1600 par personne et par voyage."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-1",
+      "template": "template-fr-dev-conditional",
+      "split": "dev",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1600",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annulation est couvert sous réserve d'une autorisation préalable.",
+          "La limite est de CHF 1600 par personne et par voyage."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-05",
+        "product_id": "family-fr-0-1",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Les bagages sont couverts jusqu'à CHF 1625 par événement.",
+            "Pour l'électronique, une sous-limite de CHF 200 par objet s'applique dans cette limite."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-1",
+      "template": "template-fr-dev-sublimit",
+      "split": "dev",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1625",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "Les bagages sont couverts jusqu'à CHF 1625 par événement.",
+          "Pour l'électronique, une sous-limite de CHF 200 par objet s'applique dans cette limite."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-06",
+        "product_id": "family-fr-0-1",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Bagages est couvert jusqu'à CHF 1650 par événement.",
+            "La franchise est de CHF 100 par événement, distincte de la limite de couverture."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-1",
+      "template": "template-fr-dev-deductible",
+      "split": "dev",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1650",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Bagages est couvert jusqu'à CHF 1650 par événement.",
+          "La franchise est de CHF 100 par événement, distincte de la limite de couverture."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-07",
+        "product_id": "family-fr-0-1",
+        "language": "fr",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Assistance médicale est couvert. Le total de tous les événements est limité à CHF 1675 par année."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-1",
+      "template": "template-fr-dev-basis",
+      "split": "dev",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1675",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Assistance médicale est couvert. Le total de tous les événements est limité à CHF 1675 par année."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-08",
+        "product_id": "family-fr-0-2",
+        "language": "fr",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Franchise du véhicule de location pourrait être couvert selon des circonstances non précisées.",
+            "Aucune conclusion certaine sur l'inclusion ou l'exclusion n'est possible."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-2",
+      "template": "template-fr-dev-ambiguity",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Franchise du véhicule de location pourrait être couvert selon des circonstances non précisées.",
+          "Aucune conclusion certaine sur l'inclusion ou l'exclusion n'est possible."
+        ],
+        "rationale": "Authored ambiguity semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-09",
+        "product_id": "family-fr-0-2",
+        "language": "fr",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Article A: Annulation est couvert.",
+            "Article B: Annulation est exclu. Aucune règle de priorité n'est définie."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-2",
+      "template": "template-fr-dev-contradiction",
+      "split": "dev",
+      "scenario": "contradiction",
+      "difficulty": "hard",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Article A: Annulation est couvert.",
+          "Article B: Annulation est exclu. Aucune règle de priorité n'est définie."
+        ],
+        "rationale": "Authored contradiction semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-10",
+        "product_id": "family-fr-0-2",
+        "language": "fr",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Les prestations assurées figurent dans le tableau.",
+            "Prestation | Limite CHF | Base",
+            "Interruption du voyage | 1750 | par événement",
+            "Prestation annexe | 9000 | par année"
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-2",
+      "template": "template-fr-dev-table",
+      "split": "dev",
+      "scenario": "table",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "1750",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Interruption du voyage",
+          "1750"
+        ],
+        "rationale": "Authored table semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-11",
+        "product_id": "family-fr-0-2",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Bagages est couvert jusqu'à CHF 1775 par événement.",
+            "La condition de la page suivante fait partie de cette couverture."
+          ],
+          [
+            "Cette couverture exige une autorisation préalable."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-2",
+      "template": "template-fr-dev-cross_page",
+      "split": "dev",
+      "scenario": "cross_page",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "1775",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Bagages est couvert jusqu'à CHF 1775 par événement.",
+          "La condition de la page suivante fait partie de cette couverture.",
+          "Cette couverture exige une autorisation préalable."
+        ],
+        "rationale": "Authored cross_page semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-12",
+        "product_id": "family-fr-0-3",
+        "language": "fr",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Assistance médicale est couvert. La limite est de CHF 1800 par événement."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-3",
+      "template": "template-fr-dev-clear",
+      "split": "dev",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1800",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Assistance médicale est couvert. La limite est de CHF 1800 par événement."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-13",
+        "product_id": "family-fr-0-3",
+        "language": "fr",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Franchise du véhicule de location est expressément exclu de la couverture."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-3",
+      "template": "template-fr-dev-exclusion",
+      "split": "dev",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Franchise du véhicule de location est expressément exclu de la couverture."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-14",
+        "product_id": "family-fr-0-3",
+        "language": "fr",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annulation ne fait pas l'objet d'une exclusion; cette prestation est couverte."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-3",
+      "template": "template-fr-dev-negation",
+      "split": "dev",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annulation ne fait pas l'objet d'une exclusion; cette prestation est couverte."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-15",
+        "product_id": "family-fr-0-3",
+        "language": "fr",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Interruption du voyage est exclu, sauf en cas d'urgence.",
+            "En cas d'urgence, la couverture exige un certificat médical."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-3",
+      "template": "template-fr-dev-exception",
+      "split": "dev",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Interruption du voyage est exclu, sauf en cas d'urgence.",
+          "En cas d'urgence, la couverture exige un certificat médical."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-16",
+        "product_id": "family-fr-0-4",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Bagages est couvert sous réserve d'une autorisation préalable.",
+            "La limite est de CHF 1900 par personne et par voyage."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-4",
+      "template": "template-fr-dev-conditional",
+      "split": "dev",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1900",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Bagages est couvert sous réserve d'une autorisation préalable.",
+          "La limite est de CHF 1900 par personne et par voyage."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-17",
+        "product_id": "family-fr-0-4",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Les bagages sont couverts jusqu'à CHF 1925 par événement.",
+            "Pour l'électronique, une sous-limite de CHF 200 par objet s'applique dans cette limite."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-4",
+      "template": "template-fr-dev-sublimit",
+      "split": "dev",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1925",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "Les bagages sont couverts jusqu'à CHF 1925 par événement.",
+          "Pour l'électronique, une sous-limite de CHF 200 par objet s'applique dans cette limite."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-18",
+        "product_id": "family-fr-0-4",
+        "language": "fr",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Franchise du véhicule de location est couvert jusqu'à CHF 1950 par événement.",
+            "La franchise est de CHF 100 par événement, distincte de la limite de couverture."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-4",
+      "template": "template-fr-dev-deductible",
+      "split": "dev",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1950",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Franchise du véhicule de location est couvert jusqu'à CHF 1950 par événement.",
+          "La franchise est de CHF 100 par événement, distincte de la limite de couverture."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-0-19",
+        "product_id": "family-fr-0-4",
+        "language": "fr",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annulation est couvert. Le total de tous les événements est limité à CHF 1975 par année."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-0-4",
+      "template": "template-fr-dev-basis",
+      "split": "dev",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1975",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annulation est couvert. Le total de tous les événements est limité à CHF 1975 par année."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-00",
+        "product_id": "family-fr-1-0",
+        "language": "fr",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Engagement relatif à la prestation Interruption du voyage:",
+            "Pour chaque sinistre, les frais sont pris en charge à concurrence de CHF 1575."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-0",
+      "template": "template-fr-holdout-clear",
+      "split": "holdout",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1575",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Engagement relatif à la prestation Interruption du voyage:",
+          "Pour chaque sinistre, les frais sont pris en charge à concurrence de CHF 1575."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-01",
+        "product_id": "family-fr-1-0",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Le poste Bagages demeure hors du champ des garanties.",
+            "Aucune prestation assurée ne peut être demandée pour ce poste."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-0",
+      "template": "template-fr-holdout-exclusion",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Le poste Bagages demeure hors du champ des garanties.",
+          "Aucune prestation assurée ne peut être demandée pour ce poste."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-02",
+        "product_id": "family-fr-1-0",
+        "language": "fr",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Qualifier Assistance médicale de prestation non assurée serait inexact.",
+            "Le contrat accorde explicitement cette garantie sans montant maximal indiqué ici."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-0",
+      "template": "template-fr-holdout-negation",
+      "split": "holdout",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Qualifier Assistance médicale de prestation non assurée serait inexact.",
+          "Le contrat accorde explicitement cette garantie sans montant maximal indiqué ici."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-03",
+        "product_id": "family-fr-1-0",
+        "language": "fr",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Une urgence attestée par un médecin ouvre droit à la garantie Franchise du véhicule de location.",
+            "Tous les événements ne relevant pas de cette exception restent exclus."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-0",
+      "template": "template-fr-holdout-exception",
+      "split": "holdout",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Une urgence attestée par un médecin ouvre droit à la garantie Franchise du véhicule de location.",
+          "Tous les événements ne relevant pas de cette exception restent exclus."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-04",
+        "product_id": "family-fr-1-1",
+        "language": "fr",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "L'accord doit être obtenu avant la survenance de l'événement.",
+            "A cette seule condition, Annulation est remboursé jusqu'à CHF 1675 pour chaque assuré et voyage."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-1",
+      "template": "template-fr-holdout-conditional",
+      "split": "holdout",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1675",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "L'accord doit être obtenu avant la survenance de l'événement.",
+          "A cette seule condition, Annulation est remboursé jusqu'à CHF 1675 pour chaque assuré et voyage."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-05",
+        "product_id": "family-fr-1-1",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "La garantie bagages prévoit un plafond global de CHF 1700 pour chaque sinistre.",
+            "La part électronique ne peut dépasser CHF 200 pour chaque objet; elle est incluse dans le plafond."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-1",
+      "template": "template-fr-holdout-sublimit",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1700",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "La garantie bagages prévoit un plafond global de CHF 1700 pour chaque sinistre.",
+          "La part électronique ne peut dépasser CHF 200 pour chaque objet; elle est incluse dans le plafond."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-06",
+        "product_id": "family-fr-1-1",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Au titre de Bagages, CHF 100 restent à la charge de l'assuré pour chaque sinistre.",
+            "La garantie accordée est séparément plafonnée à CHF 1725 pour chaque événement."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-1",
+      "template": "template-fr-holdout-deductible",
+      "split": "holdout",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1725",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Au titre de Bagages, CHF 100 restent à la charge de l'assuré pour chaque sinistre.",
+          "La garantie accordée est séparément plafonnée à CHF 1725 pour chaque événement."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-07",
+        "product_id": "family-fr-1-1",
+        "language": "fr",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Le poste Assistance médicale bénéficie d'une garantie.",
+            "Les remboursements cumulés sur une année d'assurance ne peuvent dépasser CHF 1750."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-1",
+      "template": "template-fr-holdout-basis",
+      "split": "holdout",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1750",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Le poste Assistance médicale bénéficie d'une garantie.",
+          "Les remboursements cumulés sur une année d'assurance ne peuvent dépasser CHF 1750."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-08",
+        "product_id": "family-fr-1-2",
+        "language": "fr",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Le statut de la garantie Franchise du véhicule de location dépend d'une annexe indisponible.",
+            "Ce document ne tranche pas la question de la couverture."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-2",
+      "template": "template-fr-holdout-ambiguity",
+      "split": "holdout",
+      "scenario": "ambiguity",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Le statut de la garantie Franchise du véhicule de location dépend d'une annexe indisponible.",
+          "Ce document ne tranche pas la question de la couverture."
+        ],
+        "rationale": "Authored ambiguity semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-09",
+        "product_id": "family-fr-1-2",
+        "language": "fr",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Fiche de garantie: Annulation est inclus.",
+            "Avenant: toute garantie pour ce même poste est supprimée.",
+            "Les deux textes ont le même rang et aucune clause ne résout leur incompatibilité."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-2",
+      "template": "template-fr-holdout-contradiction",
+      "split": "holdout",
+      "scenario": "contradiction",
+      "difficulty": "hard",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Fiche de garantie: Annulation est inclus.",
+          "Avenant: toute garantie pour ce même poste est supprimée.",
+          "Les deux textes ont le même rang et aucune clause ne résout leur incompatibilité."
+        ],
+        "rationale": "Authored contradiction semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-10",
+        "product_id": "family-fr-1-2",
+        "language": "fr",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Barème des remboursements; les positions suivantes bénéficient de la garantie.",
+            "Position | Période de référence | Maximum CHF",
+            "Prestation annexe | année d'assurance | 9000",
+            "Interruption du voyage | sinistre individuel | 1825"
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-2",
+      "template": "template-fr-holdout-table",
+      "split": "holdout",
+      "scenario": "table",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "1825",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Interruption du voyage",
+          "1825"
+        ],
+        "rationale": "Authored table semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-11",
+        "product_id": "family-fr-1-2",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "L'accord doit impérativement être obtenu au préalable; la garantie suit au prochain feuillet."
+          ],
+          [
+            "Sous cette condition, la prestation Bagages est assurée.",
+            "Pour chaque sinistre, le remboursement ne dépasse pas CHF 1850."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-2",
+      "template": "template-fr-holdout-cross_page",
+      "split": "holdout",
+      "scenario": "cross_page",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "1850",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "L'accord doit impérativement être obtenu au préalable; la garantie suit au prochain feuillet.",
+          "Sous cette condition, la prestation Bagages est assurée.",
+          "Pour chaque sinistre, le remboursement ne dépasse pas CHF 1850."
+        ],
+        "rationale": "Authored cross_page semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-12",
+        "product_id": "family-fr-1-3",
+        "language": "fr",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Engagement relatif à la prestation Assistance médicale:",
+            "Pour chaque sinistre, les frais sont pris en charge à concurrence de CHF 1875."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-3",
+      "template": "template-fr-holdout-clear",
+      "split": "holdout",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1875",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Engagement relatif à la prestation Assistance médicale:",
+          "Pour chaque sinistre, les frais sont pris en charge à concurrence de CHF 1875."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-13",
+        "product_id": "family-fr-1-3",
+        "language": "fr",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Le poste Franchise du véhicule de location demeure hors du champ des garanties.",
+            "Aucune prestation assurée ne peut être demandée pour ce poste."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-3",
+      "template": "template-fr-holdout-exclusion",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Le poste Franchise du véhicule de location demeure hors du champ des garanties.",
+          "Aucune prestation assurée ne peut être demandée pour ce poste."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-14",
+        "product_id": "family-fr-1-3",
+        "language": "fr",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Qualifier Annulation de prestation non assurée serait inexact.",
+            "Le contrat accorde explicitement cette garantie sans montant maximal indiqué ici."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-3",
+      "template": "template-fr-holdout-negation",
+      "split": "holdout",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Qualifier Annulation de prestation non assurée serait inexact.",
+          "Le contrat accorde explicitement cette garantie sans montant maximal indiqué ici."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-15",
+        "product_id": "family-fr-1-3",
+        "language": "fr",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Une urgence attestée par un médecin ouvre droit à la garantie Interruption du voyage.",
+            "Tous les événements ne relevant pas de cette exception restent exclus."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-3",
+      "template": "template-fr-holdout-exception",
+      "split": "holdout",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Une urgence attestée par un médecin ouvre droit à la garantie Interruption du voyage.",
+          "Tous les événements ne relevant pas de cette exception restent exclus."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-16",
+        "product_id": "family-fr-1-4",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "L'accord doit être obtenu avant la survenance de l'événement.",
+            "A cette seule condition, Bagages est remboursé jusqu'à CHF 1975 pour chaque assuré et voyage."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-4",
+      "template": "template-fr-holdout-conditional",
+      "split": "holdout",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1975",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "L'accord doit être obtenu avant la survenance de l'événement.",
+          "A cette seule condition, Bagages est remboursé jusqu'à CHF 1975 pour chaque assuré et voyage."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-17",
+        "product_id": "family-fr-1-4",
+        "language": "fr",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "La garantie bagages prévoit un plafond global de CHF 2000 pour chaque sinistre.",
+            "La part électronique ne peut dépasser CHF 200 pour chaque objet; elle est incluse dans le plafond."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-4",
+      "template": "template-fr-holdout-sublimit",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2000",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "La garantie bagages prévoit un plafond global de CHF 2000 pour chaque sinistre.",
+          "La part électronique ne peut dépasser CHF 200 pour chaque objet; elle est incluse dans le plafond."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-18",
+        "product_id": "family-fr-1-4",
+        "language": "fr",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Au titre de Franchise du véhicule de location, CHF 100 restent à la charge de l'assuré pour chaque sinistre.",
+            "La garantie accordée est séparément plafonnée à CHF 2025 pour chaque événement."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-4",
+      "template": "template-fr-holdout-deductible",
+      "split": "holdout",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2025",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Au titre de Franchise du véhicule de location, CHF 100 restent à la charge de l'assuré pour chaque sinistre.",
+          "La garantie accordée est séparément plafonnée à CHF 2025 pour chaque événement."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-fr-1-19",
+        "product_id": "family-fr-1-4",
+        "language": "fr",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Le poste Annulation bénéficie d'une garantie.",
+            "Les remboursements cumulés sur une année d'assurance ne peuvent dépasser CHF 2050."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-fr-1-4",
+      "template": "template-fr-holdout-basis",
+      "split": "holdout",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2050",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Le poste Annulation bénéficie d'une garantie.",
+          "Les remboursements cumulés sur une année d'assurance ne peuvent dépasser CHF 2050."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-00",
+        "product_id": "family-it-0-0",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Bagaglio è coperto. Il limite è CHF 1800 per evento."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-0",
+      "template": "template-it-dev-clear",
+      "split": "dev",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1800",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Bagaglio è coperto. Il limite è CHF 1800 per evento."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-01",
+        "product_id": "family-it-0-0",
+        "language": "it",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Assistenza medica è espressamente escluso dalla copertura."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-0",
+      "template": "template-it-dev-exclusion",
+      "split": "dev",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Assistenza medica è espressamente escluso dalla copertura."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-02",
+        "product_id": "family-it-0-0",
+        "language": "it",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Franchigia del veicolo a noleggio non è oggetto di esclusione; questa prestazione è coperta."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-0",
+      "template": "template-it-dev-negation",
+      "split": "dev",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Franchigia del veicolo a noleggio non è oggetto di esclusione; questa prestazione è coperta."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-03",
+        "product_id": "family-it-0-0",
+        "language": "it",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annullamento è escluso, salvo in caso di emergenza.",
+            "In caso di emergenza la copertura richiede un certificato medico."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-0",
+      "template": "template-it-dev-exception",
+      "split": "dev",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annullamento è escluso, salvo in caso di emergenza.",
+          "In caso di emergenza la copertura richiede un certificato medico."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-04",
+        "product_id": "family-it-0-1",
+        "language": "it",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Interruzione del viaggio è coperto a condizione che vi sia un'autorizzazione preventiva.",
+            "Il limite è CHF 1900 per persona e per viaggio."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-1",
+      "template": "template-it-dev-conditional",
+      "split": "dev",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1900",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Interruzione del viaggio è coperto a condizione che vi sia un'autorizzazione preventiva.",
+          "Il limite è CHF 1900 per persona e per viaggio."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-05",
+        "product_id": "family-it-0-1",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Il bagaglio è coperto fino a CHF 1925 per evento.",
+            "Per l'elettronica vale un sottolimite di CHF 200 per oggetto compreso nel limite totale."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-1",
+      "template": "template-it-dev-sublimit",
+      "split": "dev",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1925",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "Il bagaglio è coperto fino a CHF 1925 per evento.",
+          "Per l'elettronica vale un sottolimite di CHF 200 per oggetto compreso nel limite totale."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-06",
+        "product_id": "family-it-0-1",
+        "language": "it",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Assistenza medica è coperto fino a CHF 1950 per evento.",
+            "La franchigia è CHF 100 per evento, distinta dal limite della copertura."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-1",
+      "template": "template-it-dev-deductible",
+      "split": "dev",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1950",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Assistenza medica è coperto fino a CHF 1950 per evento.",
+          "La franchigia è CHF 100 per evento, distinta dal limite della copertura."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-07",
+        "product_id": "family-it-0-1",
+        "language": "it",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Franchigia del veicolo a noleggio è coperto. La somma di tutti gli eventi è limitata a CHF 1975 per anno."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-1",
+      "template": "template-it-dev-basis",
+      "split": "dev",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1975",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Franchigia del veicolo a noleggio è coperto. La somma di tutti gli eventi è limitata a CHF 1975 per anno."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-08",
+        "product_id": "family-it-0-2",
+        "language": "it",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annullamento potrebbe essere coperto in circostanze non specificate.",
+            "Non si può concludere con certezza né l'inclusione né l'esclusione."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-2",
+      "template": "template-it-dev-ambiguity",
+      "split": "dev",
+      "scenario": "ambiguity",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annullamento potrebbe essere coperto in circostanze non specificate.",
+          "Non si può concludere con certezza né l'inclusione né l'esclusione."
+        ],
+        "rationale": "Authored ambiguity semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-09",
+        "product_id": "family-it-0-2",
+        "language": "it",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Articolo A: Interruzione del viaggio è coperto.",
+            "Articolo B: Interruzione del viaggio è escluso. Non è indicata alcuna regola di prevalenza."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-2",
+      "template": "template-it-dev-contradiction",
+      "split": "dev",
+      "scenario": "contradiction",
+      "difficulty": "hard",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Articolo A: Interruzione del viaggio è coperto.",
+          "Articolo B: Interruzione del viaggio è escluso. Non è indicata alcuna regola di prevalenza."
+        ],
+        "rationale": "Authored contradiction semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-10",
+        "product_id": "family-it-0-2",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "La tabella indica le prestazioni assicurate.",
+            "Prestazione | Limite CHF | Base",
+            "Bagaglio | 2050 | per evento",
+            "Prestazione accessoria | 9000 | per anno"
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-2",
+      "template": "template-it-dev-table",
+      "split": "dev",
+      "scenario": "table",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "2050",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Bagaglio",
+          "2050"
+        ],
+        "rationale": "Authored table semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-11",
+        "product_id": "family-it-0-2",
+        "language": "it",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Assistenza medica è coperto fino a CHF 2075 per evento.",
+            "La condizione nella pagina successiva fa parte della copertura."
+          ],
+          [
+            "Questa copertura richiede un'autorizzazione preventiva."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-2",
+      "template": "template-it-dev-cross_page",
+      "split": "dev",
+      "scenario": "cross_page",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "2075",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Assistenza medica è coperto fino a CHF 2075 per evento.",
+          "La condizione nella pagina successiva fa parte della copertura.",
+          "Questa copertura richiede un'autorizzazione preventiva."
+        ],
+        "rationale": "Authored cross_page semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-12",
+        "product_id": "family-it-0-3",
+        "language": "it",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Franchigia del veicolo a noleggio è coperto. Il limite è CHF 2100 per evento."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-3",
+      "template": "template-it-dev-clear",
+      "split": "dev",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "2100",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Franchigia del veicolo a noleggio è coperto. Il limite è CHF 2100 per evento."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-13",
+        "product_id": "family-it-0-3",
+        "language": "it",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annullamento è espressamente escluso dalla copertura."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-3",
+      "template": "template-it-dev-exclusion",
+      "split": "dev",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Annullamento è espressamente escluso dalla copertura."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-14",
+        "product_id": "family-it-0-3",
+        "language": "it",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Interruzione del viaggio non è oggetto di esclusione; questa prestazione è coperta."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-3",
+      "template": "template-it-dev-negation",
+      "split": "dev",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Interruzione del viaggio non è oggetto di esclusione; questa prestazione è coperta."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-15",
+        "product_id": "family-it-0-3",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Bagaglio è escluso, salvo in caso di emergenza.",
+            "In caso di emergenza la copertura richiede un certificato medico."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-3",
+      "template": "template-it-dev-exception",
+      "split": "dev",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Bagaglio è escluso, salvo in caso di emergenza.",
+          "In caso di emergenza la copertura richiede un certificato medico."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-16",
+        "product_id": "family-it-0-4",
+        "language": "it",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Assistenza medica è coperto a condizione che vi sia un'autorizzazione preventiva.",
+            "Il limite è CHF 2200 per persona e per viaggio."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-4",
+      "template": "template-it-dev-conditional",
+      "split": "dev",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2200",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Assistenza medica è coperto a condizione che vi sia un'autorizzazione preventiva.",
+          "Il limite è CHF 2200 per persona e per viaggio."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-17",
+        "product_id": "family-it-0-4",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Il bagaglio è coperto fino a CHF 2225 per evento.",
+            "Per l'elettronica vale un sottolimite di CHF 200 per oggetto compreso nel limite totale."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-4",
+      "template": "template-it-dev-sublimit",
+      "split": "dev",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2225",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "Il bagaglio è coperto fino a CHF 2225 per evento.",
+          "Per l'elettronica vale un sottolimite di CHF 200 per oggetto compreso nel limite totale."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-18",
+        "product_id": "family-it-0-4",
+        "language": "it",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Annullamento è coperto fino a CHF 2250 per evento.",
+            "La franchigia è CHF 100 per evento, distinta dal limite della copertura."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-4",
+      "template": "template-it-dev-deductible",
+      "split": "dev",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2250",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Annullamento è coperto fino a CHF 2250 per evento.",
+          "La franchigia è CHF 100 per evento, distinta dal limite della copertura."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-0-19",
+        "product_id": "family-it-0-4",
+        "language": "it",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Interruzione del viaggio è coperto. La somma di tutti gli eventi è limitata a CHF 2275 per anno."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-0-4",
+      "template": "template-it-dev-basis",
+      "split": "dev",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2275",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Interruzione del viaggio è coperto. La somma di tutti gli eventi è limitata a CHF 2275 per anno."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-00",
+        "product_id": "family-it-1-0",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Impegno relativo alla garanzia Bagaglio:",
+            "Per ciascun sinistro vengono rimborsate spese fino a un massimo di CHF 1875."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-0",
+      "template": "template-it-holdout-clear",
+      "split": "holdout",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "1875",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Impegno relativo alla garanzia Bagaglio:",
+          "Per ciascun sinistro vengono rimborsate spese fino a un massimo di CHF 1875."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-01",
+        "product_id": "family-it-1-0",
+        "language": "it",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "La voce Assistenza medica rimane estranea alle garanzie contrattuali.",
+            "Per questa voce non viene concessa alcuna prestazione assicurativa."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-0",
+      "template": "template-it-holdout-exclusion",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "La voce Assistenza medica rimane estranea alle garanzie contrattuali.",
+          "Per questa voce non viene concessa alcuna prestazione assicurativa."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-02",
+        "product_id": "family-it-1-0",
+        "language": "it",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Definire Franchigia del veicolo a noleggio una prestazione non assicurata sarebbe inesatto.",
+            "Il contratto accorda espressamente tale garanzia senza indicare qui un massimale."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-0",
+      "template": "template-it-holdout-negation",
+      "split": "holdout",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Definire Franchigia del veicolo a noleggio una prestazione non assicurata sarebbe inesatto.",
+          "Il contratto accorda espressamente tale garanzia senza indicare qui un massimale."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-03",
+        "product_id": "family-it-1-0",
+        "language": "it",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Un'emergenza certificata da un medico dà diritto alla garanzia Annullamento.",
+            "Tutti gli eventi estranei a tale eccezione restano esclusi."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-0",
+      "template": "template-it-holdout-exception",
+      "split": "holdout",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Un'emergenza certificata da un medico dà diritto alla garanzia Annullamento.",
+          "Tutti gli eventi estranei a tale eccezione restano esclusi."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-04",
+        "product_id": "family-it-1-1",
+        "language": "it",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Il consenso deve essere ottenuto prima che si verifichi l'evento.",
+            "Solo in tal caso Interruzione del viaggio viene rimborsato fino a CHF 1975 per ciascun assicurato e viaggio."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-1",
+      "template": "template-it-holdout-conditional",
+      "split": "holdout",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "1975",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Il consenso deve essere ottenuto prima che si verifichi l'evento.",
+          "Solo in tal caso Interruzione del viaggio viene rimborsato fino a CHF 1975 per ciascun assicurato e viaggio."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-05",
+        "product_id": "family-it-1-1",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "La garanzia bagaglio prevede un massimale complessivo di CHF 2000 per ciascun sinistro.",
+            "La quota elettronica non supera CHF 200 per ciascun oggetto ed è inclusa nel massimale."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-1",
+      "template": "template-it-holdout-sublimit",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2000",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "La garanzia bagaglio prevede un massimale complessivo di CHF 2000 per ciascun sinistro.",
+          "La quota elettronica non supera CHF 200 per ciascun oggetto ed è inclusa nel massimale."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-06",
+        "product_id": "family-it-1-1",
+        "language": "it",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Per Assistenza medica, CHF 100 rimangono a carico dell'assicurato per ciascun sinistro.",
+            "La garanzia concessa ha separatamente un tetto di CHF 2025 per ciascun evento."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-1",
+      "template": "template-it-holdout-deductible",
+      "split": "holdout",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2025",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Per Assistenza medica, CHF 100 rimangono a carico dell'assicurato per ciascun sinistro.",
+          "La garanzia concessa ha separatamente un tetto di CHF 2025 per ciascun evento."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-07",
+        "product_id": "family-it-1-1",
+        "language": "it",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Alla voce Franchigia del veicolo a noleggio è accordata una garanzia.",
+            "I rimborsi cumulati in un anno assicurativo non possono superare CHF 2050."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-1",
+      "template": "template-it-holdout-basis",
+      "split": "holdout",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2050",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Alla voce Franchigia del veicolo a noleggio è accordata una garanzia.",
+          "I rimborsi cumulati in un anno assicurativo non possono superare CHF 2050."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-08",
+        "product_id": "family-it-1-2",
+        "language": "it",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Lo stato della garanzia Annullamento dipende da un allegato non disponibile.",
+            "Questo documento non determina l'esistenza della copertura."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-2",
+      "template": "template-it-holdout-ambiguity",
+      "split": "holdout",
+      "scenario": "ambiguity",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Lo stato della garanzia Annullamento dipende da un allegato non disponibile.",
+          "Questo documento non determina l'esistenza della copertura."
+        ],
+        "rationale": "Authored ambiguity semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-09",
+        "product_id": "family-it-1-2",
+        "language": "it",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Scheda di garanzia: Interruzione del viaggio è incluso.",
+            "Appendice: ogni garanzia per la medesima voce viene revocata.",
+            "I due testi hanno pari rango e nessuna disposizione risolve il contrasto."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-2",
+      "template": "template-it-holdout-contradiction",
+      "split": "holdout",
+      "scenario": "contradiction",
+      "difficulty": "hard",
+      "expected": {
+        "status": "unknown",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Scheda di garanzia: Interruzione del viaggio è incluso.",
+          "Appendice: ogni garanzia per la medesima voce viene revocata.",
+          "I due testi hanno pari rango e nessuna disposizione risolve il contrasto."
+        ],
+        "rationale": "Authored contradiction semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-10",
+        "product_id": "family-it-1-2",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Prospetto dei rimborsi: le seguenti voci sono comprese nella garanzia.",
+            "Voce | Periodo di riferimento | Massimo CHF",
+            "Prestazione accessoria | anno assicurativo | 9000",
+            "Bagaglio | singolo sinistro | 2125"
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-2",
+      "template": "template-it-holdout-table",
+      "split": "holdout",
+      "scenario": "table",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "2125",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Bagaglio",
+          "2125"
+        ],
+        "rationale": "Authored table semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-11",
+        "product_id": "family-it-1-2",
+        "language": "it",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Il consenso deve essere ottenuto preventivamente; la garanzia segue sul prossimo foglio."
+          ],
+          [
+            "A tale condizione la prestazione Assistenza medica è assicurata.",
+            "Per ciascun sinistro il rimborso non supera CHF 2150."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-2",
+      "template": "template-it-holdout-cross_page",
+      "split": "holdout",
+      "scenario": "cross_page",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": "2150",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Il consenso deve essere ottenuto preventivamente; la garanzia segue sul prossimo foglio.",
+          "A tale condizione la prestazione Assistenza medica è assicurata.",
+          "Per ciascun sinistro il rimborso non supera CHF 2150."
+        ],
+        "rationale": "Authored cross_page semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-12",
+        "product_id": "family-it-1-3",
+        "language": "it",
+        "coverage_code": "rental_car_deductible",
+        "pages": [
+          [
+            "Impegno relativo alla garanzia Franchigia del veicolo a noleggio:",
+            "Per ciascun sinistro vengono rimborsate spese fino a un massimo di CHF 2175."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-3",
+      "template": "template-it-holdout-clear",
+      "split": "holdout",
+      "scenario": "clear",
+      "difficulty": "simple",
+      "expected": {
+        "status": "covered",
+        "amount": "2175",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Impegno relativo alla garanzia Franchigia del veicolo a noleggio:",
+          "Per ciascun sinistro vengono rimborsate spese fino a un massimo di CHF 2175."
+        ],
+        "rationale": "Authored clear semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-13",
+        "product_id": "family-it-1-3",
+        "language": "it",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "La voce Annullamento rimane estranea alle garanzie contrattuali.",
+            "Per questa voce non viene concessa alcuna prestazione assicurativa."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-3",
+      "template": "template-it-holdout-exclusion",
+      "split": "holdout",
+      "scenario": "exclusion",
+      "difficulty": "simple",
+      "expected": {
+        "status": "excluded",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "La voce Annullamento rimane estranea alle garanzie contrattuali.",
+          "Per questa voce non viene concessa alcuna prestazione assicurativa."
+        ],
+        "rationale": "Authored exclusion semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-14",
+        "product_id": "family-it-1-3",
+        "language": "it",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Definire Interruzione del viaggio una prestazione non assicurata sarebbe inesatto.",
+            "Il contratto accorda espressamente tale garanzia senza indicare qui un massimale."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-3",
+      "template": "template-it-holdout-negation",
+      "split": "holdout",
+      "scenario": "negation",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Definire Interruzione del viaggio una prestazione non assicurata sarebbe inesatto.",
+          "Il contratto accorda espressamente tale garanzia senza indicare qui un massimale."
+        ],
+        "rationale": "Authored negation semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-15",
+        "product_id": "family-it-1-3",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "Un'emergenza certificata da un medico dà diritto alla garanzia Bagaglio.",
+            "Tutti gli eventi estranei a tale eccezione restano esclusi."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-3",
+      "template": "template-it-holdout-exception",
+      "split": "holdout",
+      "scenario": "exception",
+      "difficulty": "hard",
+      "expected": {
+        "status": "covered",
+        "amount": null,
+        "currency": null,
+        "basis": null,
+        "conditions": [
+          "emergency",
+          "medical_certificate"
+        ],
+        "exclusions": [
+          "non_emergency"
+        ],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Un'emergenza certificata da un medico dà diritto alla garanzia Bagaglio.",
+          "Tutti gli eventi estranei a tale eccezione restano esclusi."
+        ],
+        "rationale": "Authored exception semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-16",
+        "product_id": "family-it-1-4",
+        "language": "it",
+        "coverage_code": "medical_assistance",
+        "pages": [
+          [
+            "Il consenso deve essere ottenuto prima che si verifichi l'evento.",
+            "Solo in tal caso Assistenza medica viene rimborsato fino a CHF 2275 per ciascun assicurato e viaggio."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-4",
+      "template": "template-it-holdout-conditional",
+      "split": "holdout",
+      "scenario": "conditional",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2275",
+        "currency": "CHF",
+        "basis": "per_person_per_trip",
+        "conditions": [
+          "prior_approval"
+        ],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Il consenso deve essere ottenuto prima che si verifichi l'evento.",
+          "Solo in tal caso Assistenza medica viene rimborsato fino a CHF 2275 per ciascun assicurato e viaggio."
+        ],
+        "rationale": "Authored conditional semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-17",
+        "product_id": "family-it-1-4",
+        "language": "it",
+        "coverage_code": "baggage",
+        "pages": [
+          [
+            "La garanzia bagaglio prevede un massimale complessivo di CHF 2300 per ciascun sinistro.",
+            "La quota elettronica non supera CHF 200 per ciascun oggetto ed è inclusa nel massimale."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-4",
+      "template": "template-it-holdout-sublimit",
+      "split": "holdout",
+      "scenario": "sublimit",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2300",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [
+          {
+            "subject": "electronics",
+            "amount": "200",
+            "currency": "CHF",
+            "basis": "per_item"
+          }
+        ],
+        "deductible": null,
+        "anchors": [
+          "La garanzia bagaglio prevede un massimale complessivo di CHF 2300 per ciascun sinistro.",
+          "La quota elettronica non supera CHF 200 per ciascun oggetto ed è inclusa nel massimale."
+        ],
+        "rationale": "Authored sublimit semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-18",
+        "product_id": "family-it-1-4",
+        "language": "it",
+        "coverage_code": "cancellation",
+        "pages": [
+          [
+            "Per Annullamento, CHF 100 rimangono a carico dell'assicurato per ciascun sinistro.",
+            "La garanzia concessa ha separatamente un tetto di CHF 2325 per ciascun evento."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-4",
+      "template": "template-it-holdout-deductible",
+      "split": "holdout",
+      "scenario": "deductible",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2325",
+        "currency": "CHF",
+        "basis": "per_event",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": {
+          "amount": "100",
+          "currency": "CHF",
+          "basis": "per_event"
+        },
+        "anchors": [
+          "Per Annullamento, CHF 100 rimangono a carico dell'assicurato per ciascun sinistro.",
+          "La garanzia concessa ha separatamente un tetto di CHF 2325 per ciascun evento."
+        ],
+        "rationale": "Authored deductible semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    },
+    {
+      "source": {
+        "id": "document-it-1-19",
+        "product_id": "family-it-1-4",
+        "language": "it",
+        "coverage_code": "interruption",
+        "pages": [
+          [
+            "Alla voce Interruzione del viaggio è accordata una garanzia.",
+            "I rimborsi cumulati in un anno assicurativo non possono superare CHF 2350."
+          ]
+        ],
+        "synthetic": true
+      },
+      "family": "family-it-1-4",
+      "template": "template-it-holdout-basis",
+      "split": "holdout",
+      "scenario": "basis",
+      "difficulty": "moderate",
+      "expected": {
+        "status": "covered",
+        "amount": "2350",
+        "currency": "CHF",
+        "basis": "per_year",
+        "conditions": [],
+        "exclusions": [],
+        "sublimits": [],
+        "deductible": null,
+        "anchors": [
+          "Alla voce Interruzione del viaggio è accordata una garanzia.",
+          "I rimborsi cumulati in un anno assicurativo non possono superare CHF 2350."
+        ],
+        "rationale": "Authored basis semantics; no precedence or coverage inferred. Single synthetic author, no independent professional review."
+      }
+    }
+  ]
+}

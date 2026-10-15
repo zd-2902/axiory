@@ -127,3 +127,60 @@ def test_official_sdk_timeout_is_bounded_and_redacted(tmp_path):
         record = store._read("model_calls", key, CallRecord)
         assert "SECRET ERROR DETAILS" not in record.model_dump_json()
         assert record.output_sha256 is None
+
+
+@pytest.mark.parametrize("temperature", [None, 0.0])
+@pytest.mark.parametrize("protocol_version", [1, 2, 3])
+def test_sprint6_official_sdk_configuration(tmp_path, temperature, protocol_version):
+    from pathlib import Path
+
+    from axiory.experiments.corpus import load_corpus, prepare
+    from axiory.experiments.models import parse_config
+    from axiory.experiments.prompts import make_request
+
+    httpx = pytest.importorskip("httpx")
+    openai = pytest.importorskip("openai")
+    corpus, _ = load_corpus()
+    name = (
+        "pilot-config.json" if protocol_version == 1 else f"pilot-config-v{protocol_version}.json"
+    )
+    config = parse_config((Path("datasets/multilingual") / name).read_bytes())
+    data = config.model_dump(mode="json")
+    data["extract"]["temperature"] = temperature
+    config = parse_config(json.dumps(data))
+    context = prepare(
+        LayoutStore(tmp_path), corpus.cases[0].source, max_chars=config.max_context_chars
+    )
+    captured = []
+
+    def handler(request):
+        body = json.loads(request.content)
+        captured.append(body)
+        assert body["model"] == "gpt-4.1-mini-2025-04-14"
+        assert body["service_tier"] == "default" and body["store"] is False
+        assert ("temperature" in body) == (temperature is not None)
+        if temperature is not None:
+            assert body["temperature"] == temperature
+        assert body["text"]["format"]["strict"] is True
+        assert "tools" not in body
+        return httpx.Response(
+            200,
+            json={
+                "id": "resp_fixture",
+                "object": "response",
+                "created_at": 0,
+                "status": "completed",
+                "model": "gpt-4.1-mini-2025-04-14",
+                "output": [],
+                "usage": {"input_tokens": 100, "output_tokens": 20, "total_tokens": 120},
+            },
+        )
+
+    client = openai.OpenAI(
+        api_key="synthetic-test-not-a-secret",
+        http_client=httpx.Client(transport=httpx.MockTransport(handler)),
+    )
+    reply = OpenAIProvider(allow_live=True, client=client).send(
+        make_request(context, config, "extract"), 1
+    )
+    assert len(captured) == 1 and reply.input_tokens == 100 and reply.output_tokens == 20

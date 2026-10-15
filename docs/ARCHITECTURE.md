@@ -145,3 +145,35 @@ nicht importierte Flags. Quelle, semantische Bewertung und fachlicher Review sin
 verschiedene Vertrauensstufen. Kostenreservationen und Timeout-Prüfungen ersetzen
 keinen isolierten Prozess. Details und Datenmodelle: [LLM_EXTRACTION](LLM_EXTRACTION.md),
 [ADR 0005](adr/0005-llm-extraction-architecture.md).
+
+## Sprint 6: gepaarte Experimente
+
+experiments trennt blindes Source-DTO, eingefrorene Labels, PDF-Kontext, RequestV2,
+CheckedClaim/CheckedReview und CaseRun/Manifest. semantic-2/travel-2 sind additiv;
+Legacy-Schemas und Hashes werden nicht migriert. Beide Reviews referenzieren denselben
+A-Outputhash. Die Pipeline bleibt synchron und begrenzt, ohne Orchestrierungsframework.
+
+Ein globaler Session-CAS mit Journal kontrolliert alle Versuche; je Fall bleibt ein
+LayoutStore für Original/Version/Extraktion. Exklusive Outputpfade verhindern Budgetreset.
+Replay reproduziert Status aus Quellen und Rohantworten; Releaseflags sind nicht trusted.
+[ADR 0006](adr/0006-real-llm-evaluation.md) beschreibt Speicher-/Vertrauensinvarianten,
+[Verifikationsstrategie](VERIFICATION_STRATEGY.md) die drei Prüfebenen.
+
+Post-Pilot-Korrekturen sind über experiment-config-2/pilot-fixes-2 getrennt von historischen
+Läufen: atomare Provider-Geldfelder, supported_unknown und neue Zahlenprüfung, ohne Änderung
+an CandidateV2 oder Gold. Replay wählt die versionierten Regeln aus dem Manifest; siehe
+[ADR 0007](adr/0007-versioned-pilot-fixes.md).
+
+## Evidenzplanung v3
+
+`experiment-config-3 / evidence-plan-3` bindet zusätzliche Provider-DTOs mit
+strukturierter Reflexion an unveränderte CandidateV2-/CaseRun-Formate. Vor jedem
+Request erzeugt `experiments/resilience.py` einen deterministischen EvidencePlan
+allein aus dem verifizierten Kontext. Der Request speichert Plan, Hash und Prompt;
+Rohantworten speichern die Reflexion. Replay rekonstruiert beides und berechnet
+Gates erneut. v1/v2-Schemas und Prompts bleiben bytegleich.
+
+Strukturgates prüfen vollständige Kontextabdeckung mittels aufgelöster PDF-Spannen
+und eng begrenzte synthetische Tabellenzuordnung. Reflexionsflags können diese Gates
+nur verschärfen, nie aufheben. Es bleiben drei begrenzte Modellaufrufe, keine neue
+Agentenrolle oder Abhängigkeit. Details und Grenzen: [ADR 0008](adr/0008-evidence-plan-and-reflection.md).

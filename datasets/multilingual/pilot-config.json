@@ -1,0 +1,26 @@
+{
+  "extract": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0.0,
+    "input_usd_per_million": "0.40",
+    "output_usd_per_million": "1.60",
+    "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+    "pricing_checked_on": "2026-10-09"
+  },
+  "verify": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0.0,
+    "input_usd_per_million": "0.40",
+    "output_usd_per_million": "1.60",
+    "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+    "pricing_checked_on": "2026-10-09"
+  },
+  "critic": {
+    "model": "gpt-4.1-mini-2025-04-14",
+    "temperature": 0.0,
+    "input_usd_per_million": "0.40",
+    "output_usd_per_million": "1.60",
+    "pricing_source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+    "pricing_checked_on": "2026-10-09"
+  }
+}

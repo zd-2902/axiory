@@ -1,0 +1,321 @@
+{
+  "schema_version": "source-reassessment-1",
+  "measurement": "OFFLINE_SOURCE_REASSESSMENT",
+  "source_manifest_sha256": "ade41b8fe8a0db91cef2fb87a6a80684954e30d7e0faca2708cfea7cbd1e3f99",
+  "source_quality_fingerprint": "92f559870c3846c25265c46e7d88b587dbc9e6044354dd6a40268be7721a9b0f",
+  "protocol_version": "pilot-fixes-2",
+  "model_calls": 0,
+  "cases": [
+    {
+      "case_id": "document-de-0-00",
+      "original_case_sha256": "74a7a5d0ca5a1f06f35fbc40fa9ca64d02effd034eef8f150021301556c4db31",
+      "candidate_sha256": "75527d0fb0aff24ac3e433aef40dc03a52499f445c9347513a70c633c8b4c8ac",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-de-0-05",
+      "original_case_sha256": "49f120592ff44841ff2f980df3fcb7dfd16da8cdd25238347d7661aec2a7ede1",
+      "candidate_sha256": "445051ab3371cba09ac41614c6df00956d82f77e3ac0ca64f72ba73f6edfaf2d",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-de-0-10",
+      "original_case_sha256": "3dfd937aea109d15d41ff3b5d6b79fbe45fefc0119fccefcf55c9906419a5881",
+      "status": "no_valid_candidate",
+      "before": null,
+      "after": null
+    },
+    {
+      "case_id": "document-de-0-15",
+      "original_case_sha256": "519be5c0313d5e5b4d2dce5bc43a9f9a06dae0b157c7ec151995288e43d4a27e",
+      "candidate_sha256": "8f13ee84cc7357ac1de02e7561b3ce048ce3dd6b68ad7b87da541a3ff77974ea",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-de-1-02",
+      "original_case_sha256": "ecf0256d22080163a97ce2be883c18b1bf0572e155f78446acff9015c4d818db",
+      "status": "no_valid_candidate",
+      "before": null,
+      "after": null
+    },
+    {
+      "case_id": "document-de-1-07",
+      "original_case_sha256": "d682b6c44eb9dea09fc6b1e80281a458b2a35b12a749612f7390e9980c450c6f",
+      "candidate_sha256": "05a634d0333c5eeab5d5d7c7c64e6a3b0fd01201a97d54d9e1bffb338a820286",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-de-1-08",
+      "original_case_sha256": "0a5014b1f76a5a488988bc8907a13f9b70b609771c13ecd1d65760e170c6c104",
+      "candidate_sha256": "d16185e647f01d153410462f556d67ec7359df42ad79e42622b645bdbb39e4b8",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-de-1-13",
+      "original_case_sha256": "7d73f96715f20debb9ccc0a6d7efddb60ed364f9032d0a0a348861651836d0fd",
+      "candidate_sha256": "edf2b81aa891b9a3b25a1e6ecaedda57a87737ddcca9a33804470f4315f5df72",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-fr-0-01",
+      "original_case_sha256": "75fd30687210d55127582a57cc6d233069f903245d81feaf08f2b4feac0731ab",
+      "candidate_sha256": "d7e9ead6f8d79b6b502f4ec70953222c56d8be40689ec60a18bc5ef17af4cbd7",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-fr-0-06",
+      "original_case_sha256": "25550ae957eccaad1902c9378a9ae6d89f2664c6e455e39e8e1fc20d895c2aaa",
+      "candidate_sha256": "87512054d1873caa612b932ccc4cb3bfdd54bf78437c6168da5c38fbb2359b17",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-fr-0-11",
+      "original_case_sha256": "f7830ea039d626288da17e5687ada8c121d861b04277cc9448c8eba7068caa43",
+      "candidate_sha256": "fa5b5d68393a70931ce9777293b4bb8783cdac111e4212ede1fda2d1c4724552",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-fr-0-12",
+      "original_case_sha256": "81d824e23bb4c409ff4f8410e05dd9f59e2114e98044c5f0a3aa6d8b40805b5b",
+      "candidate_sha256": "99901563069883440676d4433e0ad2bede6628854936e58f307b6a81da5cf8e0",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-fr-1-03",
+      "original_case_sha256": "cb4a18964ce0cfab566cb8d186917a9b725b72a6bd9b2a7eb3fdc2eeeb88271c",
+      "status": "no_valid_candidate",
+      "before": null,
+      "after": null
+    },
+    {
+      "case_id": "document-fr-1-04",
+      "original_case_sha256": "9354b2d2d421af2fdefb6de8176a4b10540800a0955e8c6efb6b8e513f3a89a7",
+      "candidate_sha256": "07c69f283bc1dd7356b20b749c9138c07a90c7abc5c27cdb13b6043b57869e5a",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-fr-1-09",
+      "original_case_sha256": "182fd25b340dabb4b5ca2af9ec41f9cd88841e9a3cd154ed92a94abf09b2f683",
+      "candidate_sha256": "c03bc27b247d1b51c3fee5c702ab49fd3c5d02c0491e30ec73cd4a83c859a18e",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-fr-1-14",
+      "original_case_sha256": "d6a2442943d021331c18b3921271327cc3aca6c8aa183c9ac517bdcb12c699a1",
+      "candidate_sha256": "0c13e9fe5ca1ea7fc3184598d452188534e12cbf78169e7f1d848e22267b2705",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-it-0-02",
+      "original_case_sha256": "cd2d5d33696edb22af4deb9da04b9a980e6faa81926da8fd74ca9b40f3695fd2",
+      "status": "no_valid_candidate",
+      "before": null,
+      "after": null
+    },
+    {
+      "case_id": "document-it-0-07",
+      "original_case_sha256": "64dfe3c9b42e74b228ec63cf1c93f2fdf4f3bc3b887fd1e6c2f77db298b7ebc4",
+      "candidate_sha256": "3ad6c5c046184bc9fd0201fce9c3ceaba06fe07e8ad46154dad2ca886c8aaffc",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-it-0-08",
+      "original_case_sha256": "d14318b1fd0dbfd70ded1b09502e1dbbfa8e77a6b4da41b9cb44d7dd986f537c",
+      "candidate_sha256": "a516e27afbf296c827deaf35ac4247b2b049ccc0e39eb6cd0c31e42786e1e21f",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-it-0-13",
+      "original_case_sha256": "3c532fe8ec5b6604dd6531e8629d162f7248ce5aabd20060dbe0cb09528a11d2",
+      "candidate_sha256": "13fbc0834d5b633777cb81004d0cc50c672a7e4efc605f8eae6474ebca238bf5",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-it-1-00",
+      "original_case_sha256": "241df2754814ba63948e5362970acb6b732b88764e9aa8dd28249b06999b3b27",
+      "candidate_sha256": "1648e11def2860f5bd1082be5d50797db8fac34ec434f9127437ce05ef497571",
+      "status": "rechecked",
+      "before": {
+        "status": "review_required",
+        "issues": [
+          "amount_not_literal"
+        ]
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-it-1-05",
+      "original_case_sha256": "11d5826069c6821a938f52b9d9a2b12c9ae33b0c2e5e036a0af8d5a6ad809884",
+      "candidate_sha256": "f49e8483dba5e956bc768a31a613cdb113c2b73ecb430a5322f6981daf4b4d54",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-it-1-10",
+      "original_case_sha256": "ec73cb9641e764ef93f6b867c44fb549668624599055136abc516041e499d827",
+      "candidate_sha256": "bf3e196a1c4e74cf46e47fcd3a74c6bf2d9a5b70391baf02e625cf838c58c1ed",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    },
+    {
+      "case_id": "document-it-1-15",
+      "original_case_sha256": "cb9543e5d9768f0eab54528cf81e72f81b4872ec9338ff48d8eb69cb2270cfc8",
+      "candidate_sha256": "f530a88cd0f1bc697ba67ab547ad7798fac49af242531c412e4ff97a9bcae348",
+      "status": "rechecked",
+      "before": {
+        "status": "source_matched",
+        "issues": []
+      },
+      "after": {
+        "status": "source_matched",
+        "issues": []
+      }
+    }
+  ],
+  "note": "Existing canonical candidates only. Invalid replies are not repaired. Reviews are not reinterpreted; no v2 model-quality claim or gate score."
+}

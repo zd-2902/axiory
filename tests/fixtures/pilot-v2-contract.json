@@ -1,0 +1,17 @@
+{
+  "extract": {
+    "prompt_version": "multilingual-extract-2",
+    "system": "1232afc7c84ca75dba1e6518ec692be366744ce3c75dc2c5911bd19768f2c0df",
+    "output_schema_json": "37e5c9a44181fa9b320a214479c704cf72f23053974996b438f1e139528b704c"
+  },
+  "verify": {
+    "prompt_version": "multilingual-verify-2",
+    "system": "dad3af875398b74c864a13acb247196a8605f8aa92bc5e48d2c81fe836d956d6",
+    "output_schema_json": "b72092caf5d0b7c5e2525b394c315218eedba80f75b3b4e13419ddc79166f1c4"
+  },
+  "critic": {
+    "prompt_version": "multilingual-adversarial-2",
+    "system": "513349040d579961830f1a2e8faea1f9937df952225727e7861d66f5412dba2e",
+    "output_schema_json": "b72092caf5d0b7c5e2525b394c315218eedba80f75b3b4e13419ddc79166f1c4"
+  }
+}
